@@ -206,6 +206,8 @@ table.adm th,table.adm td{text-align:left;padding:8px;border-bottom:1px solid va
 .prog p{margin:6px 0;font-size:15px;color:var(--muted)}
 .prog p b{color:var(--ink)}
 .prog a{display:inline-block;margin-top:8px;font-weight:600;color:var(--terracota)}
+.contato{display:grid;gap:14px;margin-top:18px}
+.contato textarea,.contato input,.contato select{width:100%;font:inherit}
 footer{border-top:1px solid var(--line);margin-top:30px;padding:26px 0 40px;color:var(--muted);font-size:15px}
 footer .wrap{display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap}
 
@@ -271,7 +273,7 @@ footer .wrap{display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap}
 <footer>
   <div class="wrap">
     <span>Nuriteca reúne oportunidades e leva você ao site oficial. Aqui não há inscrição nem cobrança.</span>
-    <span style="display:flex;gap:16px;flex-wrap:wrap"><a href="#sobre">Como verificamos</a><span>Criado por: <a href="https://www.instagram.com/gabihistoriaa/" target="_blank" rel="noopener">@gabihistoriaa</a></span></span>
+    <span style="display:flex;gap:16px;flex-wrap:wrap"><a href="#contato">Fale conosco</a><a href="#sobre">Como verificamos</a><span>Criado por: <a href="https://www.instagram.com/gabihistoriaa/" target="_blank" rel="noopener">@gabihistoriaa</a></span></span>
   </div>
 </footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -769,8 +771,25 @@ function viewIntercambios(){
   </div>`;
 }
 
+const ASSUNTOS = ["Dúvida sobre uma oportunidade","Sugerir uma oportunidade","Informação errada ou desatualizada","Reclamação","Parceria","Publicidade","Imprensa","Apostilas","Outro assunto"];
+function viewContato(){
+  return `<div class="wrap" style="padding-top:28px;padding-bottom:28px;max-width:640px">
+    <h1 style="font-size:40px">Fale conosco</h1>
+    <p class="note">Mande sua mensagem pelo formulário. Respondemos pelo e-mail que você informar.</p>
+    <form id="contato-form" class="contato" novalidate>
+      <label class="field" for="ct-nome">Seu nome<input id="ct-nome" name="nome" required autocomplete="name"></label>
+      <label class="field" for="ct-email">Seu e-mail<input id="ct-email" name="email" type="email" required autocomplete="email"></label>
+      <label class="field" for="ct-assunto">Assunto<select id="ct-assunto" name="assunto" required><option value="">Escolha um assunto</option>${ASSUNTOS.map(a=>`<option>${esc(a)}</option>`).join("")}</select></label>
+      <label class="field" for="ct-msg">Mensagem<textarea id="ct-msg" name="mensagem" rows="7" required></textarea></label>
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+      <button class="btn" type="submit" id="ct-enviar">Enviar mensagem</button>
+      <p class="note" id="ct-status" role="status" aria-live="polite"></p>
+    </form>
+  </div>`;
+}
+
 function viewSobre(){
-  return `<div class="wrap" style="padding:28px 0;max-width:720px">
+  return `<div class="wrap" style="padding-top:28px;padding-bottom:28px;max-width:720px">
     <h1 style="font-size:40px">Como verificamos</h1>
     <p>Cada oportunidade na Nuriteca tem fonte, link oficial (quando existe) e data da última verificação.</p>
     <p><strong>Status automático.</strong> Quando o prazo final passa, a oportunidade sai das abertas sozinha. Se uma data não pôde ser confirmada, ela aparece como "Em verificação" e nunca como aberta.</p>
@@ -844,7 +863,7 @@ async function saveDoc(o){
 }
 
 /* ---------- roteador ---------- */
-const VIEWS = {inicio:viewInicio, descontos:viewDescontos, intercambios:viewIntercambios, buscar:viewBuscar, calendario:viewCalendario, minhas:viewMinhas, alertas:viewAlertas, admin:viewAdmin, sobre:viewSobre};
+const VIEWS = {inicio:viewInicio, descontos:viewDescontos, intercambios:viewIntercambios, contato:viewContato, buscar:viewBuscar, calendario:viewCalendario, minhas:viewMinhas, alertas:viewAlertas, admin:viewAdmin, sobre:viewSobre};
 function route(){ const h = (location.hash||"#inicio").slice(1); if(h.startsWith("op-")) return {v:"op", id:h.slice(3)}; return {v: VIEWS[h]?h:"inicio"}; }
 let lastRoute = "";
 function render(){
@@ -861,6 +880,24 @@ window.addEventListener("hashchange", render);
 
 /* ---------- eventos ---------- */
 function setF(k,v){ F[k]=v; if(k!=="pagina") F.pagina=1; const {pagina,...keep}=F; store.set("filtros",keep); }
+document.addEventListener("submit", async ev=>{
+  if(ev.target && ev.target.id==="contato-form"){
+    ev.preventDefault();
+    const f=ev.target, st=$("#ct-status"), bt=$("#ct-enviar");
+    const d=Object.fromEntries(new FormData(f).entries());
+    if(d._honey) return;
+    if(!d.nome||!d.email||!d.assunto||!d.mensagem||!/^\S+@\S+\.\S+$/.test(d.email)){ st.textContent="Preencha todos os campos com um e-mail válido."; return; }
+    bt.disabled=true; st.textContent="Enviando...";
+    try{
+      const r=await fetch("https://formsubmit.co/ajax/contato@gabihistoria.com.br",{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify({nome:d.nome,email:d.email,assunto:d.assunto,mensagem:d.mensagem,_subject:"Nuriteca · "+d.assunto+" · "+d.nome,_replyto:d.email,_template:"table",_captcha:"false"})});
+      const j=await r.json().catch(()=>({}));
+      if(r.ok && String(j.success)!=="false"){ f.reset(); st.textContent="Mensagem enviada! Obrigada pelo contato, respondemos em breve."; }
+      else throw new Error(j.message||"erro");
+    }catch(e){ st.innerHTML='Não foi possível enviar agora. Tente de novo ou escreva para <a href="mailto:contato@gabihistoria.com.br">contato@gabihistoria.com.br</a>.'; }
+    bt.disabled=false;
+    return;
+  }
+});
 document.addEventListener("submit", async ev=>{
   const f = ev.target; ev.preventDefault();
   if(f.id==="home-search"){ setF("q", $("#q-home").value.trim()); F.categoria=""; location.hash="#buscar"; render(); }
