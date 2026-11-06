@@ -494,7 +494,7 @@ function banner(onde){
   const b=bs[Math.floor(Math.random()*bs.length)];
   const inner=b.imagem?`<img src="${esc(b.imagem)}" alt="${esc(b.titulo||"Publicidade")}" loading="lazy">`:
     `<div class="bn-txt" style="--bn:${esc(b.cor||"var(--coral)")}"><span class="bn-loja">${esc(b.loja||"")}</span><strong>${esc(b.titulo||"")}</strong><span>${esc(b.texto||"")}</span><em>${esc(b.botao||"Ver oferta")} →</em></div>`;
-  return `<aside class="bn"><a href="${esc(b.link)}" target="_blank" rel="sponsored noopener">${inner}</a><small>Publicidade · link de afiliado</small></aside>`;
+  return `<aside class="bn"><a href="${esc(b.link)}" target="_blank" rel="sponsored noopener">${inner}</a><small>Publicidade</small></aside>`;
 }
 const grid = list => list.length ? `<div class="grid">${list.map(card).join("")}</div>` : `<div class="empty">Nada por aqui no momento.</div>`;
 function sourceNote(){
