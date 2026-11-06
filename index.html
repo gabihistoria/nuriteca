@@ -6,6 +6,11 @@
 <title>Nuriteca</title>
 <meta name="description" content="Nuriteca reúne concursos, cursos, graduações, pós-graduações, mestrados e bolsas gratuitas em todo o Brasil, com link oficial e data de verificação.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Cpath d=%22M2 24C6 15 12 13 16 16v12c-4-3-10-3-14 0z%22 fill=%22%23E8735F%22/%3E%3Cpath d=%22M30 24c-4-9-10-11-14-8v12c4-3 10-3 14 0z%22 fill=%22%23B9583C%22/%3E%3Ccircle cx=%2216%22 cy=%227%22 r=%223.4%22 fill=%22%23D9A441%22/%3E%3C/svg%3E">
+<meta name="theme-color" content="#FBF4EC">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<meta name="apple-mobile-web-app-title" content="Nuriteca">
+<meta name="apple-mobile-web-app-capable" content="yes">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
@@ -213,7 +218,25 @@ footer .wrap{display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap}
   .cal .day{min-height:64px}
   .cal .ev{font-size:0;height:8px;padding:0}
 }
-@media (max-width:420px){ nav.main a{padding:6px 9px;font-size:14px} }
+@media (max-width:700px){
+ body{padding-bottom:calc(74px + env(safe-area-inset-bottom))}
+ header.top{backdrop-filter:none;-webkit-backdrop-filter:none;background:var(--bg)}
+ .toast{bottom:calc(92px + env(safe-area-inset-bottom))}
+ nav.main{position:fixed;left:0;right:0;bottom:0;z-index:40;margin:0;display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:0;background:var(--surface);border-top:1px solid var(--line);padding:6px 4px calc(6px + env(safe-area-inset-bottom));box-shadow:0 -6px 18px rgba(46,36,32,.07)}
+ nav.main a{display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 0;font-size:0;border-radius:12px;background:transparent!important;box-shadow:none!important}
+ nav.main a::before{content:'';width:23px;height:23px;background:currentColor;-webkit-mask:var(--ic) center/contain no-repeat;mask:var(--ic) center/contain no-repeat}
+ nav.main a::after{content:attr(data-short);font-size:11px;font-weight:600}
+ nav.main a[aria-current="page"]{color:var(--terracota)}
+ nav.main a[hidden]{display:none}
+ nav.main a[href="#inicio"]{--ic:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2024%2024%27%20fill%3D%27none%27%20stroke%3D%27black%27%20stroke-width%3D%272%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Cpath%20d%3D%27M3%2011l9-7%209%207v9a1%201%200%200%201-1%201h-5v-6h-6v6H4a1%201%200%200%201-1-1z%27/%3E%3C/svg%3E")}
+ nav.main a[href="#buscar"]{--ic:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2024%2024%27%20fill%3D%27none%27%20stroke%3D%27black%27%20stroke-width%3D%272%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Ccircle%20cx%3D%2711%27%20cy%3D%2711%27%20r%3D%277%27/%3E%3Cpath%20d%3D%27M21%2021l-4.3-4.3%27/%3E%3C/svg%3E")}
+ nav.main a[href="#calendario"]{--ic:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2024%2024%27%20fill%3D%27none%27%20stroke%3D%27black%27%20stroke-width%3D%272%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Crect%20x%3D%273%27%20y%3D%275%27%20width%3D%2718%27%20height%3D%2716%27%20rx%3D%272%27/%3E%3Cpath%20d%3D%27M3%2010h18M8%203v4M16%203v4%27/%3E%3C/svg%3E")}
+ nav.main a[href="#minhas"]{--ic:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2024%2024%27%20fill%3D%27none%27%20stroke%3D%27black%27%20stroke-width%3D%272%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Cpath%20d%3D%27M20.8%205.6a5%205%200%200%200-7.1%200L12%207.3l-1.7-1.7a5%205%200%200%200-7.1%207.1L12%2021.5l8.8-8.8a5%205%200%200%200%200-7.1z%27/%3E%3C/svg%3E")}
+ nav.main a[href="#descontos"]{--ic:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2024%2024%27%20fill%3D%27none%27%20stroke%3D%27black%27%20stroke-width%3D%272%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Cpath%20d%3D%27M20.6%2013.4L13.4%2020.6a2%202%200%200%201-2.8%200L3%2013V3h10l7.6%207.6a2%202%200%200%201%200%202.8z%27/%3E%3Ccircle%20cx%3D%277.5%27%20cy%3D%277.5%27%20r%3D%271.5%27/%3E%3C/svg%3E")}
+ nav.main a[href="#alertas"]{--ic:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2024%2024%27%20fill%3D%27none%27%20stroke%3D%27black%27%20stroke-width%3D%272%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Cpath%20d%3D%27M18%208a6%206%200%200%200-12%200c0%207-3%209-3%209h18s-3-2-3-9M13.7%2021a2%202%200%200%201-3.4%200%27/%3E%3C/svg%3E")}
+ nav.main a[href="#admin"]{--ic:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2024%2024%27%20fill%3D%27none%27%20stroke%3D%27black%27%20stroke-width%3D%272%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Ccircle%20cx%3D%2712%27%20cy%3D%2712%27%20r%3D%273%27/%3E%3Cpath%20d%3D%27M19.4%2015a1.7%201.7%200%200%200%20.3%201.8l.1.1a2%202%200%201%201-2.8%202.8l-.1-.1a1.7%201.7%200%200%200-2.9%201.2V21a2%202%200%201%201-4%200v-.1A1.7%201.7%200%200%200%207%2019.4a1.7%201.7%200%200%200-1.8.3l-.1.1a2%202%200%201%201-2.8-2.8l.1-.1A1.7%201.7%200%200%200%203.6%2014H3a2%202%200%201%201%200-4h.1A1.7%201.7%200%200%200%204.6%209a1.7%201.7%200%200%200-.3-1.8l-.1-.1a2%202%200%201%201%202.8-2.8l.1.1A1.7%201.7%200%200%200%209%204.6V3a2%202%200%201%201%204%200v.1a1.7%201.7%200%200%200%202.9%201.2l.1-.1a2%202%200%201%201%202.8%202.8l-.1.1A1.7%201.7%200%200%200%2019.4%209H21a2%202%200%201%201%200%204h-.1a1.7%201.7%200%200%200-1.5%201z%27/%3E%3C/svg%3E")}
+}
+
 </style>
 </head>
 <body>
@@ -224,13 +247,13 @@ footer .wrap{display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap}
       Nuriteca
     </a>
     <nav class="main" aria-label="Principal">
-      <a href="#inicio">Início</a>
-      <a href="#buscar">Buscar</a>
-      <a href="#calendario">Calendário</a>
-      <a href="#minhas">Minhas oportunidades</a>
-      <a href="#descontos">Descontos e bolsas</a>
-      <a href="#alertas">Alertas</a>
-      <a href="#admin" id="nav-admin" hidden>Painel</a>
+      <a href="#inicio" data-short="Início">Início</a>
+      <a href="#buscar" data-short="Buscar">Buscar</a>
+      <a href="#calendario" data-short="Agenda">Calendário</a>
+      <a href="#minhas" data-short="Salvas">Minhas oportunidades</a>
+      <a href="#descontos" data-short="Bolsas">Descontos e bolsas</a>
+      <a href="#alertas" data-short="Alertas">Alertas</a>
+      <a href="#admin" data-short="Painel" id="nav-admin" hidden>Painel</a>
     </nav>
   </div>
 </header>
