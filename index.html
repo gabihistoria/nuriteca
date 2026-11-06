@@ -213,6 +213,10 @@ table.adm th,table.adm td{text-align:left;padding:8px;border-bottom:1px solid va
 .foot-copy{width:100%;font-size:12.5px;line-height:1.5;order:9}
 .legal h2{font-size:21px;margin:26px 0 6px}
 .legal p{line-height:1.65}
+.bn{margin:26px 0}.bn a{display:block;text-decoration:none;color:inherit;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}.bn img{display:block;width:100%;height:auto}
+.bn small{display:block;margin-top:6px;font-size:11.5px;color:var(--muted);text-align:right}
+.bn-txt{display:grid;gap:4px;padding:20px 24px;background:linear-gradient(120deg,color-mix(in srgb,var(--bn) 18%,var(--surface)),var(--surface));border:1px solid var(--line)}
+.bn-txt .bn-loja{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--bn)}.bn-txt strong{font-family:Fraunces,serif;font-size:22px}.bn-txt span{color:var(--muted)}.bn-txt em{font-style:normal;font-weight:700;color:var(--terracota);margin-top:4px}
 footer{border-top:1px solid var(--line);margin-top:30px;padding:26px 0 40px;color:var(--muted);font-size:15px}
 footer .wrap{display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap}
 
@@ -286,6 +290,7 @@ footer .wrap{display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap}
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="data.js"></script>
+<script src="banners.js"></script>
 <script>
 (function(){
 "use strict";
@@ -483,6 +488,14 @@ function card(o){
     </div>
   </article>`;
 }
+function banner(onde){
+  const bs=(window.BANNERS||[]).filter(b=>b.ativo!==false && (b.onde||["inicio"]).includes(onde));
+  if(!bs.length) return "";
+  const b=bs[Math.floor(Math.random()*bs.length)];
+  const inner=b.imagem?`<img src="${esc(b.imagem)}" alt="${esc(b.titulo||"Publicidade")}" loading="lazy">`:
+    `<div class="bn-txt" style="--bn:${esc(b.cor||"var(--coral)")}"><span class="bn-loja">${esc(b.loja||"")}</span><strong>${esc(b.titulo||"")}</strong><span>${esc(b.texto||"")}</span><em>${esc(b.botao||"Ver oferta")} →</em></div>`;
+  return `<aside class="bn"><a href="${esc(b.link)}" target="_blank" rel="sponsored noopener">${inner}</a><small>Publicidade · link de afiliado</small></aside>`;
+}
 const grid = list => list.length ? `<div class="grid">${list.map(card).join("")}</div>` : `<div class="empty">Nada por aqui no momento.</div>`;
 function sourceNote(){
   if(dataSource==="db") return "";
@@ -559,6 +572,7 @@ function viewInicio(){
       ${HOME_CATS.map(k=>[k,CATS[k]]).map(([k,c])=>`<a class="cat" href="#buscar" data-cat="${k}"><span class="door" style="background:radial-gradient(90% 70% at 50% 20%,color-mix(in srgb,${c.cor} 45%,#fff),${c.cor})">${count(k)}</span>${esc(c.curto)}</a>`).join("")}
     </nav>
     ${sec("Encerrando em breve", encerrando, "#buscar", 4)}
+    ${banner("inicio")}
     ${sec("Novas oportunidades", novas, "#buscar")}
     ${sec("Concursos abertos", conc, "#buscar")}
     ${sec("Pós-graduações gratuitas", pos, "#buscar")}
@@ -605,6 +619,7 @@ function viewBuscar(){
             ${[["relevancia","Relevância"],["encerrando","Encerrando primeiro"],["recentes","Mais recentes"],["alfabetica","Ordem alfabética"]].map(([v,t])=>`<option value="${v}"${F.ordem===v?" selected":""}>${t}</option>`).join("")}
           </select></label>
         </div>
+        ${banner("buscar")}
         ${list.length ? grid(list) : `<div class="empty">Nenhuma oportunidade com esses filtros. Tente tirar algum filtro ou buscar outra palavra.</div>`}
         ${pages>1?`<nav class="pager" aria-label="Páginas">${Array.from({length:pages},(_,i)=>`<button data-page="${i+1}" aria-current="${F.pagina===i+1}">${i+1}</button>`).join("")}</nav>`:""}
       </section>
