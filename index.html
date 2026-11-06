@@ -282,7 +282,7 @@ footer .wrap{display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap}
 <footer>
   <div class="wrap">
     <span>Nuriteca reúne oportunidades e leva você ao site oficial. Aqui não há inscrição nem cobrança.</span>
-    <span class="foot-links"><a href="#contato">Fale conosco</a><a href="#alertas">Alertas</a><a href="#sobre">Como verificamos</a><span>Criado por: <a href="https://www.instagram.com/gabihistoriaa/" target="_blank" rel="noopener">@gabihistoriaa</a></span></span>
+    <span class="foot-links"><a href="#contato">Fale conosco</a><a href="#anuncie">Anuncie</a><a href="#alertas">Alertas</a><a href="#sobre">Como verificamos</a><span>Criado por: <a href="https://www.instagram.com/gabihistoriaa/" target="_blank" rel="noopener">@gabihistoriaa</a></span></span>
     <span class="foot-copy">© 2026 Gabi História LTDA. Todos os direitos reservados. Gabi História® é marca registrada no INPI. É proibida a reprodução total ou parcial de textos, imagens e vídeos deste site sem autorização prévia, conforme a Lei nº 9.610/98.</span>
     <span class="foot-legal">Páginas legais: <a href="#termos">Termos de uso</a> · <a href="#privacidade">Privacidade</a> · <a href="#cookies">Cookies</a> · <a href="#reembolso">Reembolso das apostilas</a></span>
   </div>
@@ -492,9 +492,10 @@ function banner(onde){
   const bs=(window.BANNERS||[]).filter(b=>b.ativo!==false && (b.onde||["inicio"]).includes(onde));
   if(!bs.length) return "";
   const b=bs[Math.floor(Math.random()*bs.length)];
+  let href=b.link; try{ const u=new URL(b.link); if(b.utm!==false && !/shopee|amazon|mercadoli|amzn/.test(u.hostname)){ u.searchParams.set("utm_source","nuriteca"); u.searchParams.set("utm_medium","banner"); u.searchParams.set("utm_campaign",b.id||"parceiro"); href=u.toString(); } }catch(e){}
   const inner=b.imagem?`<img src="${esc(b.imagem)}" alt="${esc(b.titulo||"Publicidade")}" loading="lazy">`:
     `<div class="bn-txt" style="--bn:${esc(b.cor||"var(--coral)")}"><span class="bn-loja">${esc(b.loja||"")}</span><strong>${esc(b.titulo||"")}</strong><span>${esc(b.texto||"")}</span><em>${esc(b.botao||"Ver oferta")} →</em></div>`;
-  return `<aside class="bn"><a href="${esc(b.link)}" target="_blank" rel="sponsored noopener">${inner}</a><small>Publicidade</small></aside>`;
+  return `<aside class="bn"><a href="${esc(href)}" target="_blank" rel="sponsored noopener">${inner}</a><small>Publicidade</small></aside>`;
 }
 const grid = list => list.length ? `<div class="grid">${list.map(card).join("")}</div>` : `<div class="empty">Nada por aqui no momento.</div>`;
 function sourceNote(){
@@ -786,6 +787,7 @@ function viewIntercambios(){
   return `<div class="wrap" style="padding-top:18px">
     <h1 style="font-size:40px;margin-top:10px">Intercâmbios e estudo no exterior</h1>
     <p class="note" style="max-width:64ch">Programas gratuitos ou com bolsa para estudar fora do Brasil. Cada um tem regras próprias: confira sempre o edital oficial.</p>
+    ${banner("intercambios")}
     <section class="block"><div class="block-head"><h2>Inscrições abertas</h2></div>${abertas.length?grid(abertas):`<div class="empty">Nenhum intercâmbio com inscrições abertas agora. Veja abaixo os programas que abrem todo ano.</div>`}</section>
     <section class="block"><div class="block-head"><h2>Programas para ficar de olho</h2></div><p class="note">Programas que abrem todo ano. Quando abrir a próxima edição, aparece em "Inscrições abertas".</p>
       <div class="prog-grid">${PROGRAMAS_INTERCAMBIO.map(p=>`<article class="prog"><h3>${esc(p.nome)}</h3><p><b>Quem pode:</b> ${esc(p.quem)}</p><p><b>O que oferece:</b> ${esc(p.oque)}</p><p><b>Quando abre:</b> ${esc(p.quando)}</p><a href="${esc(p.link)}" target="_blank" rel="noopener">Site oficial ↗</a></article>`).join("")}</div>
@@ -801,7 +803,7 @@ function viewContato(){
     <form id="contato-form" class="contato" novalidate>
       <label class="field" for="ct-nome">Seu nome<input id="ct-nome" name="nome" required autocomplete="name"></label>
       <label class="field" for="ct-email">Seu e-mail<input id="ct-email" name="email" type="email" required autocomplete="email"></label>
-      <label class="field" for="ct-assunto">Assunto<select id="ct-assunto" name="assunto" required><option value="">Escolha um assunto</option>${ASSUNTOS.map(a=>`<option>${esc(a)}</option>`).join("")}</select></label>
+      <label class="field" for="ct-assunto">Assunto<select id="ct-assunto" name="assunto" required><option value="">Escolha um assunto</option>${ASSUNTOS.map(a=>`<option${a===store._mem.assuntoPre?" selected":""}>${esc(a)}</option>`).join("")}</select></label>
       <label class="field" for="ct-msg">Mensagem<textarea id="ct-msg" name="mensagem" rows="7" required></textarea></label>
       <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
       <button class="btn" type="submit" id="ct-enviar">Enviar mensagem</button>
@@ -885,6 +887,22 @@ function viewLegal(k){
   </div>`;
 }
 
+function viewAnuncie(){
+  return `<div class="wrap legal" style="padding-top:28px;padding-bottom:28px;max-width:760px">
+    <h1 style="font-size:40px">Anuncie na Nuriteca</h1>
+    <p>A Nuriteca reúne oportunidades gratuitas de educação e carreira do Brasil inteiro: concursos, cursos, graduações, pós, bolsas e intercâmbios. Quem chega aqui está decidindo o próximo passo dos estudos.</p>
+    <h2>Formatos</h2>
+    <p><b>Banner na aba Intercâmbios, na página inicial ou na busca:</b> com o seu link, a sua chamada e identificação como Publicidade.</p>
+    <p><b>Oportunidade em destaque:</b> o seu programa, bolsa ou desconto aparece como card na aba certa, marcado como Parceria.</p>
+    <p><b>Conteúdo no Instagram:</b> divulgação combinada no perfil da Nuriteca e no @gabihistoriaa.</p>
+    <h2>Como medimos</h2>
+    <p>Todo link de anunciante sai da Nuriteca com identificação própria (utm_source=nuriteca), para você acompanhar no seu Google Analytics as visitas e conversões que vieram daqui. Também podemos usar um cupom exclusivo.</p>
+    <h2>Transparência</h2>
+    <p>Anúncios e parcerias são sempre identificados. Só aceitamos anunciantes ligados a educação, carreira e intercâmbio.</p>
+    <p style="margin-top:22px"><a class="btn" href="#contato" data-assunto="Publicidade">Quero anunciar</a></p>
+  </div>`;
+}
+
 function viewSobre(){
   return `<div class="wrap" style="padding-top:28px;padding-bottom:28px;max-width:720px">
     <h1 style="font-size:40px">Como verificamos</h1>
@@ -960,7 +978,7 @@ async function saveDoc(o){
 }
 
 /* ---------- roteador ---------- */
-const VIEWS = {inicio:viewInicio, descontos:viewDescontos, intercambios:viewIntercambios, contato:viewContato, termos:()=>viewLegal("termos"), privacidade:()=>viewLegal("privacidade"), cookies:()=>viewLegal("cookies"), reembolso:()=>viewLegal("reembolso"), buscar:viewBuscar, calendario:viewCalendario, minhas:viewMinhas, alertas:viewAlertas, admin:viewAdmin, sobre:viewSobre};
+const VIEWS = {inicio:viewInicio, descontos:viewDescontos, intercambios:viewIntercambios, contato:viewContato, anuncie:viewAnuncie, termos:()=>viewLegal("termos"), privacidade:()=>viewLegal("privacidade"), cookies:()=>viewLegal("cookies"), reembolso:()=>viewLegal("reembolso"), buscar:viewBuscar, calendario:viewCalendario, minhas:viewMinhas, alertas:viewAlertas, admin:viewAdmin, sobre:viewSobre};
 function route(){ const h = (location.hash||"#inicio").slice(1); if(h.startsWith("op-")) return {v:"op", id:h.slice(3)}; return {v: VIEWS[h]?h:"inicio"}; }
 let lastRoute = "";
 function render(){
@@ -1014,6 +1032,7 @@ document.addEventListener("submit", async ev=>{
     if(await saveDoc(o)){ editing=null; toast("Salvo"); render(); }
   }
 });
+document.addEventListener("click", ev=>{ const a=ev.target.closest&&ev.target.closest("[data-assunto]"); if(a) store._mem.assuntoPre=a.dataset.assunto; }, true);
 document.addEventListener("click", async ev=>{
   const t = ev.target.closest("button,a"); if(!t) return;
   if(t.dataset.fav){ ev.preventDefault(); toggleFav(t.dataset.fav); return; }
