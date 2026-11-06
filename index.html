@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nuriteca</title>
+<meta name="description" content="Nuriteca reúne concursos, cursos, graduações, pós-graduações, mestrados e bolsas gratuitas em todo o Brasil, com link oficial e data de verificação.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Cpath d=%22M2 24C6 15 12 13 16 16v12c-4-3-10-3-14 0z%22 fill=%22%23E8735F%22/%3E%3Cpath d=%22M30 24c-4-9-10-11-14-8v12c4-3 10-3 14 0z%22 fill=%22%23B9583C%22/%3E%3Ccircle cx=%2216%22 cy=%227%22 r=%223.4%22 fill=%22%23D9A441%22/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+/* Ideia: fachada de arcos. Cada oportunidade é uma janela em arco, colorida como aquarela. */
+:root{
+  --bg:#FBF4EC;          /* areia clara */
+  --surface:#FFFBF6;
+  --ink:#2E2420;          /* tinta café */
+  --muted:#7A6A60;
+  --line:#EADBCB;
+  --coral:#E8735F;
+  --terracota:#B9583C;
+  --salvia:#7E9B7A;
+  --ocre:#D9A441;
+  --petroleo:#2F6B73;
+  --lilas:#9C7FB4;
+  --rosa:#D98C9A;
+  --accent:var(--terracota);
+  --display:"Fraunces", Georgia, "Times New Roman", serif;
+  --body:"DM Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --ok:#3C7A4E; --soon:#2F6B73; --closed:#8C807A; --verify:#A86A12;
+  --radius:18px;
+  --shadow:0 1px 0 rgba(46,36,32,.04), 0 8px 24px -14px rgba(120,60,30,.35);
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#1E1815; --surface:#2A221E; --ink:#F6EBE0; --muted:#C2AFA2; --line:#3E322C;
+    --coral:#F08A76; --terracota:#E07A5C; --salvia:#9DB898; --ocre:#E8B85A; --petroleo:#6FB0B8; --rosa:#E9A4B1; --lilas:#BFA5D6;
+    --ok:#7CC48F; --soon:#79BAC2; --closed:#A8988F; --verify:#E5A94A;
+    --shadow:0 8px 24px -14px rgba(0,0,0,.7);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1E1815; --surface:#2A221E; --ink:#F6EBE0; --muted:#C2AFA2; --line:#3E322C;
+  --coral:#F08A76; --terracota:#E07A5C; --salvia:#9DB898; --ocre:#E8B85A; --petroleo:#6FB0B8; --rosa:#E9A4B1; --lilas:#BFA5D6;
+  --ok:#7CC48F; --soon:#79BAC2; --closed:#A8988F; --verify:#E5A94A;
+  --shadow:0 8px 24px -14px rgba(0,0,0,.7);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55}
+a{color:var(--accent)}
+:focus-visible{outline:3px solid var(--ocre);outline-offset:2px;border-radius:6px}
+h1,h2,h3{font-family:var(--display);line-height:1.12;text-wrap:balance;margin:0}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+button,input,select{font:inherit;color:inherit}
+.btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:999px;padding:11px 20px;background:var(--accent);color:#fff;font-weight:600;letter-spacing:.005em;cursor:pointer;text-decoration:none}
+.btn:hover{filter:brightness(1.06)}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.btn.small{padding:7px 14px;font-size:15px}
+
+/* topo */
+header.top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:16px;min-height:64px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-family:var(--display);font-weight:800;font-size:24px;letter-spacing:-.01em}
+.logo svg{width:30px;height:30px}
+nav.main{display:flex;gap:4px;flex-wrap:wrap;margin-left:auto}
+nav.main a{padding:7px 12px;border-radius:999px;text-decoration:none;color:var(--muted);font-weight:500;font-size:15px;letter-spacing:-.005em}
+nav.main a[aria-current="page"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow);font-weight:600}
+
+/* herói em arco */
+.hero>div{min-width:0}
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center;padding:48px 0 28px}
+.hero h1{font-size:clamp(36px,5.6vw,64px);font-weight:800;letter-spacing:-.02em}
+.hero h1 em{font-style:italic;color:var(--terracota);font-weight:600}
+.hero p.lead{color:var(--muted);font-size:19px;max-width:34ch;margin:16px 0 24px}
+.books svg{width:100%;height:auto;display:block;max-width:460px;margin-left:auto}
+.facade{position:relative;aspect-ratio:4/4.4;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;align-items:end}
+.arch{border-radius:999px 999px 10px 10px;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+.arch::after{content:"";position:absolute;inset:0;background:
+  radial-gradient(120% 60% at 30% 20%,rgba(255,255,255,.55),transparent 60%),
+  radial-gradient(80% 50% at 70% 85%,rgba(255,255,255,.25),transparent 70%);mix-blend-mode:soft-light}
+.facade .a1{height:72%;background:radial-gradient(90% 70% at 40% 30%,var(--ocre),var(--coral) 70%)}
+.facade .a2{height:100%;background:radial-gradient(90% 80% at 50% 25%,var(--rosa),var(--terracota) 75%)}
+.facade .a3{height:60%;background:radial-gradient(90% 70% at 50% 30%,var(--salvia),var(--petroleo) 80%)}
+.facade .sun{position:absolute;width:22%;aspect-ratio:1;border-radius:50%;background:var(--ocre);top:4%;right:2%;opacity:.9;box-shadow:0 0 0 10px color-mix(in srgb,var(--ocre) 25%,transparent)}
+.facade .base{position:absolute;left:-4%;right:-4%;bottom:-10px;height:10px;border-radius:6px;background:var(--line)}
+
+.search{width:100%;display:flex;gap:8px;background:var(--surface);padding:7px;border-radius:999px;box-shadow:var(--shadow);border:1px solid var(--line);max-width:560px}
+.search input{flex:1;min-width:0;border:0;background:transparent;padding:10px 14px;font-size:17px}
+.search input:focus{outline:none}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.chip{border:1px solid var(--line);background:transparent;border-radius:999px;padding:5px 12px;font-size:14px;font-weight:500;color:var(--muted);cursor:pointer}
+.chip:hover{border-color:var(--terracota);color:var(--ink)}
+
+/* categorias em arcos pequenos */
+.cats{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin:28px 0 8px}
+.cat{display:flex;flex-direction:column;align-items:center;gap:8px;text-decoration:none;color:var(--ink);font-weight:600;font-size:15px;text-align:center}
+.cat .door{width:100%;aspect-ratio:3/3.4;border-radius:999px 999px 8px 8px;display:grid;place-items:end center;padding-bottom:12px;color:#fff;font-family:var(--display);font-size:28px;font-weight:800;box-shadow:var(--shadow)}
+.cat:hover .door{transform:translateY(-3px)}
+.cat .door{transition:transform .2s}
+@media (prefers-reduced-motion: reduce){.cat .door{transition:none}}
+
+section.block{padding:28px 0}
+.block-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:16px;flex-wrap:wrap}
+.block-head h2{font-size:28px}
+.block-head a{font-weight:600;text-decoration:none}
+
+/* cartões-janela */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;text-decoration:none;color:var(--ink);box-shadow:var(--shadow);transition:transform .2s}
+.card:hover{transform:translateY(-3px)}
+@media (prefers-reduced-motion: reduce){.card{transition:none}.card:hover{transform:none}}
+.card .top-arch{height:58px;position:relative}
+.card .top-arch::before{content:"";position:absolute;left:18px;bottom:-1px;width:46px;height:46px;border-radius:999px 999px 0 0;background:var(--surface)}
+.card .body{padding:12px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card .kind{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.card h3{font-size:19px;font-weight:600}
+.card .inst{color:var(--muted);font-size:15px}
+.card .foot{margin-top:auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 8px;padding-top:6px;font-size:15px}
+.card .when{font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap}
+.pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:3px 10px;font-size:12.5px;font-weight:600;white-space:nowrap}
+.pill::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.pill.aberta{color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,transparent)}
+.pill.embreve{color:var(--soon);background:color-mix(in srgb,var(--soon) 12%,transparent)}
+.pill.encerrada{color:var(--closed);background:color-mix(in srgb,var(--closed) 14%,transparent)}
+.pill.verificacao{color:var(--verify);background:color-mix(in srgb,var(--verify) 14%,transparent)}
+.pill.urgente{color:#fff;background:var(--coral)}
+.pill.urgente::before{background:#fff}
+.fav{border:0;background:transparent;cursor:pointer;color:var(--muted);padding:4px;border-radius:50%;line-height:0}
+.fav[aria-pressed="true"]{color:var(--coral)}
+.fav svg{width:22px;height:22px}
+.empty{padding:28px;border:1.5px dashed var(--line);border-radius:var(--radius);color:var(--muted);text-align:center}
+
+/* busca */
+.search-layout{display:grid;grid-template-columns:270px 1fr;gap:26px;padding:28px 0}
+.filters{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px;align-self:start;position:sticky;top:84px;display:grid;gap:12px}
+.filters label{display:grid;gap:4px;font-size:13.5px;font-weight:600;color:var(--muted)}
+.filters select,.filters input[type=date],.filters input[type=text],.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:8px 10px;font-size:15px}
+.filters .check{display:flex;gap:8px;align-items:center;font-weight:700;color:var(--ink)}
+.results-head{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:14px 0}
+.results-head select{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 12px}
+.pager{display:flex;gap:6px;justify-content:center;margin-top:20px;flex-wrap:wrap}
+.pager button{border:1px solid var(--line);background:var(--surface);border-radius:999px;min-width:38px;padding:6px 10px;cursor:pointer}
+.pager button[aria-current="true"]{background:var(--accent);color:#fff;border-color:var(--accent)}
+details.mfilters{display:none}
+
+/* página da oportunidade */
+.detail{padding:28px 0 48px;display:grid;grid-template-columns:1fr 330px;gap:30px}
+.detail .banner{height:120px;border-radius:999px 999px 16px 16px;margin-bottom:22px;max-width:520px}
+.detail h1{font-size:clamp(28px,4vw,42px);font-weight:800}
+.detail .inst{color:var(--muted);font-size:18px;margin:8px 0 18px}
+.quick{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:18px 0}
+.quick div{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.quick dt{font-size:13px;font-weight:700;color:var(--muted)}
+.quick dd{margin:2px 0 0;font-weight:700}
+.info{margin:22px 0;border-top:1px solid var(--line)}
+.info div{display:grid;grid-template-columns:200px 1fr;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.info dt{color:var(--muted);font-weight:700;font-size:15px}
+.info dd{margin:0}
+.side{display:grid;gap:14px;align-self:start;position:sticky;top:84px}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+.box .btn{width:100%;justify-content:center;margin-top:8px}
+.note{font-size:14px;color:var(--muted)}
+.unconfirmed{color:var(--verify);font-style:italic}
+
+/* calendário */
+.cal-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:18px 0}
+.cal-head h2{font-size:28px;margin-right:auto}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.cal .dow{font-size:13px;font-weight:700;color:var(--muted);text-align:center;padding:4px}
+.cal .day{min-height:92px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:6px;font-size:13px;display:flex;flex-direction:column;gap:4px;overflow:hidden}
+.cal .day.out{opacity:.35}
+.cal .day.today{border-color:var(--terracota);box-shadow:inset 0 0 0 1px var(--terracota)}
+.cal .num{font-weight:700;font-variant-numeric:tabular-nums}
+.cal .ev{display:block;border-radius:6px;padding:2px 6px;color:#fff;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12px}
+.cal .ev.open{opacity:.7}
+.list-cal{display:grid;gap:10px}
+.list-cal a{display:grid;grid-template-columns:90px 1fr auto;gap:12px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px 14px;text-decoration:none;color:var(--ink)}
+.list-cal .d{font-family:var(--display);font-weight:800;font-size:20px;font-variant-numeric:tabular-nums}
+
+/* admin e formulários */
+.field{display:grid;gap:4px;font-size:14px;font-weight:700;color:var(--muted)}
+.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.form-grid .full{grid-column:1/-1}
+table.adm{width:100%;border-collapse:collapse;font-size:15px}
+table.adm th,table.adm td{text-align:left;padding:8px;border-bottom:1px solid var(--line);vertical-align:top}
+.tablewrap{overflow-x:auto}
+.stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px}
+.stat b{display:block;font-family:var(--display);font-size:30px;font-variant-numeric:tabular-nums}
+.banner-msg{background:color-mix(in srgb,var(--ocre) 18%,var(--surface));border:1px solid color-mix(in srgb,var(--ocre) 40%,var(--line));padding:10px 14px;border-radius:12px;font-size:15px;margin:12px 0}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:999px;font-weight:700;z-index:30;display:none}
+
+footer{border-top:1px solid var(--line);margin-top:30px;padding:26px 0 40px;color:var(--muted);font-size:15px}
+footer .wrap{display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap}
+
+@media (max-width:860px){
+  .hero{grid-template-columns:1fr;padding-top:28px}
+  .books{order:-1;max-width:300px}
+  .cats{grid-template-columns:repeat(3,1fr)}
+  .search-layout,.detail{grid-template-columns:1fr}
+  .filters{display:none}
+  details.mfilters{display:block;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:12px 16px}
+  details.mfilters summary{font-weight:700;cursor:pointer}
+  details.mfilters .filters{display:grid;position:static;border:0;padding:12px 0 0;background:transparent}
+  .side{position:static}
+  .info div{grid-template-columns:1fr;gap:2px}
+  .quick,.form-grid{grid-template-columns:1fr}
+  .cal .day{min-height:64px}
+  .cal .ev{font-size:0;height:8px;padding:0}
+}
+@media (max-width:420px){ nav.main a{padding:6px 9px;font-size:14px} }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#inicio" aria-label="Nuriteca, página inicial">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M2 24 C 6 15, 12 13, 16 16 L 16 28 C 12 25, 6 25, 2 28 Z" fill="var(--coral)"/><path d="M30 24 C 26 15, 20 13, 16 16 L 16 28 C 20 25, 26 25, 30 28 Z" fill="var(--terracota)"/><circle cx="16" cy="7" r="3.4" fill="var(--ocre)"/></svg>
+      Nuriteca
+    </a>
+    <nav class="main" aria-label="Principal">
+      <a href="#inicio">Início</a>
+      <a href="#buscar">Buscar</a>
+      <a href="#calendario">Calendário</a>
+      <a href="#minhas">Minhas oportunidades</a>
+      <a href="#descontos">Descontos e bolsas</a>
+      <a href="#alertas">Alertas</a>
+      <a href="#admin" id="nav-admin" hidden>Painel</a>
+    </nav>
+  </div>
+</header>
+
+<main id="app" tabindex="-1"></main>
+
+<footer>
+  <div class="wrap">
+    <span>Nuriteca reúne oportunidades e leva você ao site oficial. Aqui não há inscrição nem cobrança.</span>
+    <span style="display:flex;gap:16px;flex-wrap:wrap"><a href="#sobre">Como verificamos</a><span>Criado por: <a href="https://www.instagram.com/gabihistoriaa/" target="_blank" rel="noopener">@gabihistoriaa</a></span></span>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="data.js"></script>
+<script>
+(function(){
+"use strict";
+/* ---------- configuração ---------- */
+const CATS = {
+  concursos:{nome:"Concursos públicos", curto:"Concursos", cor:"var(--coral)", letra:"C"},
+  cursos:{nome:"Cursos gratuitos", curto:"Cursos", cor:"var(--ocre)", letra:"A"},
+  graduacao:{nome:"Graduações gratuitas", curto:"Graduações", cor:"var(--salvia)", letra:"G"},
+  pos:{nome:"Pós-graduações gratuitas", curto:"Pós", cor:"var(--terracota)", letra:"P"},
+  stricto:{nome:"Mestrados e doutorados", curto:"Mestrado e doutorado", cor:"var(--petroleo)", letra:"M"},
+  bolsas:{nome:"Bolsas e oportunidades", curto:"Bolsas", cor:"var(--rosa)", letra:"B"},
+  descontos:{nome:"Descontos e bolsas de estudo", curto:"Descontos e bolsas", cor:"var(--lilas)", letra:"D"}
+};
+const HOME_CATS = ["concursos","cursos","graduacao","pos","stricto","bolsas"];
+const ESTADOS = {AC:"Acre",AL:"Alagoas",AP:"Amapá",AM:"Amazonas",BA:"Bahia",CE:"Ceará",DF:"Distrito Federal",ES:"Espírito Santo",GO:"Goiás",MA:"Maranhão",MT:"Mato Grosso",MS:"Mato Grosso do Sul",MG:"Minas Gerais",PA:"Pará",PB:"Paraíba",PR:"Paraná",PE:"Pernambuco",PI:"Piauí",RJ:"Rio de Janeiro",RN:"Rio Grande do Norte",RS:"Rio Grande do Sul",RO:"Rondônia",RR:"Roraima",SC:"Santa Catarina",SP:"São Paulo",SE:"Sergipe",TO:"Tocantins"};
+const STATUS = {aberta:"Inscrições abertas", embreve:"Em breve", encerrada:"Inscrições encerradas", verificacao:"Em verificação"};
+const UNCONF = "Informação não confirmada";
+
+/* ---------- utilidades ---------- */
+const $ = (s, el=document) => el.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const norm = s => String(s ?? "").normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
+const safeUrl = u => /^https?:\/\//i.test(String(u||"")) ? String(u) : "";
+function parseDate(s, end){
+  if(!s) return null;
+  s = String(s);
+  if(/^\d{4}-\d{2}-\d{2}$/.test(s)) s += end ? "T23:59:59" : "T00:00:00";
+  else if(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test(s)) s += ":00";
+  const d = new Date(s + "-03:00");
+  return isNaN(d) ? null : d;
+}
+const fmtDate = d => d ? d.toLocaleDateString("pt-BR",{day:"2-digit",month:"2-digit",year:"numeric",timeZone:"America/Sao_Paulo"}) : "";
+const fmtShort = d => d ? d.toLocaleDateString("pt-BR",{day:"2-digit",month:"short",timeZone:"America/Sao_Paulo"}).replace(".","") : "";
+const hasTime = s => /T\d{2}:\d{2}/.test(String(s||""));
+const fmtFull = (s,end) => { const d=parseDate(s,end); if(!d) return ""; return fmtDate(d) + (hasTime(s) ? " às " + d.toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit",timeZone:"America/Sao_Paulo"}) : ""); };
+const dayKey = d => d.toLocaleDateString("en-CA",{timeZone:"America/Sao_Paulo"});
+function toast(msg){ const t=$("#toast"); t.textContent=msg; t.style.display="block"; clearTimeout(toast._t); toast._t=setTimeout(()=>t.style.display="none",2600); }
+const store = {
+  get(k,def){ try{ const v=localStorage.getItem("nuriteca:"+k); return v?JSON.parse(v):def; }catch(e){ return store._mem[k] ?? def; } },
+  set(k,v){ store._mem[k]=v; try{ localStorage.setItem("nuriteca:"+k, JSON.stringify(v)); }catch(e){} },
+  _mem:{}
+};
+
+/* ---------- estado dos dados ---------- */
+let DATA = (window.SNAPSHOT || []).slice();
+let dataSource = "snapshot";
+let db = null, user = null, isAdmin = false;
+
+function statusOf(o, now=new Date()){
+  if(!o.verificado) return "verificacao";
+  if(o.fluxoContinuo) return "aberta";
+  const ab = parseDate(o.abertura,false), en = parseDate(o.encerramento,true);
+  if(ab && now < ab) return "embreve";
+  if(!en) return "verificacao";
+  if(now > en) return "encerrada";
+  return "aberta";
+}
+function daysLeft(o, now=new Date()){
+  const en = parseDate(o.encerramento,true); if(!en) return null;
+  return Math.ceil((en - now)/86400000);
+}
+function whenText(o){
+  const st = statusOf(o);
+  if(o.fluxoContinuo) return "Inscrição a qualquer momento";
+  if(st==="embreve") return "Abre em " + fmtShort(parseDate(o.abertura));
+  if(st==="encerrada") return "Encerrou em " + fmtShort(parseDate(o.encerramento,true));
+  const en = parseDate(o.encerramento,true);
+  if(!en) return "Prazo em verificação";
+  const d = daysLeft(o);
+  if(d<=0) return "Último dia: hoje";
+  if(d===1) return "Termina amanhã";
+  return "Até " + fmtShort(en);
+}
+function pill(o){
+  const st = statusOf(o), d = daysLeft(o);
+  if(st==="aberta" && d!==null && d<=7 && !o.fluxoContinuo) return `<span class="pill urgente">${d<=0?"Termina hoje":"Faltam "+d+(d===1?" dia":" dias")}</span>`;
+  return `<span class="pill ${st}">${STATUS[st]}</span>`;
+}
+
+/* ---------- favoritos e alertas (só neste navegador) ---------- */
+let favs = new Set(store.get("favs", []));
+function toggleFav(id){ favs.has(id)?favs.delete(id):favs.add(id); store.set("favs",[...favs]); render(); toast(favs.has(id)?"Guardada em Minhas oportunidades":"Removida de Minhas oportunidades"); }
+const heart = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.1 0 3.6 1.1 4.3 2.4.7-1.3 2.2-2.4 4.3-2.4 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z" fill="currentColor"/></svg>`;
+
+/* ---------- busca inteligente ---------- */
+const STOP = new Set("a o os as de da do das dos em no na nos nas para pra com e um uma por que quero curso cursos gratis gratuito gratuita gratuitos gratuitas".split(" "));
+const SYN = {
+  pos:["pos","especializacao","lato"], especializacao:["especializacao","pos","lato"],
+  mestrado:["mestrado","stricto"], doutorado:["doutorado","stricto","sanduiche"],
+  concurso:["concurso","seletivo","selecao","prefeitura"], concursos:["concurso","seletivo","selecao"],
+  professor:["professor","professores","docente","docencia","magisterio","pedagogo","educacao"],
+  professores:["professor","professores","docente","docencia"],
+  educacao:["educacao","educadores","pedagogia","ensino","docencia","professor","escolar"],
+  pedagogia:["pedagogia","pedagogo","pedagogico","educacao"],
+  ead:["ead","distancia","online"], online:["online","ead","distancia"],
+  graduacao:["graduacao","vestibular","licenciatura","bacharelado","tecnologo"], faculdade:["graduacao","vestibular","universidade"],
+  bolsa:["bolsa","bolsas"], bolsas:["bolsa","bolsas"], intercambio:["exterior","sanduiche","intercambio","alemanha"],
+  ingles:["ingles","idiomas","linguas"], idiomas:["idiomas","ingles","espanhol","linguas"],
+  historia:["historia"], arte:["arte","artes"], artes:["arte","artes"],
+  tecnologia:["tecnologia","computacao","informatica","digital"], informatica:["informatica","computacao","tecnologia"]
+};
+const CAT_HINT = {pos:"pos",especializacao:"pos",mestrado:"stricto",doutorado:"stricto",concurso:"concursos",concursos:"concursos",seletivo:"concursos",graduacao:"graduacao",vestibular:"graduacao",faculdade:"graduacao",bolsa:"bolsas",bolsas:"bolsas",intercambio:"bolsas"};
+const STATE_NAMES = Object.fromEntries(Object.entries(ESTADOS).map(([uf,n])=>[norm(n),uf]));
+function parseQuery(q){
+  let s = norm(q).replace(/pos-graduacao|pos graduacao/g,"pos").replace(/[^a-z0-9 ]/g," ");
+  let uf = null;
+  for(const [n,code] of Object.entries(STATE_NAMES)){ if(n.includes(" ") && s.includes(n)){ uf=code; s=s.replace(n," "); } }
+  const toks = s.split(/\s+/).filter(Boolean);
+  const words = [], cats = new Set();
+  for(const t of toks){
+    if(t.length===2 && ESTADOS[t.toUpperCase()] && !["de","em","no","na","do","da","pa","ma"].includes(t)){ uf = t.toUpperCase(); continue; }
+    if(t.length===2 && ["pa","ma"].includes(t) && toks.length>1){ uf = t.toUpperCase(); continue; }
+    if(STATE_NAMES[t]){ uf = STATE_NAMES[t]; continue; }
+    if(CAT_HINT[t]) cats.add(CAT_HINT[t]);
+    if(STOP.has(t)) continue;
+    words.push(t);
+  }
+  return {words, uf, cats};
+}
+function scoreItem(o, pq){
+  const title = norm(o.titulo), rest = norm([o.instituicao,o.descricao,o.area,o.subtipo,o.municipio,o.modalidade,CATS[o.categoria]?.nome].join(" "));
+  let score = 0, matched = 0;
+  for(const w of pq.words){
+    const alts = SYN[w] || [w];
+    let hit = false;
+    for(const a of alts){
+      const stem = a.length>5 ? a.slice(0,a.length-1) : a;
+      if(title.includes(stem)){ score += 3; hit = true; break; }
+      if(rest.includes(stem)){ score += 1; hit = true; break; }
+    }
+    if(hit) matched++;
+  }
+  if(pq.cats.size){ if(pq.cats.has(o.categoria)) score += 4; else return -1; }
+  if(pq.uf){ if(o.estado===pq.uf) score += 6; else if(o.estado==="Nacional") score += 1; else return -1; }
+  const contentWords = pq.words.filter(w=>!CAT_HINT[w]);
+  if(contentWords.length && matched===0 && !(pq.cats.has(o.categoria))) return -1;
+  if(!pq.words.length && !pq.cats.size && pq.uf && o.estado!==pq.uf && o.estado!=="Nacional") return -1;
+  return score;
+}
+
+/* ---------- filtros ---------- */
+let F = Object.assign({q:"",categoria:"",estado:"",municipio:"",instituicao:"",area:"",escolaridade:"",modalidade:"",gratuidade:"",certificacao:"",abertas:false,ate:"",ordem:"relevancia",pagina:1}, store.get("filtros",{}), {pagina:1});
+function uniq(field){ return [...new Set(DATA.map(o=>o[field]).filter(v=>v && v!==UNCONF))].sort((a,b)=>a.localeCompare(b,"pt")); }
+function modalidadeMatch(o,m){ const mm = norm(o.modalidade); if(m==="EAD") return mm.includes("ead")||mm.includes("online"); if(m==="Presencial") return mm.includes("presencial") && !mm.includes("semi"); if(m==="Semipresencial") return mm.includes("semi"); return true; }
+function certKind(o){ const c=norm(o.certificacao); if(c.includes("diploma")) return "Diploma"; if(c.includes("especializacao")) return "Certificado de especialização"; if(c.includes("certificado")) return "Certificado gratuito"; return "Não se aplica"; }
+function applyFilters(){
+  const pq = parseQuery(F.q);
+  let list = DATA.map(o=>({o, s: F.q ? scoreItem(o,pq) : 0})).filter(x=>x.s>=0);
+  list = list.filter(({o})=>{
+    if(F.categoria && o.categoria!==F.categoria) return false;
+    if(F.estado && o.estado!==F.estado) return false;
+    if(F.municipio && o.municipio!==F.municipio) return false;
+    if(F.instituicao && o.instituicao!==F.instituicao) return false;
+    if(F.area && o.area!==F.area) return false;
+    if(F.escolaridade && o.escolaridade!==F.escolaridade) return false;
+    if(F.modalidade && !modalidadeMatch(o,F.modalidade)) return false;
+    if(F.gratuidade==="total" && o.gratuidade!=="Gratuito") return false;
+    if(F.gratuidade==="taxa" && !/taxa/i.test(o.gratuidade)) return false;
+    if(F.certificacao && certKind(o)!==F.certificacao) return false;
+    if(F.abertas && statusOf(o)!=="aberta") return false;
+    if(F.ate){ const lim=parseDate(F.ate,true), en=parseDate(o.encerramento,true); if(!en || en>lim) return false; }
+    return true;
+  });
+  const now = new Date(), rank = {aberta:0,embreve:1,verificacao:2,encerrada:3};
+  const byEnd = (a,b)=>{ const ea=parseDate(a.o.encerramento,true), eb=parseDate(b.o.encerramento,true); return (ea?ea:Infinity)-(eb?eb:Infinity); };
+  if(F.ordem==="encerrando") list.sort((a,b)=> rank[statusOf(a.o,now)]-rank[statusOf(b.o,now)] || byEnd(a,b));
+  else if(F.ordem==="recentes") list.sort((a,b)=> String(b.o.criadoEm).localeCompare(String(a.o.criadoEm)) || byEnd(a,b));
+  else if(F.ordem==="alfabetica") list.sort((a,b)=> a.o.titulo.localeCompare(b.o.titulo,"pt"));
+  else list.sort((a,b)=> b.s-a.s || rank[statusOf(a.o,now)]-rank[statusOf(b.o,now)] || byEnd(a,b));
+  return list.map(x=>x.o);
+}
+
+/* ---------- componentes ---------- */
+function card(o){
+  const c = CATS[o.categoria] || CATS.cursos;
+  return `<article class="card">
+    <div class="top-arch" style="background:radial-gradient(120% 140% at 85% 0%,color-mix(in srgb,${c.cor} 55%,#fff),${c.cor})"></div>
+    <div class="body">
+      <span class="kind">${esc(c.curto)} · ${esc(o.estado==="Nacional"?"Brasil":o.estado)}${o.parceiro?' · <span style="color:var(--terracota)">Parceria</span>':""}</span>
+      <h3><a href="#op-${esc(o.id)}" style="color:inherit;text-decoration:none">${esc(o.titulo)}</a></h3>
+      <span class="inst">${esc(o.instituicao)}</span>
+      <div class="foot">
+        <span class="when">${esc(whenText(o))}</span>
+        <span style="display:flex;align-items:center;gap:4px">${pill(o)}
+        <button class="fav" data-fav="${esc(o.id)}" aria-pressed="${favs.has(o.id)}" aria-label="${favs.has(o.id)?"Remover dos favoritos":"Guardar nos favoritos"}">${heart}</button></span>
+      </div>
+    </div>
+  </article>`;
+}
+const grid = list => list.length ? `<div class="grid">${list.map(card).join("")}</div>` : `<div class="empty">Nada por aqui no momento.</div>`;
+function sourceNote(){
+  if(dataSource==="db") return "";
+  return "";
+}
+
+/* ---------- telas ---------- */
+function viewInicio(){
+  const now = new Date();
+  const abertas = DATA.filter(o=>statusOf(o,now)==="aberta");
+  const encerrando = abertas.filter(o=>!o.fluxoContinuo && daysLeft(o,now)<=7).sort((a,b)=>daysLeft(a)-daysLeft(b));
+  const novas = DATA.filter(o=>statusOf(o,now)!=="encerrada").sort((a,b)=>String(b.criadoEm).localeCompare(String(a.criadoEm))).slice(0,4);
+  const certificado = DATA.filter(o=>o.categoria==="cursos" && /certificado gratuito/i.test(o.certificacao) && statusOf(o,now)==="aberta");
+  const grad = abertas.filter(o=>o.categoria==="graduacao");
+  const pos = abertas.filter(o=>o.categoria==="pos");
+  const conc = DATA.filter(o=>o.categoria==="concursos" && ["aberta","embreve"].includes(statusOf(o,now)));
+  const count = k => DATA.filter(o=>o.categoria===k && ["aberta","embreve"].includes(statusOf(o,now))).length;
+  const byEnd = (a,b)=>((parseDate(a.encerramento,true)||Infinity)-(parseDate(b.encerramento,true)||Infinity));
+  [conc,pos,grad,certificado].forEach(l=>l.sort(byEnd));
+  const sec = (t,list,href,n=4) => list.length ? `<section class="block"><div class="block-head"><h2>${t}</h2><a href="${href}">Ver todas</a></div>${grid(list.slice(0,n))}</section>` : "";
+  return `<div class="wrap">
+    <section class="hero">
+      <div>
+        <h1>Seu futuro começa com uma <em>oportunidade.</em></h1>
+        <p class="lead">Encontre concursos públicos, cursos, graduações e pós-graduações gratuitas em todo o Brasil.</p>
+        <form class="search" id="home-search" role="search">
+          <label class="sr" for="q-home">O que você está procurando?</label>
+          <input id="q-home" type="search" placeholder="O que você está procurando?" autocomplete="off">
+          <button class="btn" type="submit">Buscar</button>
+        </form>
+        <div class="chips" aria-label="Exemplos de busca">
+          ${["Pedagogia","concurso professor","especialização EAD","mestrado","cursos técnicos"].map(e=>`<button class="chip" data-q="${esc(e)}">${esc(e)}</button>`).join("")}
+        </div>
+      </div>
+      <div class="books" aria-hidden="true">
+        <svg viewBox="0 0 440 420" role="presentation">
+          <defs>
+            <radialGradient id="g-coral" cx="35%" cy="25%" r="90%"><stop offset="0" stop-color="#F6C27A"/><stop offset=".55" stop-color="var(--coral)"/><stop offset="1" stop-color="var(--terracota)"/></radialGradient>
+            <radialGradient id="g-rosa" cx="40%" cy="20%" r="90%"><stop offset="0" stop-color="#F7D3D9"/><stop offset="1" stop-color="var(--rosa)"/></radialGradient>
+            <radialGradient id="g-salvia" cx="40%" cy="20%" r="90%"><stop offset="0" stop-color="#D4E0C9"/><stop offset="1" stop-color="var(--salvia)"/></radialGradient>
+            <radialGradient id="g-petroleo" cx="40%" cy="20%" r="90%"><stop offset="0" stop-color="#9CC6C4"/><stop offset="1" stop-color="var(--petroleo)"/></radialGradient>
+            <radialGradient id="g-ocre" cx="40%" cy="20%" r="90%"><stop offset="0" stop-color="#F8E2A6"/><stop offset="1" stop-color="var(--ocre)"/></radialGradient>
+            <linearGradient id="g-page" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#FFFDF8"/><stop offset="1" stop-color="#F3E6D6"/></linearGradient>
+          </defs>
+          <circle cx="368" cy="62" r="34" fill="var(--ocre)" opacity=".9"/>
+          <circle cx="368" cy="62" r="48" fill="var(--ocre)" opacity=".18"/>
+          <!-- livros em pé -->
+          <rect x="40" y="150" width="54" height="230" rx="8" fill="url(#g-petroleo)"/>
+          <rect x="48" y="180" width="38" height="5" rx="2.5" fill="#fff" opacity=".55"/><rect x="48" y="340" width="38" height="5" rx="2.5" fill="#fff" opacity=".55"/>
+          <rect x="100" y="110" width="62" height="270" rx="8" fill="url(#g-coral)"/>
+          <path d="M131 150 a14 14 0 0 1 14 14 v20 h-28 v-20 a14 14 0 0 1 14-14z" fill="#fff" opacity=".6"/>
+          <rect x="168" y="175" width="44" height="205" rx="8" fill="url(#g-ocre)"/>
+          <rect x="175" y="200" width="30" height="4" rx="2" fill="#fff" opacity=".6"/>
+          <g transform="rotate(12 262 380)"><rect x="232" y="160" width="52" height="220" rx="8" fill="url(#g-rosa)"/><rect x="240" y="190" width="36" height="5" rx="2.5" fill="#fff" opacity=".6"/></g>
+          <!-- pilha deitada -->
+          <rect x="300" y="336" width="120" height="22" rx="6" fill="url(#g-salvia)"/>
+          <rect x="292" y="358" width="132" height="22" rx="6" fill="url(#g-petroleo)"/>
+          <rect x="306" y="314" width="108" height="22" rx="6" fill="url(#g-coral)"/>
+          <!-- livro aberto, páginas em arco -->
+          <g transform="translate(296 236)">
+            <path d="M0 74 C 18 40, 50 34, 62 46 L 62 82 C 46 72, 20 74, 0 86 Z" fill="url(#g-page)" stroke="var(--line)" stroke-width="2"/>
+            <path d="M124 74 C 106 40, 74 34, 62 46 L 62 82 C 78 72, 104 74, 124 86 Z" fill="url(#g-page)" stroke="var(--line)" stroke-width="2"/>
+            <path d="M14 66 C 28 52, 44 50, 54 56 M14 74 C 28 62, 44 60, 54 64" stroke="var(--muted)" stroke-width="2" fill="none" opacity=".35" stroke-linecap="round"/>
+            <path d="M110 66 C 96 52, 80 50, 70 56 M110 74 C 96 62, 80 60, 70 64" stroke="var(--muted)" stroke-width="2" fill="none" opacity=".35" stroke-linecap="round"/>
+          </g>
+          <!-- prateleira -->
+          <rect x="20" y="380" width="410" height="12" rx="6" fill="var(--line)"/>
+          <!-- folhinha -->
+          <path d="M70 140 C 60 110, 76 92, 96 90 C 96 114, 86 132, 70 140z" fill="var(--salvia)" opacity=".85"/>
+        </svg>
+      </div>
+    </section>
+    <nav class="cats" aria-label="Categorias">
+      ${HOME_CATS.map(k=>[k,CATS[k]]).map(([k,c])=>`<a class="cat" href="#buscar" data-cat="${k}"><span class="door" style="background:radial-gradient(90% 70% at 50% 20%,color-mix(in srgb,${c.cor} 45%,#fff),${c.cor})">${count(k)}</span>${esc(c.curto)}</a>`).join("")}
+    </nav>
+    ${sec("Encerrando em breve", encerrando, "#buscar", 4)}
+    ${sec("Novas oportunidades", novas, "#buscar")}
+    ${sec("Concursos abertos", conc, "#buscar")}
+    ${sec("Pós-graduações gratuitas", pos, "#buscar")}
+    ${sec("Graduações com inscrições abertas", grad, "#buscar")}
+    ${sec("Cursos gratuitos com certificado", certificado, "#buscar")}
+  </div>`;
+}
+
+function filterControls(prefix){
+  const opt = (arr, sel, all="Todos") => `<option value="">${all}</option>` + arr.map(v=>`<option${v===sel?" selected":""}>${esc(v)}</option>`).join("");
+  const id = n => prefix + n;
+  return `<div class="filters" role="group" aria-label="Filtros">
+    <label for="${id("cat")}">Categoria<select id="${id("cat")}" data-f="categoria"><option value="">Todas</option>${Object.entries(CATS).map(([k,c])=>`<option value="${k}"${F.categoria===k?" selected":""}>${esc(c.nome)}</option>`).join("")}</select></label>
+    <label for="${id("uf")}">Estado<select id="${id("uf")}" data-f="estado"><option value="">Todos</option><option value="Nacional"${F.estado==="Nacional"?" selected":""}>Nacional</option>${Object.entries(ESTADOS).map(([uf,n])=>`<option value="${uf}"${F.estado===uf?" selected":""}>${esc(n)}</option>`).join("")}</select></label>
+    <label for="${id("mun")}">Município<select id="${id("mun")}" data-f="municipio">${opt(uniq("municipio"),F.municipio)}</select></label>
+    <label for="${id("inst")}">Instituição<select id="${id("inst")}" data-f="instituicao">${opt(uniq("instituicao"),F.instituicao,"Todas")}</select></label>
+    <label for="${id("area")}">Área<select id="${id("area")}" data-f="area">${opt(uniq("area"),F.area,"Todas")}</select></label>
+    <label for="${id("esc")}">Escolaridade exigida<select id="${id("esc")}" data-f="escolaridade">${opt(uniq("escolaridade"),F.escolaridade,"Todas")}</select></label>
+    <label for="${id("mod")}">Modalidade<select id="${id("mod")}" data-f="modalidade">${opt(["EAD","Presencial","Semipresencial"],F.modalidade,"Todas")}</select></label>
+    <label for="${id("gra")}">Gratuidade<select id="${id("gra")}" data-f="gratuidade"><option value="">Todas</option><option value="total"${F.gratuidade==="total"?" selected":""}>Totalmente gratuito</option><option value="taxa"${F.gratuidade==="taxa"?" selected":""}>Com taxa de inscrição</option></select></label>
+    <label for="${id("cert")}">Certificação<select id="${id("cert")}" data-f="certificacao">${opt(["Certificado gratuito","Certificado de especialização","Diploma","Não se aplica"],F.certificacao,"Todas")}</select></label>
+    <label for="${id("ate")}">Inscrições terminam até<input type="date" id="${id("ate")}" data-f="ate" value="${esc(F.ate)}"></label>
+    <label class="check" for="${id("ab")}"><input type="checkbox" id="${id("ab")}" data-f="abertas"${F.abertas?" checked":""}> Só inscrições abertas</label>
+    <button class="btn ghost small" type="button" data-clear>Limpar filtros</button>
+  </div>`;
+}
+function viewBuscar(){
+  const all = applyFilters(), per = 12, pages = Math.max(1, Math.ceil(all.length/per));
+  F.pagina = Math.min(F.pagina, pages);
+  const list = all.slice((F.pagina-1)*per, F.pagina*per);
+  return `<div class="wrap">
+    <form class="search" id="main-search" role="search" style="margin-top:26px;max-width:none">
+      <label class="sr" for="q-main">O que você está procurando?</label>
+      <input id="q-main" type="search" placeholder="O que você está procurando?" value="${esc(F.q)}" autocomplete="off">
+      <button class="btn" type="submit">Buscar</button>
+    </form>
+    <div class="search-layout">
+      <aside>${filterControls("d-")}</aside>
+      <section>
+        <details class="mfilters"><summary>Filtros</summary>${filterControls("m-")}</details>
+        <div class="results-head">
+          <strong>${all.length} ${all.length===1?"oportunidade":"oportunidades"}</strong>
+          <label>Ordenar por <select id="ordem" data-f="ordem">
+            ${[["relevancia","Relevância"],["encerrando","Encerrando primeiro"],["recentes","Mais recentes"],["alfabetica","Ordem alfabética"]].map(([v,t])=>`<option value="${v}"${F.ordem===v?" selected":""}>${t}</option>`).join("")}
+          </select></label>
+        </div>
+        ${list.length ? grid(list) : `<div class="empty">Nenhuma oportunidade com esses filtros. Tente tirar algum filtro ou buscar outra palavra.</div>`}
+        ${pages>1?`<nav class="pager" aria-label="Páginas">${Array.from({length:pages},(_,i)=>`<button data-page="${i+1}" aria-current="${F.pagina===i+1}">${i+1}</button>`).join("")}</nav>`:""}
+      </section>
+    </div>
+  </div>`;
+}
+
+function val(v){ return (!v || v===UNCONF || /^Informação não confirmada/.test(v)) ? `<span class="unconfirmed">${esc(v||UNCONF)}</span>` : esc(v); }
+function viewDetalhe(id){
+  const o = DATA.find(x=>x.id===id);
+  if(!o) return `<div class="wrap" style="padding:40px 0"><h1>Oportunidade não encontrada</h1><p>Ela pode ter sido removida. <a href="#buscar">Voltar para a busca</a>.</p></div>`;
+  const c = CATS[o.categoria] || CATS.cursos, st = statusOf(o);
+  const online = /ead|online/i.test(o.modalidade) ? (/presencial/i.test(o.modalidade) ? "Tem opções online e presenciais" : "Sim, a distância") : "Não, é presencial";
+  const termina = o.fluxoContinuo ? "Não tem prazo: inscrição a qualquer momento" : (o.encerramento ? fmtFull(o.encerramento,true) : UNCONF);
+  const insc = safeUrl(o.linkInscricao), edital = safeUrl(o.linkEdital), site = safeUrl(o.siteOficial), fonte = safeUrl(o.fonte);
+  const rows = [
+    ["Categoria", c.nome + (o.subtipo?" · "+o.subtipo:"")],["Área", o.area],["Modalidade", o.modalidade],
+    ["Local", [o.municipio, o.estado==="Nacional"?"Brasil":ESTADOS[o.estado]||o.estado].filter(Boolean).join(", ")],
+    ["Vagas", o.vagas],["Escolaridade exigida", o.escolaridade],["Pré-requisitos", o.prerequisitos],["Documentos", o.documentos],
+    ["Abertura das inscrições", o.fluxoContinuo?"Inscrição contínua":(o.abertura?fmtFull(o.abertura):UNCONF)],
+    ["Prazo final", termina],["Valor da inscrição", o.taxa],["Isenção de taxa", o.isencao],["Certificado ou diploma", o.certificacao]
+  ];
+  return `<div class="wrap"><div class="detail">
+    <article>
+      <div class="banner" style="background:radial-gradient(90% 120% at 30% 10%,color-mix(in srgb,${c.cor} 40%,#fff),${c.cor})" aria-hidden="true"></div>
+      <p style="margin:0 0 8px">${pill(o)}</p>
+      <h1>${esc(o.titulo)}</h1>
+      <p class="inst">${esc(o.instituicao)}</p>
+      <p>${esc(o.descricao)}</p>
+      <dl class="quick">
+        <div><dt>É gratuito?</dt><dd>${val(o.gratuidade==="Gratuito"?"Sim":o.gratuidade)}</dd></div>
+        <div><dt>Posso participar?</dt><dd>${val(o.escolaridade)}</dd></div>
+        <div><dt>É online?</dt><dd>${esc(online)}</dd></div>
+        <div><dt>Quando termina a inscrição?</dt><dd>${val(termina)}</dd></div>
+      </dl>
+      <dl class="info">${rows.map(([k,v])=>`<div><dt>${esc(k)}</dt><dd>${val(v)}</dd></div>`).join("")}</dl>
+    </article>
+    <aside class="side">
+      <div class="box">
+        <strong>Onde me inscrevo?</strong>
+        ${insc?`<a class="btn" href="${esc(insc)}" target="_blank" rel="noopener">Ir para a inscrição oficial</a>`:`<p class="note unconfirmed">Link de inscrição não confirmado. Use o edital ou o site oficial.</p>`}
+        ${edital?`<a class="btn ghost" href="${esc(edital)}" target="_blank" rel="noopener">Ler o edital</a>`:""}
+        ${site?`<a class="btn ghost" href="${esc(site)}" target="_blank" rel="noopener">Site oficial</a>`:""}
+        <button class="btn ghost" data-fav="${esc(o.id)}" aria-pressed="${favs.has(o.id)}">${favs.has(o.id)?"Guardada":"Guardar em Minhas oportunidades"}</button>
+      </div>
+      <div class="box note">
+        <p style="margin-top:0"><strong>Última verificação:</strong> ${esc(fmtDate(parseDate(o.verificadoEm))||"não informada")}</p>
+        <p><strong>Fonte:</strong> ${fonte?`<a href="${esc(fonte)}" target="_blank" rel="noopener">${o.fonteTipo==="oficial"?"página oficial":"notícia ou agregador"}</a>`:"não informada"}</p>
+        <p style="margin-bottom:0">A inscrição é feita só no site da instituição. Confira sempre o edital: datas podem ser prorrogadas ou alteradas.</p>
+      </div>
+    </aside>
+  </div></div>`;
+}
+
+let calMonth = (()=>{ const d=new Date(); return {y:+d.toLocaleDateString("en-CA",{timeZone:"America/Sao_Paulo",year:"numeric"}), m:+d.toLocaleDateString("en-CA",{timeZone:"America/Sao_Paulo",month:"numeric"})-1}; })();
+let calMode = "mes";
+function events(){
+  const ev = [];
+  for(const o of DATA){
+    if(o.fluxoContinuo) continue;
+    const en = parseDate(o.encerramento,true), ab = parseDate(o.abertura,false);
+    if(en) ev.push({o, d:en, tipo:"fim"});
+    if(ab && statusOf(o)==="embreve") ev.push({o, d:ab, tipo:"inicio"});
+  }
+  return ev.sort((a,b)=>a.d-b.d);
+}
+function viewCalendario(){
+  const ev = events(), now = new Date(), todayK = dayKey(now);
+  const names = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
+  let body;
+  if(calMode==="mes"){
+    const first = new Date(calMonth.y, calMonth.m, 1), start = new Date(first); start.setDate(1-first.getDay());
+    const cells = [];
+    for(let i=0;i<42;i++){
+      const d = new Date(start); d.setDate(start.getDate()+i);
+      const k = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+      const items = ev.filter(e=>dayKey(e.d)===k);
+      cells.push(`<div class="day${d.getMonth()!==calMonth.m?" out":""}${k===todayK?" today":""}"><span class="num">${d.getDate()}</span>${items.map(e=>{const soon=e.tipo==="fim" && (e.d-now)/86400000<=7 && e.d>now; return `<a class="ev${e.tipo==="inicio"?" open":""}" href="#op-${esc(e.o.id)}" style="background:${soon?"var(--coral)":(CATS[e.o.categoria]||CATS.cursos).cor}" title="${esc((e.tipo==="fim"?"Termina: ":"Abre: ")+e.o.titulo)}">${e.tipo==="fim"?"Fim":"Abre"} · ${esc(e.o.titulo)}</a>`}).join("")}</div>`);
+    }
+    body = `<div class="cal" role="grid" aria-label="Calendário de ${names[calMonth.m]}">${["dom","seg","ter","qua","qui","sex","sáb"].map(d=>`<div class="dow">${d}</div>`).join("")}${cells.join("")}</div>
+      <p class="note">Barra cheia: último dia de inscrição. Barra clara: dia em que as inscrições abrem. Em coral: termina nos próximos 7 dias.</p>`;
+  } else {
+    const fut = ev.filter(e=>e.d>=new Date(now.getTime()-86400000));
+    body = fut.length ? `<div class="list-cal">${fut.map(e=>{const soon=e.tipo==="fim"&&(e.d-now)/86400000<=7; return `<a href="#op-${esc(e.o.id)}"><span class="d" style="color:${soon?"var(--coral)":"inherit"}">${esc(fmtShort(e.d))}</span><span><strong>${e.tipo==="fim"?"Último dia":"Abre"}</strong> · ${esc(e.o.titulo)}</span>${pill(e.o)}</a>`}).join("")}</div>` : `<div class="empty">Sem datas futuras cadastradas.</div>`;
+  }
+  return `<div class="wrap" style="padding:10px 0 30px">
+    <div class="cal-head">
+      <h2>Calendário de oportunidades</h2>
+      ${calMode==="mes"?`<button class="btn ghost small" data-cal="-1" aria-label="Mês anterior">‹</button><strong style="min-width:150px;text-align:center">${names[calMonth.m]} de ${calMonth.y}</strong><button class="btn ghost small" data-cal="1" aria-label="Próximo mês">›</button>`:""}
+      <button class="btn small${calMode==="mes"?"":" ghost"}" data-calmode="mes">Mês</button>
+      <button class="btn small${calMode==="lista"?"":" ghost"}" data-calmode="lista">Lista</button>
+    </div>${body}</div>`;
+}
+
+function viewMinhas(){
+  const mine = DATA.filter(o=>favs.has(o.id)), now=new Date();
+  const g = {enc: mine.filter(o=>statusOf(o,now)==="aberta" && !o.fluxoContinuo && daysLeft(o,now)<=7),
+             ab: mine.filter(o=>statusOf(o,now)==="aberta" && (o.fluxoContinuo || daysLeft(o,now)>7)),
+             breve: mine.filter(o=>statusOf(o,now)==="embreve"),
+             fim: mine.filter(o=>["encerrada","verificacao"].includes(statusOf(o,now)))};
+  const s = (t,l)=> l.length?`<section class="block"><div class="block-head"><h2>${t}</h2></div>${grid(l)}</section>`:"";
+  return `<div class="wrap" style="padding-top:18px">
+    <h1 style="font-size:40px;margin-top:10px">Minhas oportunidades</h1>
+    <p class="note">Ficam guardadas neste navegador, sem cadastro. Toque no coração de qualquer cartão para guardar.</p>
+    ${mine.length ? s("Encerrando nos próximos 7 dias",g.enc)+s("Abertas",g.ab)+s("Em breve",g.breve)+s("Encerradas ou em verificação",g.fim) : `<div class="empty" style="margin-top:20px">Você ainda não guardou nenhuma oportunidade. <a href="#buscar">Explorar</a></div>`}
+  </div>`;
+}
+
+function alertMatches(a){
+  return DATA.filter(o=>{
+    if(!["aberta","embreve"].includes(statusOf(o))) return false;
+    if(a.categoria && o.categoria!==a.categoria) return false;
+    if(a.estado && o.estado!==a.estado && o.estado!=="Nacional") return false;
+    if(a.modalidade && !modalidadeMatch(o,a.modalidade)) return false;
+    if(a.prazo){ const d=daysLeft(o); if(!o.fluxoContinuo && (d===null || d>+a.prazo)) return false; }
+    if(a.area){ const pq=parseQuery(a.area); if(pq.words.length && scoreItem(o,{words:pq.words,uf:null,cats:new Set()})<=0) return false; }
+    return true;
+  });
+}
+function viewAlertas(){
+  const alerts = store.get("alertas",[]), seen = new Set(store.get("vistos",[]));
+  const blocks = alerts.map((a,i)=>{
+    const m = alertMatches(a), novos = m.filter(o=>!seen.has(o.id));
+    const desc = [a.area||"qualquer área", a.categoria?CATS[a.categoria].nome:"todas as categorias", a.estado?ESTADOS[a.estado]||a.estado:"todo o Brasil", a.modalidade||"qualquer modalidade", a.prazo?`terminando em até ${a.prazo} dias`:""].filter(Boolean).join(" · ");
+    return `<section class="block"><div class="block-head"><h2 style="font-size:22px">${esc(desc)}</h2><span>${novos.length?`<span class="pill urgente">${novos.length} ${novos.length===1?"nova":"novas"}</span> `:""}<button class="btn ghost small" data-delalert="${i}">Apagar alerta</button></span></div>${grid(m)}</section>`;
+  }).join("");
+  return `<div class="wrap" style="padding-top:18px">
+    <h1 style="font-size:40px;margin-top:10px">Alertas</h1>
+    <p class="note" style="max-width:62ch">Escolha os assuntos que interessam a você. Sempre que voltar, a Nuriteca mostra o que combina e marca o que é novidade, sem repetir o que você já viu. O aviso por e-mail chega na próxima versão.</p>
+    <form id="alert-form" class="box form-grid" style="margin:18px 0">
+      <label class="field full" for="al-area">Assunto<input id="al-area" placeholder="Ex.: especialização em Educação, professor"></label>
+      <label class="field" for="al-cat">Categoria<select id="al-cat"><option value="">Todas</option>${Object.entries(CATS).map(([k,c])=>`<option value="${k}">${esc(c.nome)}</option>`).join("")}</select></label>
+      <label class="field" for="al-uf">Estado<select id="al-uf"><option value="">Todo o Brasil</option>${Object.entries(ESTADOS).map(([uf,n])=>`<option value="${uf}">${esc(n)}</option>`).join("")}</select></label>
+      <label class="field" for="al-mod">Modalidade<select id="al-mod"><option value="">Todas</option><option>EAD</option><option>Presencial</option><option>Semipresencial</option></select></label>
+      <label class="field" for="al-prazo">Prazo de inscrição<select id="al-prazo"><option value="">Qualquer prazo</option><option value="7">Até 7 dias</option><option value="15">Até 15 dias</option><option value="30">Até 30 dias</option></select></label>
+      <div class="full"><button class="btn" type="submit">Criar alerta</button></div>
+    </form>
+    ${blocks || `<div class="empty">Nenhum alerta criado ainda.</div>`}
+  </div>`;
+}
+
+
+function viewDescontos(){
+  const now=new Date(), all=DATA.filter(o=>o.categoria==="descontos");
+  const byEnd=(a,b)=>((parseDate(a.encerramento,true)||Infinity)-(parseDate(b.encerramento,true)||Infinity));
+  const parceiros=all.filter(o=>o.parceiro && statusOf(o,now)!=="encerrada").sort(byEnd);
+  const abertas=all.filter(o=>!o.parceiro && ["aberta","embreve"].includes(statusOf(o,now))).sort(byEnd);
+  const programas=all.filter(o=>!o.parceiro && statusOf(o,now)==="verificacao");
+  return `<div class="wrap" style="padding-top:18px">
+    <h1 style="font-size:40px;margin-top:10px">Descontos e bolsas de estudo</h1>
+    <p class="note" style="max-width:64ch">Aqui ficam bolsas para estudar em instituições particulares ou no exterior e descontos em cursos pagos. Tudo o que for parceria comercial aparece marcado como Parceria.</p>
+    <section class="block"><div class="block-head"><h2>Bolsas com inscrições abertas</h2></div>${grid(abertas)}</section>
+    ${programas.length?`<section class="block"><div class="block-head"><h2>Programas do governo</h2></div><p class="note">Ainda sem datas para a próxima edição. Avisamos aqui quando abrir.</p>${grid(programas)}</section>`:""}
+    <section class="block"><div class="block-head"><h2>Descontos com parceiros</h2></div>
+      ${parceiros.length?grid(parceiros):`<div class="empty">Em breve. Os descontos com instituições parceiras vão aparecer aqui, sempre identificados.<br>É uma instituição de ensino? Fale com a gente pelo <a href="https://www.instagram.com/gabihistoriaa/" target="_blank" rel="noopener">@gabihistoriaa</a>.</div>`}
+    </section>
+  </div>`;
+}
+
+function viewSobre(){
+  return `<div class="wrap" style="padding:28px 0;max-width:720px">
+    <h1 style="font-size:40px">Como verificamos</h1>
+    <p>Cada oportunidade na Nuriteca tem fonte, link oficial (quando existe) e data da última verificação.</p>
+    <p><strong>Status automático.</strong> Quando o prazo final passa, a oportunidade sai das abertas sozinha. Se uma data não pôde ser confirmada, ela aparece como "Em verificação" e nunca como aberta.</p>
+    <p><strong>Fonte oficial ou notícia.</strong> Na página de cada oportunidade dizemos se a informação veio direto da instituição ou de uma notícia. Quando vem de notícia, leia o edital antes de se inscrever.</p>
+    <p><strong>Gratuito de verdade.</strong> Separamos o que é totalmente gratuito do que tem curso gratuito mas cobra taxa de inscrição. Concursos públicos aparecem com o valor da taxa.</p>
+    <p><strong>Sem inscrição aqui.</strong> A Nuriteca nunca pede pagamento nem dados pessoais. Toda inscrição é feita no site da instituição.</p>
+  </div>`;
+}
+
+/* ---------- painel do administrador ---------- */
+const FIELDS = [
+  ["titulo","Nome oficial","text",true],["categoria","Categoria","cat",false],["subtipo","Tipo","text",false],
+  ["instituicao","Instituição","text",true],["estado","Estado (UF ou Nacional)","text",false],["municipio","Município","text",false],
+  ["area","Área do conhecimento","text",false],["modalidade","Modalidade","text",false],["vagas","Vagas","text",false],
+  ["escolaridade","Escolaridade exigida","text",false],["abertura","Abertura (AAAA-MM-DD ou AAAA-MM-DDTHH:MM)","text",false],
+  ["encerramento","Prazo final (AAAA-MM-DD ou AAAA-MM-DDTHH:MM)","text",false],["taxa","Valor da inscrição","text",false],
+  ["gratuidade","Gratuidade (Gratuito / Curso gratuito, com taxa de inscrição / Taxa de inscrição)","text",false],
+  ["isencao","Isenção de taxa","text",false],["certificacao","Certificado ou diploma","text",false],
+  ["linkInscricao","Link oficial de inscrição","url",false],["linkEdital","Link do edital","url",false],["siteOficial","Site oficial","url",false],
+  ["fonte","Fonte (link)","url",true],["fonteTipo","Tipo de fonte (oficial ou secundaria)","text",false],
+  ["prerequisitos","Pré-requisitos","area",false],["documentos","Documentação necessária","area",false],["descricao","Descrição","area",true]
+];
+let editing = null;
+function viewAdmin(){
+  if(!isAdmin) return `<div class="wrap" style="padding:40px 0"><h1>Painel</h1><p>Esta área é só para quem administra a Nuriteca.</p></div>`;
+  const now = new Date(), cnt = s => DATA.filter(o=>statusOf(o,now)===s).length;
+  const old = DATA.filter(o=>!o.fluxoContinuo && statusOf(o,now)!=="encerrada" && (now - (parseDate(o.verificadoEm)||0))/86400000 > 7);
+  const keyOf = o => norm(o.titulo).replace(/[^a-z0-9]/g,"").slice(0,40)+"|"+norm(o.instituicao).slice(0,20);
+  const groups = {}; DATA.forEach(o=>{ (groups[keyOf(o)] ||= []).push(o); });
+  const dups = Object.values(groups).filter(g=>g.length>1);
+  const e = editing || {};
+  return `<div class="wrap" style="padding:18px 0 40px">
+    <h1 style="font-size:40px;margin-top:10px">Painel</h1>
+    ${dataSource!=="db"?`<div class="banner-msg">O banco de dados não respondeu. Você está vendo a cópia publicada, e as alterações não podem ser salvas agora.</div>`:""}
+    <div class="stats" style="margin:16px 0">
+      <div class="stat"><b>${DATA.length}</b>cadastradas</div><div class="stat"><b>${cnt("aberta")}</b>abertas</div>
+      <div class="stat"><b>${cnt("embreve")}</b>em breve</div><div class="stat"><b>${cnt("encerrada")}</b>encerradas</div>
+      <div class="stat"><b>${cnt("verificacao")}</b>em verificação</div><div class="stat"><b>${old.length}</b>verificação vencida</div>
+    </div>
+    <p class="note">Estatísticas de acesso dependem de hospedagem própria e entram na versão 2.</p>
+    ${old.length?`<section class="block"><h2 style="font-size:22px">Verificar fontes de novo (mais de 7 dias)</h2><ul>${old.map(o=>`<li><a href="${esc(safeUrl(o.fonte))}" target="_blank" rel="noopener">${esc(o.titulo)}</a> · verificada em ${esc(fmtDate(parseDate(o.verificadoEm)))}</li>`).join("")}</ul></section>`:""}
+    ${dups.length?`<section class="block"><h2 style="font-size:22px">Possíveis duplicadas</h2><ul>${dups.map(g=>`<li>${g.map(o=>esc(o.titulo)).join(" ⇄ ")}</li>`).join("")}</ul></section>`:""}
+    <section class="block"><h2 style="font-size:22px">Erros de coleta</h2><p class="note">A coleta automática roda pela tarefa programada de verificação. Nenhum erro registrado.</p></section>
+    <section class="block">
+      <h2 style="font-size:22px">${editing?"Editar oportunidade":"Adicionar oportunidade"}</h2>
+      <form id="adm-form" class="box form-grid" style="margin-top:12px">
+        ${FIELDS.map(([k,l,t,req])=>{
+          const v = e[k] ?? "";
+          if(t==="cat") return `<label class="field" for="f-${k}">${l}<select id="f-${k}" name="${k}">${Object.entries(CATS).map(([ck,c])=>`<option value="${ck}"${v===ck?" selected":""}>${esc(c.nome)}</option>`).join("")}</select></label>`;
+          if(t==="area") return `<label class="field full" for="f-${k}">${l}<textarea id="f-${k}" name="${k}" rows="3"${req?" required":""}>${esc(v)}</textarea></label>`;
+          return `<label class="field" for="f-${k}">${l}<input id="f-${k}" name="${k}" type="${t==="url"?"url":"text"}" value="${esc(v)}"${req?" required":""}></label>`;
+        }).join("")}
+        <label class="field" for="f-fluxo"><span><input type="checkbox" id="f-fluxo" name="fluxoContinuo"${e.fluxoContinuo?" checked":""}> Inscrição contínua (sem prazo)</span></label>
+        <label class="field" for="f-parc"><span><input type="checkbox" id="f-parc" name="parceiro"${e.parceiro?" checked":""}> Parceria comercial (aparece marcada)</span></label>
+        <label class="field" for="f-verif"><span><input type="checkbox" id="f-verif" name="verificado"${e.verificado?" checked":""}> Conferida na fonte hoje</span></label>
+        <div class="full" style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" type="submit">${editing?"Salvar alterações":"Adicionar"}</button>${editing?`<button class="btn ghost" type="button" data-cancel>Cancelar</button>`:""}</div>
+      </form>
+    </section>
+    <section class="block"><h2 style="font-size:22px">Todas as oportunidades</h2>
+      <div class="tablewrap"><table class="adm"><thead><tr><th>Oportunidade</th><th>Status</th><th>Prazo</th><th>Verificada</th><th>Ações</th></tr></thead><tbody>
+      ${DATA.slice().sort((a,b)=>a.titulo.localeCompare(b.titulo,"pt")).map(o=>`<tr><td><a href="#op-${esc(o.id)}">${esc(o.titulo)}</a></td><td>${pill(o)}</td><td>${esc(o.fluxoContinuo?"contínuo":fmtFull(o.encerramento,true)||"—")}</td><td>${esc(fmtDate(parseDate(o.verificadoEm))||"—")}</td>
+      <td style="white-space:nowrap"><button class="btn ghost small" data-edit="${esc(o.id)}">Editar</button> <button class="btn ghost small" data-verify="${esc(o.id)}">Marcar verificada</button> <button class="btn ghost small" data-del="${esc(o.id)}">Excluir</button></td></tr>`).join("")}
+      </tbody></table></div>
+    </section>
+  </div>`;
+}
+async function saveDoc(o){
+  if(!db){ toast("Banco de dados indisponível agora"); return false; }
+  try{ await db.collection("oportunidades").doc(o.id).set(o); return true; }
+  catch(err){ toast(err && err.code==="invalid_argument" ? "Você não tem permissão para salvar" : "Não foi possível salvar. Tente de novo."); return false; }
+}
+
+/* ---------- roteador ---------- */
+const VIEWS = {inicio:viewInicio, descontos:viewDescontos, buscar:viewBuscar, calendario:viewCalendario, minhas:viewMinhas, alertas:viewAlertas, admin:viewAdmin, sobre:viewSobre};
+function route(){ const h = (location.hash||"#inicio").slice(1); if(h.startsWith("op-")) return {v:"op", id:h.slice(3)}; return {v: VIEWS[h]?h:"inicio"}; }
+let lastRoute = "";
+function render(){
+  const r = route(), app = $("#app");
+  app.innerHTML = r.v==="op" ? viewDetalhe(r.id) : VIEWS[r.v]();
+  document.querySelectorAll("nav.main a").forEach(a=>{ if(a.getAttribute("href")!=="#"+r.v) a.removeAttribute("aria-current"); else a.setAttribute("aria-current","page"); });
+  $("#nav-admin").hidden = !isAdmin;
+  const key = location.hash;
+  if(key!==lastRoute){ window.scrollTo(0,0); lastRoute = key; }
+  if(r.v==="alertas"){ const ids=new Set(store.get("vistos",[])); store.get("alertas",[]).forEach(a=>alertMatches(a).forEach(o=>ids.add(o.id))); setTimeout(()=>store.set("vistos",[...ids]),0); }
+  if(r.v==="op"){ const o=DATA.find(x=>x.id===r.id); document.title = o ? o.titulo+" · Nuriteca" : "Nuriteca"; } else document.title = "Nuriteca";
+}
+window.addEventListener("hashchange", render);
+
+/* ---------- eventos ---------- */
+function setF(k,v){ F[k]=v; if(k!=="pagina") F.pagina=1; const {pagina,...keep}=F; store.set("filtros",keep); }
+document.addEventListener("submit", async ev=>{
+  const f = ev.target; ev.preventDefault();
+  if(f.id==="home-search"){ setF("q", $("#q-home").value.trim()); F.categoria=""; location.hash="#buscar"; render(); }
+  if(f.id==="main-search"){ setF("q", $("#q-main").value.trim()); render(); }
+  if(f.id==="alert-form"){
+    const a = {area:$("#al-area").value.trim(), categoria:$("#al-cat").value, estado:$("#al-uf").value, modalidade:$("#al-mod").value, prazo:$("#al-prazo").value};
+    store.set("alertas",[...store.get("alertas",[]), a]); render(); toast("Alerta criado");
+  }
+  if(f.id==="adm-form"){
+    const fd = new FormData(f), o = Object.assign({}, editing||{});
+    FIELDS.forEach(([k])=>o[k]=String(fd.get(k)||"").trim());
+    ["linkInscricao","linkEdital","siteOficial","fonte"].forEach(k=>{ if(o[k] && !safeUrl(o[k])) o[k]=""; });
+    o.fluxoContinuo = fd.get("fluxoContinuo")==="on"; o.parceiro = fd.get("parceiro")==="on"; o.verificado = fd.get("verificado")==="on";
+    const today = dayKey(new Date());
+    if(o.verificado) o.verificadoEm = today;
+    if(!o.id){ o.id = norm(o.titulo).replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,60) + "-" + Date.now().toString(36); o.criadoEm = today; }
+    if(await saveDoc(o)){ editing=null; toast("Salvo"); render(); }
+  }
+});
+document.addEventListener("click", async ev=>{
+  const t = ev.target.closest("button,a"); if(!t) return;
+  if(t.dataset.fav){ ev.preventDefault(); toggleFav(t.dataset.fav); return; }
+  if(t.dataset.q){ setF("q", t.dataset.q); F.categoria=""; location.hash="#buscar"; render(); return; }
+  if(t.dataset.cat){ setF("categoria", t.dataset.cat); setF("q",""); return; }
+  if(t.hasAttribute("data-clear")){ F = {q:F.q,categoria:"",estado:"",municipio:"",instituicao:"",area:"",escolaridade:"",modalidade:"",gratuidade:"",certificacao:"",abertas:false,ate:"",ordem:"relevancia",pagina:1}; setF("q",F.q); render(); return; }
+  if(t.dataset.page){ F.pagina=+t.dataset.page; render(); window.scrollTo(0,0); return; }
+  if(t.dataset.cal){ calMonth.m += +t.dataset.cal; if(calMonth.m<0){calMonth.m=11;calMonth.y--;} if(calMonth.m>11){calMonth.m=0;calMonth.y++;} render(); return; }
+  if(t.dataset.calmode){ calMode=t.dataset.calmode; render(); return; }
+  if(t.dataset.delalert){ const a=store.get("alertas",[]); a.splice(+t.dataset.delalert,1); store.set("alertas",a); render(); return; }
+  if(t.dataset.edit){ editing = Object.assign({}, DATA.find(o=>o.id===t.dataset.edit)); render(); $("#adm-form")?.scrollIntoView(); return; }
+  if(t.hasAttribute("data-cancel")){ editing=null; render(); return; }
+  if(t.dataset.verify){ const o=Object.assign({},DATA.find(x=>x.id===t.dataset.verify),{verificado:true,verificadoEm:dayKey(new Date())}); if(await saveDoc(o)) toast("Marcada como verificada"); return; }
+  if(t.dataset.del){
+    if(t.dataset.confirm!=="1"){ t.dataset.confirm="1"; t.textContent="Confirmar exclusão"; return; }
+    if(!db){ toast("Banco de dados indisponível agora"); return; }
+    try{ await db.collection("oportunidades").doc(t.dataset.del).set({excluida:true, excluidaEm:dayKey(new Date())}); toast("Excluída"); }catch(e){ toast("Não foi possível excluir"); }
+  }
+});
+document.addEventListener("change", ev=>{
+  const el = ev.target; if(!el.dataset || !el.dataset.f) return;
+  setF(el.dataset.f, el.type==="checkbox" ? el.checked : el.value); render();
+});
+
+/* ---------- inicialização ---------- */
+render();
+(async ()=>{
+  if(!window.claude || !window.claude.use) return;
+  try{
+    user = await window.claude.use("user");
+    if(user){ isAdmin = !!(user.isOwner && user.isOwner()) || !!(user.canEdit && user.canEdit()); }
+    db = await window.claude.use("db");
+    if(db){
+      const timer = setTimeout(()=>{ dataSource="snapshot"; render(); }, 10000);
+      db.collection("oportunidades").onSnapshot(snap=>{
+        clearTimeout(timer);
+        // A cópia publicada é a base; o banco guarda novidades, correções e exclusões por cima dela.
+        const byId = new Map((window.SNAPSHOT||[]).map(o=>[o.id,o]));
+        snap.docs.forEach(d=>{ const v=d.data()||{}; if(v.excluida) byId.delete(d.id); else byId.set(d.id, Object.assign({id:d.id}, v)); });
+        DATA = [...byId.values()]; dataSource="db";
+        render();
+      }, ()=>{ clearTimeout(timer); });
+    }
+    render();
+  }catch(e){ render(); }
+})();
+})();
+</script>
+</body>
+</html>
