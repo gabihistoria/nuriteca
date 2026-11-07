@@ -78,7 +78,7 @@ footer{margin-top:50px;border-top:1px solid var(--line);padding:26px 0 40px;font
 
 const LOGO = `<a class="logo" href="/"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M2 24 C 6 15, 12 13, 16 16 L 16 28 C 12 25, 6 25, 2 28 Z" fill="#E8735F"/><path d="M30 24 C 26 15, 20 13, 16 16 L 16 28 C 20 25, 26 25, 30 28 Z" fill="#B9583C"/><circle cx="16" cy="7" r="3.4" fill="#D9A441"/></svg>Nuriteca</a>`;
 const catLinks = () => `<div class="cats">${Object.values(CATS).map(c=>`<a href="/${c.slug}/">${esc(c.nome)}</a>`).join("")}</div>`;
-const FOOTER = `<footer><div class="wrap"><p><strong>Navegue por categoria</strong></p>${catLinks()}
+const FOOTER = `<footer><div class="wrap"><p><strong>Navegue por categoria</strong></p>${catLinks()}<p style="margin-top:14px"><a href="/estados/">Ver oportunidades por estado →</a></p>
 <p style="margin-top:22px">A Nuriteca reúne oportunidades gratuitas e leva você ao site oficial. Aqui não há inscrição nem cobrança. Confira sempre o edital.</p>
 <p><a href="/">Página inicial</a> · <a href="https://www.instagram.com/nuriteca/" rel="noopener">@nuriteca no Instagram</a> · <a href="/#contato">Fale conosco</a> · <a href="/#termos">Termos de uso</a> · <a href="/#privacidade">Privacidade</a></p></div></footer>`;
 
@@ -155,8 +155,32 @@ ${fechadas.length ? `<h2>Encerradas recentemente</h2><ul class="list">${fechadas
   return page({ title: `${c.titulo} | Nuriteca`, desc, url, body });
 }
 
+function statePage(uf){
+  const nome = ESTADOS[uf];
+  const items = DATA.filter(o => o.estado === uf && CATS[o.categoria]);
+  const byEnd = (a,b) => ((parseDate(a.encerramento,true)||Infinity) - (parseDate(b.encerramento,true)||Infinity));
+  const abertas = items.filter(isOpen).sort(byEnd);
+  const nacionais = DATA.filter(o => o.estado === "Nacional" && CATS[o.categoria] && isOpen(o)).length;
+  const url = `/estados/${slugify(nome)}/`;
+  const desc = cut(`Concursos, cursos, bolsas e oportunidades gratuitas em ${nome}, com prazo e link oficial. ${abertas.length} abertas agora, conferidas pela Nuriteca.`, 158);
+  const body = `<nav class="crumbs"><a href="/">Início</a> › <a href="/estados/">Estados</a> › ${esc(nome)}</nav>
+<div class="arch" style="background:linear-gradient(180deg,#E8735Fcc,#B9583C)"></div>
+<h1>Oportunidades gratuitas em ${esc(nome)}</h1>
+<p class="meta">Concursos, cursos, graduação, pós e bolsas com inscrições abertas em ${esc(nome)}, conferidos pela Nuriteca.</p>
+${abertas.length ? `<ul class="list">${abertas.map(listItem).join("")}</ul>` : `<p class="note">Nenhuma oportunidade aberta só para ${esc(nome)} agora.</p>`}
+${nacionais ? `<p class="note" style="margin-top:20px">Além dessas, há ${nacionais} oportunidades abertas para o Brasil todo, que valem para quem mora em ${esc(nome)}. <a href="/">Ver no site</a>.</p>` : ""}`;
+  return page({ title: `Concursos e oportunidades gratuitas em ${nome} | Nuriteca`, desc, url, body });
+}
+function statesIndex(ufs){
+  const body = `<nav class="crumbs"><a href="/">Início</a> › Estados</nav><h1>Oportunidades por estado</h1>
+<p class="meta">Escolha o seu estado para ver concursos, cursos e bolsas abertos perto de você.</p>
+<ul class="list">${ufs.map(uf => { const n = DATA.filter(o => o.estado === uf && CATS[o.categoria] && isOpen(o)).length; return `<li><a href="/estados/${slugify(ESTADOS[uf])}/"><strong>${esc(ESTADOS[uf])}</strong><span>${n} ${n===1?"oportunidade aberta":"oportunidades abertas"}</span></a></li>`; }).join("")}</ul>`;
+  return page({ title: "Concursos e oportunidades gratuitas por estado | Nuriteca", desc: "Concursos, cursos, bolsas e oportunidades gratuitas organizados por estado, com prazo e link oficial.", url: "/estados/", body });
+}
+
 // limpa as pastas geradas e recria
 for (const c of Object.values(CATS)) fs.rmSync(path.join(ROOT, c.slug), { recursive: true, force: true });
+fs.rmSync(path.join(ROOT, "estados"), { recursive: true, force: true });
 const urls = [{ loc: "/", lastmod: NOW.toISOString().slice(0,10), pr: "1.0" }];
 const write = (rel, html) => { const p = path.join(ROOT, rel, "index.html"); fs.mkdirSync(path.dirname(p), { recursive: true }); fs.writeFileSync(p, html); };
 let n = 0;
@@ -170,6 +194,10 @@ for (const o of DATA) {
   urls.push({ loc: itemUrl(o), lastmod: (o.verificadoEm || o.criadoEm || NOW.toISOString()).slice(0,10), pr: isOpen(o) ? "0.7" : "0.3" });
   n++;
 }
+const UFS = Object.keys(ESTADOS).filter(uf => uf !== "Nacional" && DATA.some(o => o.estado === uf && CATS[o.categoria])).sort((a,b) => ESTADOS[a].localeCompare(ESTADOS[b], "pt"));
+write("estados", statesIndex(UFS));
+urls.push({ loc: "/estados/", lastmod: NOW.toISOString().slice(0,10), pr: "0.8" });
+for (const uf of UFS) { write(`estados/${slugify(ESTADOS[uf])}`, statePage(uf)); urls.push({ loc: `/estados/${slugify(ESTADOS[uf])}/`, lastmod: NOW.toISOString().slice(0,10), pr: "0.7" }); }
 fs.writeFileSync(path.join(ROOT, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(u => `  <url><loc>${SITE}${u.loc}</loc><lastmod>${u.lastmod}</lastmod><priority>${u.pr}</priority></url>`).join("\n")}\n</urlset>\n`);
 fs.writeFileSync(path.join(ROOT, "robots.txt"), `User-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`);
-console.log(`Páginas geradas: ${n} oportunidades + ${Object.keys(CATS).length} categorias. sitemap.xml com ${urls.length} endereços.`);
+console.log(`Páginas geradas: ${n} oportunidades + ${Object.keys(CATS).length} categorias + ${UFS.length} estados. sitemap.xml com ${urls.length} endereços.`);
