@@ -219,6 +219,18 @@ table.adm th,table.adm td{text-align:left;padding:8px;border-bottom:1px solid va
 .bn-txt .bn-loja{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--bn)}.bn-txt strong{font-family:Fraunces,serif;font-size:22px}.bn-txt span{color:var(--muted)}.bn-txt em{font-style:normal;font-weight:700;color:var(--terracota);margin-top:4px}
 .foot-insta{width:100%;display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 18px;margin-bottom:6px;border-radius:var(--radius);background:color-mix(in srgb,var(--coral) 14%,var(--surface));border:1px solid var(--line);color:var(--ink);text-decoration:none;font-size:15.5px}
 .foot-insta svg{color:var(--terracota);flex:none}.foot-insta b{color:var(--terracota)}.foot-insta em{font-style:normal;font-weight:700;color:var(--terracota);margin-left:auto}
+.ads{margin:26px 0}.ads>small{display:block;font-size:11.5px;color:var(--muted);margin:0 0 8px;letter-spacing:.04em;text-transform:uppercase}
+.ads-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.ad{display:flex;flex-direction:column;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:transform .15s}
+.ad:hover{transform:translateY(-3px)}
+.ad-img{display:block;aspect-ratio:1/1;overflow:hidden;background:#F3E6D6}.ad-img img{width:100%;height:100%;object-fit:cover;display:block}
+.ad-body{display:grid;gap:3px;padding:12px 14px 14px}
+.ad-loja{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--bn)}
+.ad strong{font-family:Fraunces,serif;font-size:17px;line-height:1.2}.ad-txt{font-size:13.5px;color:var(--muted)}
+.ad em{font-style:normal;font-weight:700;font-size:14px;color:var(--terracota);margin-top:4px}
+.ad-vazio{border-style:dashed;box-shadow:none;background:transparent;justify-content:center;text-align:center;min-height:180px}
+.ad-vazio .ad-body{justify-items:center}.ad-mais{font-size:30px;line-height:1;color:var(--terracota)}
+@media (max-width:860px){.ads-grid{grid-template-columns:repeat(2,1fr)}}
 footer{border-top:1px solid var(--line);margin-top:30px;padding:26px 0 40px;color:var(--muted);font-size:15px}
 footer .wrap{display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap}
 
@@ -492,13 +504,16 @@ function card(o){
   </article>`;
 }
 function banner(onde){
-  const bs=(window.BANNERS||[]).filter(b=>b.ativo!==false && (b.onde||["inicio"]).includes(onde));
-  if(!bs.length) return "";
-  const b=bs[Math.floor(Math.random()*bs.length)];
-  let href=b.link; try{ const u=new URL(b.link); if(b.utm!==false && !/shopee|amazon|mercadoli|amzn/.test(u.hostname)){ u.searchParams.set("utm_source","nuriteca"); u.searchParams.set("utm_medium","banner"); u.searchParams.set("utm_campaign",b.id||"parceiro"); href=u.toString(); } }catch(e){}
-  const inner=b.imagem?`<img src="${esc(b.imagem)}" alt="${esc(b.titulo||"Publicidade")}" loading="lazy">`:
-    `<div class="bn-txt" style="--bn:${esc(b.cor||"var(--coral)")}"><span class="bn-loja">${esc(b.loja||"")}</span><strong>${esc(b.titulo||"")}</strong><span>${esc(b.texto||"")}</span><em>${esc(b.botao||"Ver oferta")} →</em></div>`;
-  return `<aside class="bn"><a href="${esc(href)}" target="_blank" rel="sponsored noopener">${inner}</a><small>Publicidade</small></aside>`;
+  const bs=(window.BANNERS||[]).filter(b=>b.ativo!==false && (b.onde||["inicio"]).includes(onde)).slice(0,4);
+  const slot=b=>{
+    let href=b.link; try{ const u=new URL(b.link); if(b.utm!==false && !/shopee|amazon|mercadoli|amzn/.test(u.hostname)){ u.searchParams.set("utm_source","nuriteca"); u.searchParams.set("utm_medium","banner"); u.searchParams.set("utm_campaign",b.id||"parceiro"); href=u.toString(); } }catch(e){}
+    return `<a class="ad" href="${esc(href)}" target="_blank" rel="sponsored noopener" style="--bn:${esc(b.cor||"var(--coral)")}">
+      ${b.imagem?`<span class="ad-img"><img src="${esc(b.imagem)}" alt="${esc(b.titulo||"")}" loading="lazy"></span>`:""}
+      <span class="ad-body">${b.loja?`<span class="ad-loja">${esc(b.loja)}</span>`:""}<strong>${esc(b.titulo||"")}</strong>${b.texto?`<span class="ad-txt">${esc(b.texto)}</span>`:""}<em>${esc(b.botao||"Ver oferta")} →</em></span></a>`;
+  };
+  const vazio=`<a class="ad ad-vazio" href="#anuncie"><span class="ad-body"><span class="ad-mais">+</span><strong>Seu anúncio aqui</strong><span class="ad-txt">Fale com a Nuriteca</span></span></a>`;
+  const slots=bs.map(slot); while(slots.length<4) slots.push(vazio);
+  return `<aside class="ads" aria-label="Publicidade"><small>Publicidade</small><div class="ads-grid">${slots.join("")}</div></aside>`;
 }
 const grid = list => list.length ? `<div class="grid">${list.map(card).join("")}</div>` : `<div class="empty">Nada por aqui no momento.</div>`;
 function sourceNote(){

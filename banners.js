@@ -1,7 +1,8 @@
-/* Banners de afiliados e publicidade.
-   Cada banner: id, ativo (true/false), link (link de afiliado), onde (["inicio","buscar","intercambios"]),
-   imagem (opcional, ex.: "banners/arquivo.png") OU texto: titulo, texto, botao, loja, cor. */
+/* Publicidade: até 4 quadrados por bloco. Os espaços vazios viram "Anuncie aqui".
+   Cada item: id, ativo, link, onde (["inicio","buscar","intercambios"]),
+   imagem (quadrada, em banners/), loja, titulo, texto (opcional), botao, cor. */
 window.BANNERS = [
-  {id:"shopee-1", ativo:true, link:"https://s.shopee.com.br/9APzVtJkSC", onde:["inicio","buscar"],
-   loja:"Shopee", titulo:"Organizador de mesa em MDF para estudos", texto:"Canetas, cadernos e papéis no lugar: mesa arrumada, cabeça mais leve para estudar.", botao:"Ver na Shopee", cor:"var(--terracota)"}
+  {id:"shopee-marcador-van-gogh", ativo:true, link:"https://s.shopee.com.br/906aROaFOY", onde:["inicio","buscar","intercambios"],
+   imagem:"banners/marcador-van-gogh.jpg", loja:"Shopee", titulo:"Marcador de página metálico Van Gogh",
+   texto:"A Noite Estrelada dentro do seu livro.", botao:"Ver na Shopee", cor:"var(--petroleo)"}
 ];
