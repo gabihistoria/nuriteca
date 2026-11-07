@@ -10,6 +10,8 @@ const ROOT = __dirname;
 global.window = {};
 require(path.join(ROOT, "data.js"));
 const DATA = window.SNAPSHOT || [];
+try { require(path.join(ROOT, "guias.js")); } catch (e) {}
+const GUIAS = window.GUIAS || [];
 
 const CATS = {
   concursos:   { slug: "concursos",            nome: "Concursos públicos",               titulo: "Concursos públicos com inscrições abertas",            cor: "#E8735F" },
@@ -73,12 +75,13 @@ dt,dd{padding:11px 0;border-bottom:1px solid var(--line);margin:0}dt{font-weight
 .list li a:hover{border-color:var(--coral)}.list strong{display:block;font-family:Fraunces,serif;font-size:20px;line-height:1.25}
 .list span{font-size:14px;color:var(--muted)}
 .cats{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0}.cats a{font-size:14px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);text-decoration:none;color:var(--ink);background:var(--surface)}
+.guia h2{margin-top:38px}.guia ul{padding-left:22px}.guia li{margin:6px 0}.guia p,.guia li{font-size:17.5px}.aviso{background:#FBEDE3;border:1px solid #F1D3C2;border-radius:16px;padding:14px 18px;font-size:16px!important}.fontes{font-size:14px;color:var(--muted)}.fontes li{font-size:14px!important}
 footer{margin-top:50px;border-top:1px solid var(--line);padding:26px 0 40px;font-size:14px;color:var(--muted)}
 @media(max-width:640px){dl{grid-template-columns:1fr}dt{border-bottom:0;padding-bottom:0}}`;
 
 const LOGO = `<a class="logo" href="/"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M2 24 C 6 15, 12 13, 16 16 L 16 28 C 12 25, 6 25, 2 28 Z" fill="#E8735F"/><path d="M30 24 C 26 15, 20 13, 16 16 L 16 28 C 20 25, 26 25, 30 28 Z" fill="#B9583C"/><circle cx="16" cy="7" r="3.4" fill="#D9A441"/></svg>Nuriteca</a>`;
 const catLinks = () => `<div class="cats">${Object.values(CATS).map(c=>`<a href="/${c.slug}/">${esc(c.nome)}</a>`).join("")}</div>`;
-const FOOTER = `<footer><div class="wrap"><p><strong>Navegue por categoria</strong></p>${catLinks()}<p style="margin-top:14px"><a href="/estados/">Ver oportunidades por estado →</a></p>
+const FOOTER = `<footer><div class="wrap"><p><strong>Navegue por categoria</strong></p>${catLinks()}<p style="margin-top:14px"><a href="/estados/">Ver oportunidades por estado →</a> · <a href="/guias/">Guias da Nuriteca →</a></p>
 <p style="margin-top:22px">A Nuriteca reúne oportunidades gratuitas e leva você ao site oficial. Aqui não há inscrição nem cobrança. Confira sempre o edital.</p>
 <p><a href="/">Página inicial</a> · <a href="https://www.instagram.com/nuriteca/" rel="noopener">@nuriteca no Instagram</a> · <a href="/#contato">Fale conosco</a> · <a href="/#termos">Termos de uso</a> · <a href="/#privacidade">Privacidade</a></p></div></footer>`;
 
@@ -178,7 +181,31 @@ function statesIndex(ufs){
   return page({ title: "Concursos e oportunidades gratuitas por estado | Nuriteca", desc: "Concursos, cursos, bolsas e oportunidades gratuitas organizados por estado, com prazo e link oficial.", url: "/estados/", body });
 }
 
+function guiaPage(g){
+  const url = `/guias/${g.slug}/`;
+  let abertos = "";
+  if (g.abertos) {
+    const a = g.abertos;
+    const byEnd = (x,y) => ((parseDate(x.encerramento,true)||Infinity) - (parseDate(y.encerramento,true)||Infinity));
+    const items = DATA.filter(o => o.categoria === a.categoria && isOpen(o) && (!a.subtipo || a.subtipo.test(o.subtipo||"")) && (!a.escolaridade || a.escolaridade.test((o.escolaridade||"")+" "+(o.prerequisitos||"")))).sort(byEnd);
+    abertos = `<h2>${esc(a.titulo)}</h2>${items.length ? `<ul class="list">${items.map(listItem).join("")}</ul>` : `<p class="note">Nenhum aberto neste momento. Esta lista se atualiza sozinha quando a Nuriteca confere um novo edital.</p>`}<p><a href="/${CATS[a.categoria].slug}/">Ver todos em ${esc(CATS[a.categoria].nome.toLowerCase())} →</a></p>`;
+  }
+  const fontes = (g.fontes||[]).length ? `<h2>Fontes</h2><ul class="fontes">${g.fontes.map(([t,u]) => `<li><a href="${esc(u)}" rel="noopener nofollow" target="_blank">${esc(t)}</a></li>`).join("")}</ul>` : "";
+  const body = `<nav class="crumbs"><a href="/">Início</a> › <a href="/guias/">Guias</a></nav>
+<div class="arch" style="background:linear-gradient(180deg,#D9A441cc,#B9583C)"></div>
+<h1>${esc(g.titulo)}</h1><p class="meta">Guia da Nuriteca · Atualizado em ${fmtDate(g.atualizado)}</p>
+<article class="guia">${g.html}</article>${abertos}${fontes}`;
+  return page({ title: `${g.titulo} | Nuriteca`, desc: cut(g.descricao, 158), url, body, ogType: "article" });
+}
+function guiasIndex(){
+  const body = `<nav class="crumbs"><a href="/">Início</a> › Guias</nav><h1>Guias da Nuriteca</h1>
+<p class="meta">Explicações curtas e conferidas para você se organizar antes de o edital abrir.</p>
+<ul class="list">${GUIAS.map(g => `<li><a href="/guias/${g.slug}/"><strong>${esc(g.titulo)}</strong><span>${esc(g.descricao)}</span></a></li>`).join("")}</ul>`;
+  return page({ title: "Guias da Nuriteca: estágio, trainee, jovem aprendiz e intercâmbio", desc: "Guias para se organizar: calendário de trainee e estágio, Jovem Aprendiz e intercâmbio gratuito no ensino médio.", url: "/guias/", body });
+}
+
 // limpa as pastas geradas e recria
+fs.rmSync(path.join(ROOT, "guias"), { recursive: true, force: true });
 for (const c of Object.values(CATS)) fs.rmSync(path.join(ROOT, c.slug), { recursive: true, force: true });
 fs.rmSync(path.join(ROOT, "estados"), { recursive: true, force: true });
 const urls = [{ loc: "/", lastmod: NOW.toISOString().slice(0,10), pr: "1.0" }];
@@ -198,6 +225,10 @@ const UFS = Object.keys(ESTADOS).filter(uf => uf !== "Nacional" && DATA.some(o =
 write("estados", statesIndex(UFS));
 urls.push({ loc: "/estados/", lastmod: NOW.toISOString().slice(0,10), pr: "0.8" });
 for (const uf of UFS) { write(`estados/${slugify(ESTADOS[uf])}`, statePage(uf)); urls.push({ loc: `/estados/${slugify(ESTADOS[uf])}/`, lastmod: NOW.toISOString().slice(0,10), pr: "0.7" }); }
+if (GUIAS.length) {
+  write("guias", guiasIndex()); urls.push({ loc: "/guias/", lastmod: NOW.toISOString().slice(0,10), pr: "0.8" });
+  for (const g of GUIAS) { write(`guias/${g.slug}`, guiaPage(g)); urls.push({ loc: `/guias/${g.slug}/`, lastmod: g.atualizado || NOW.toISOString().slice(0,10), pr: "0.9" }); }
+}
 fs.writeFileSync(path.join(ROOT, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(u => `  <url><loc>${SITE}${u.loc}</loc><lastmod>${u.lastmod}</lastmod><priority>${u.pr}</priority></url>`).join("\n")}\n</urlset>\n`);
 fs.writeFileSync(path.join(ROOT, "robots.txt"), `User-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`);
-console.log(`Páginas geradas: ${n} oportunidades + ${Object.keys(CATS).length} categorias + ${UFS.length} estados. sitemap.xml com ${urls.length} endereços.`);
+console.log(`Páginas geradas: ${n} oportunidades + ${Object.keys(CATS).length} categorias + ${UFS.length} estados + ${GUIAS.length} guias. sitemap.xml com ${urls.length} endereços.`);
