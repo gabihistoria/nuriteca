@@ -21,7 +21,8 @@ const CATS = {
   stricto:     { slug: "mestrado-e-doutorado", nome: "Mestrados e doutorados",           titulo: "Mestrados e doutorados com inscrições abertas",        cor: "#2F6B73" },
   bolsas:      { slug: "bolsas",               nome: "Bolsas e oportunidades",           titulo: "Bolsas e oportunidades com inscrições abertas",        cor: "#C97B8E" },
   descontos:   { slug: "descontos",            nome: "Descontos e bolsas de estudo",     titulo: "Descontos e bolsas de estudo",                         cor: "#9C7FB4" },
-  intercambio: { slug: "intercambio",          nome: "Intercâmbios e estudo no exterior", titulo: "Intercâmbios e bolsas para estudar no exterior",      cor: "#567F70" },
+  intercambio: { slug: "intercambios-gratuitos", nome: "Intercâmbios gratuitos",         titulo: "Intercâmbios gratuitos e bolsas para estudar no exterior", cor: "#567F70",
+    intro: `<p class="desc">Intercâmbio gratuito existe, e não é só para quem já tem dinheiro. Aqui estão os programas de intercâmbio gratuito e com bolsa integral abertos para estudantes brasileiros: do ensino médio ao mestrado e doutorado, com curso, moradia ou passagem pagos. Cada um tem o prazo, quem pode participar e o link oficial para a inscrição.</p><p>Está no ensino médio? Leia o guia <a href="/guias/intercambio-gratuito-ensino-medio/">Intercâmbio de graça no ensino médio</a>, com Jovens Embaixadores, Prontos pro Mundo, Ganhando o Mundo e outros.</p>` },
   carreira:    { slug: "estagio-e-trainee",    nome: "Estágio, trainee e jovem aprendiz", titulo: "Programas de estágio, trainee e jovem aprendiz abertos", cor: "#C77A45" },
 };
 const ESTADOS = {AC:"Acre",AL:"Alagoas",AP:"Amapá",AM:"Amazonas",BA:"Bahia",CE:"Ceará",DF:"Distrito Federal",ES:"Espírito Santo",GO:"Goiás",MA:"Maranhão",MT:"Mato Grosso",MS:"Mato Grosso do Sul",MG:"Minas Gerais",PA:"Pará",PB:"Paraíba",PR:"Paraná",PE:"Pernambuco",PI:"Piauí",RJ:"Rio de Janeiro",RN:"Rio Grande do Norte",RS:"Rio Grande do Sul",RO:"Rondônia",RR:"Roraima",SC:"Santa Catarina",SP:"São Paulo",SE:"Sergipe",TO:"Tocantins",Nacional:"Brasil todo"};
@@ -147,11 +148,11 @@ function catPage(key){
   const byEnd = (a,b) => ((parseDate(a.encerramento,true)||Infinity) - (parseDate(b.encerramento,true)||Infinity));
   const abertas = items.filter(isOpen).sort(byEnd), fechadas = items.filter(o => !isOpen(o));
   const url = `/${c.slug}/`;
-  const desc = cut(`${c.titulo} no Brasil todo, com prazo, requisitos e link oficial. ${abertas.length} oportunidades conferidas pela Nuriteca.`, 158);
+  const desc = key === "intercambio" ? cut(`Intercâmbios gratuitos e com bolsa integral para brasileiros, do ensino médio ao doutorado. ${abertas.length} programas abertos, com prazo e link oficial.`, 158) : cut(`${c.titulo} no Brasil todo, com prazo, requisitos e link oficial. ${abertas.length} oportunidades conferidas pela Nuriteca.`, 158);
   const body = `<nav class="crumbs"><a href="/">Início</a> › ${esc(c.nome)}</nav>
 <div class="arch" style="background:linear-gradient(180deg,${c.cor}cc,${c.cor})"></div>
 <h1>${esc(c.titulo)}</h1>
-<p class="meta">Lista conferida pela Nuriteca, com link para o site oficial de cada oportunidade. Atualizada em ${fmtDate(new Date(NOW.getTime()-3*3600e3).toISOString().slice(0,10))}.</p>
+${c.intro || ""}<p class="meta">Lista conferida pela Nuriteca, com link para o site oficial de cada oportunidade. Atualizada em ${fmtDate(new Date(NOW.getTime()-3*3600e3).toISOString().slice(0,10))}.</p>
 ${abertas.length ? `<ul class="list">${abertas.map(listItem).join("")}</ul>` : `<p class="note">Nenhuma oportunidade aberta nesta categoria agora. Volte em breve ou siga a <a href="https://www.instagram.com/nuriteca/">@nuriteca</a>.</p>`}
 ${fechadas.length ? `<h2>Encerradas recentemente</h2><ul class="list">${fechadas.map(listItem).join("")}</ul>` : ""}
 <div class="btns"><a class="btn" href="/">Buscar no site da Nuriteca</a></div>`;

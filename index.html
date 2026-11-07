@@ -307,7 +307,7 @@ footer .wrap{display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap}
   <div class="wrap">
     <a class="foot-insta" href="https://www.instagram.com/nuriteca/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg><span>Novas oportunidades todos os dias no Instagram: <b>@nuriteca</b></span><em>Seguir →</em></a>
     <span>Nuriteca reúne oportunidades e leva você ao site oficial. Aqui não há inscrição nem cobrança.</span>
-    <span class="foot-links foot-cats"><a href="/concursos/">Concursos</a><a href="/cursos/">Cursos gratuitos</a><a href="/graduacao/">Graduação</a><a href="/pos-graduacao/">Pós-graduação</a><a href="/mestrado-e-doutorado/">Mestrado e doutorado</a><a href="/bolsas/">Bolsas</a><a href="/intercambio/">Intercâmbio</a><a href="/estagio-e-trainee/">Estágio e trainee</a><a href="/estados/">Por estado</a><a href="/guias/">Guias</a></span>
+    <span class="foot-links foot-cats"><a href="/concursos/">Concursos</a><a href="/cursos/">Cursos gratuitos</a><a href="/graduacao/">Graduação</a><a href="/pos-graduacao/">Pós-graduação</a><a href="/mestrado-e-doutorado/">Mestrado e doutorado</a><a href="/bolsas/">Bolsas</a><a href="/intercambios-gratuitos/">Intercâmbios gratuitos</a><a href="/estagio-e-trainee/">Estágio e trainee</a><a href="/estados/">Por estado</a><a href="/guias/">Guias</a></span>
     <span class="foot-links"><a href="#contato">Fale conosco</a><a href="#anuncie">Anuncie</a><a href="#alertas">Alertas</a><a href="#sobre">Como verificamos</a><span>Criado por: <a href="https://www.instagram.com/gabihistoriaa/" target="_blank" rel="noopener">@gabihistoriaa</a></span></span>
     <span class="foot-copy">© 2026 Gabi História LTDA. Todos os direitos reservados. Gabi História® é marca registrada no INPI. É proibida a reprodução total ou parcial de textos, imagens e vídeos deste site sem autorização prévia, conforme a Lei nº 9.610/98.</span>
     <span class="foot-legal">Páginas legais: <a href="#termos">Termos de uso</a> · <a href="#privacidade">Privacidade</a> · <a href="#cookies">Cookies</a></span>
@@ -816,7 +816,7 @@ function viewIntercambios(){
   const byEnd=(a,b)=>((parseDate(a.encerramento,true)||Infinity)-(parseDate(b.encerramento,true)||Infinity));
   const abertas=all.filter(o=>["aberta","embreve"].includes(statusOf(o,now))).sort(byEnd);
   return `<div class="wrap" style="padding-top:18px">
-    <h1 style="font-size:40px;margin-top:10px">Intercâmbios e estudo no exterior</h1>
+    <h1 style="font-size:40px;margin-top:10px">Intercâmbios gratuitos e estudo no exterior</h1>
     <p class="note" style="max-width:64ch">Programas gratuitos ou com bolsa para estudar fora do Brasil. Cada um tem regras próprias: confira sempre o edital oficial.</p>
     ${banner("intercambios")}
     <section class="block"><div class="block-head"><h2>Inscrições abertas</h2></div>${abertas.length?grid(abertas):`<div class="empty">Nenhum intercâmbio com inscrições abertas agora. Veja abaixo os programas que abrem todo ano.</div>`}</section>
