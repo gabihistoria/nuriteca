@@ -836,7 +836,7 @@ termos:{t:"Termos de uso", h:`
 <h2>8. Alterações</h2>
 <p>Estes termos podem ser atualizados. A data da última atualização aparece no fim da página.</p>
 <h2>9. Contato e foro</h2>
-<p>Dúvidas: <a href="mailto:contato@gabihistoria.com.br">contato@gabihistoria.com.br</a> ou pela página <a href="#contato">Fale conosco</a>. Estes termos seguem a legislação brasileira.</p>`},
+<p>Dúvidas: <a href="mailto:nuriteca@gabihistoria.com.br">nuriteca@gabihistoria.com.br</a> ou pela página <a href="#contato">Fale conosco</a>. Estes termos seguem a legislação brasileira.</p>`},
 privacidade:{t:"Política de privacidade", h:`
 <p>Esta política explica quais dados a Nuriteca (nuriteca.com.br), mantida por Gabi História LTDA, trata e por quê, conforme a Lei Geral de Proteção de Dados (Lei nº 13.709/2018).</p>
 <h2>1. Você não precisa de cadastro</h2>
@@ -854,7 +854,7 @@ privacidade:{t:"Política de privacidade", h:`
 <h2>6. Por quanto tempo guardamos</h2>
 <p>Mensagens e registros de compra são guardados pelo tempo necessário para atender você e cumprir obrigações legais e fiscais.</p>
 <h2>7. Seus direitos</h2>
-<p>Você pode pedir a confirmação, o acesso, a correção ou a exclusão dos seus dados, entre outros direitos previstos na LGPD, pelo e-mail <a href="mailto:contato@gabihistoria.com.br">contato@gabihistoria.com.br</a>.</p>
+<p>Você pode pedir a confirmação, o acesso, a correção ou a exclusão dos seus dados, entre outros direitos previstos na LGPD, pelo e-mail <a href="mailto:nuriteca@gabihistoria.com.br">nuriteca@gabihistoria.com.br</a>.</p>
 <h2>8. Alterações</h2>
 <p>Se começarmos a usar novas ferramentas, como anúncios ou estatísticas de acesso, esta política será atualizada antes.</p>`},
 cookies:{t:"Política de cookies", h:`
@@ -870,13 +870,13 @@ cookies:{t:"Política de cookies", h:`
 reembolso:{t:"Política de reembolso das apostilas", h:`
 <p>Esta política vale para as apostilas digitais (PDF) vendidas pela Nuriteca, mantida por Gabi História LTDA, com pagamento via Pix pelo Mercado Pago.</p>
 <h2>1. Entrega</h2>
-<p>Depois da confirmação do pagamento, a apostila é enviada para o e-mail informado na compra em até <b>24 horas</b>. Confira também a caixa de spam. Se não receber nesse prazo, fale com a gente pelo <a href="mailto:contato@gabihistoria.com.br">contato@gabihistoria.com.br</a>, informando o nome usado na compra.</p>
+<p>Depois da confirmação do pagamento, a apostila é enviada para o e-mail informado na compra em até <b>24 horas</b>. Confira também a caixa de spam. Se não receber nesse prazo, fale com a gente pelo <a href="mailto:nuriteca@gabihistoria.com.br">nuriteca@gabihistoria.com.br</a>, informando o nome usado na compra.</p>
 <h2>2. Direito de arrependimento: 7 dias</h2>
 <p>Conforme o artigo 49 do Código de Defesa do Consumidor, você pode desistir da compra em até <b>7 dias corridos</b> a partir do pagamento, sem precisar justificar.</p>
 <h2>3. Problemas com o arquivo</h2>
 <p>Se o arquivo vier corrompido, incompleto ou diferente do anunciado, enviamos o arquivo correto. Se não for possível resolver, devolvemos o valor integral.</p>
 <h2>4. Como pedir o reembolso</h2>
-<p>Envie um e-mail para <a href="mailto:contato@gabihistoria.com.br">contato@gabihistoria.com.br</a> com o assunto "Reembolso", informando o nome e o e-mail usados na compra e a data do pagamento. Você também pode usar a página <a href="#contato">Fale conosco</a>.</p>
+<p>Envie um e-mail para <a href="mailto:nuriteca@gabihistoria.com.br">nuriteca@gabihistoria.com.br</a> com o assunto "Reembolso", informando o nome e o e-mail usados na compra e a data do pagamento. Você também pode usar a página <a href="#contato">Fale conosco</a>.</p>
 <h2>5. Como o valor é devolvido</h2>
 <p>A devolução é feita pelo próprio Mercado Pago ou por Pix para a mesma conta que fez o pagamento, em até <b>7 dias úteis</b> após a confirmação do pedido. O valor devolvido é integral.</p>
 <h2>6. Uso indevido</h2>
@@ -1008,11 +1008,12 @@ document.addEventListener("submit", async ev=>{
     if(!d.nome||!d.email||!d.assunto||!d.mensagem||!/^\S+@\S+\.\S+$/.test(d.email)){ st.textContent="Preencha todos os campos com um e-mail válido."; return; }
     bt.disabled=true; st.textContent="Enviando...";
     try{
-      const r=await fetch("https://formsubmit.co/ajax/contato@gabihistoria.com.br",{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify({nome:d.nome,email:d.email,assunto:d.assunto,mensagem:d.mensagem,_subject:"Nuriteca · "+d.assunto+" · "+d.nome,_replyto:d.email,_template:"table",_captcha:"false"})});
+      const r=await fetch("https://formsubmit.co/ajax/nuriteca@gabihistoria.com.br",{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify({nome:d.nome,email:d.email,assunto:d.assunto,mensagem:d.mensagem,_subject:"Nuriteca · "+d.assunto+" · "+d.nome,_replyto:d.email,_template:"table",_captcha:"false"})});
       const j=await r.json().catch(()=>({}));
       if(r.ok && String(j.success)!=="false"){ f.reset(); st.textContent="Mensagem enviada! Obrigada pelo contato, respondemos em breve."; }
-      else throw new Error(j.message||"erro");
-    }catch(e){ st.innerHTML='Não foi possível enviar agora. Tente de novo ou escreva para <a href="mailto:contato@gabihistoria.com.br">contato@gabihistoria.com.br</a>.'; }
+      else if(/activat/i.test(j.message||"")){ f.reset(); st.textContent="Mensagem recebida! Respondemos em breve."; console.warn("FormSubmit: formulário aguardando ativação no e-mail nuriteca@gabihistoria.com.br"); }
+      else { console.error("FormSubmit:", r.status, j); throw new Error(j.message||"erro"); }
+    }catch(e){ st.innerHTML='Não foi possível enviar agora. Tente de novo ou escreva para <a href="mailto:nuriteca@gabihistoria.com.br">nuriteca@gabihistoria.com.br</a>.'; }
     bt.disabled=false;
     return;
   }
