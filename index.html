@@ -1166,7 +1166,7 @@ document.addEventListener("click", async ev=>{
   const t = ev.target.closest("button,a"); if(!t) return;
   if(t.dataset.fav){ ev.preventDefault(); toggleFav(t.dataset.fav); return; }
   if(t.dataset.q){ setF("q", t.dataset.q); F.categoria=""; location.hash="#buscar"; render(); return; }
-  if(t.dataset.cat){ setF("categoria", t.dataset.cat); setF("q",""); return; }
+  if(t.dataset.cat){ F = {q:"",categoria:t.dataset.cat,estado:"",municipio:"",instituicao:"",area:"",escolaridade:"",modalidade:"",gratuidade:"",certificacao:"",abertas:false,ate:"",ordem:F.ordem||"relevancia",pagina:1}; setF("categoria", t.dataset.cat); if(location.hash==="#buscar") render(); return; }
   if(t.hasAttribute("data-clear")){ F = {q:F.q,categoria:"",estado:"",municipio:"",instituicao:"",area:"",escolaridade:"",modalidade:"",gratuidade:"",certificacao:"",abertas:false,ate:"",ordem:"relevancia",pagina:1}; setF("q",F.q); render(); return; }
   if(t.dataset.page){ F.pagina=+t.dataset.page; render(); window.scrollTo(0,0); return; }
   if(t.dataset.cal){ calMonth.m += +t.dataset.cal; if(calMonth.m<0){calMonth.m=11;calMonth.y--;} if(calMonth.m>11){calMonth.m=0;calMonth.y++;} render(); return; }
