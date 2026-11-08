@@ -287,6 +287,23 @@ footer .wrap{display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap}
 @keyframes balaoPop{0%{opacity:0;transform:translateY(10px) scale(.85)}100%{opacity:1;transform:none}}
 @keyframes balaoBrilho{0%,100%{transform:rotate(0)}50%{transform:rotate(-8deg) scale(1.06)}}
 @media (prefers-reduced-motion:reduce){.balao,.balao-ico{animation:none}}
+.ad-teste{background:var(--surface)}.ad-teste .ad-img{display:grid;place-items:center;padding:18px;background:var(--bn);color:#fff;text-align:center}
+.ad-teste .ad-img b{font-family:Fraunces,serif;font-size:clamp(16px,2.1vw,25px);line-height:1.12;font-weight:600}
+.ad-teste .ad-img i{display:block;font-style:normal;font-size:44px;line-height:1;margin-bottom:8px;opacity:.9}
+@media (max-width:860px){.ad-teste .ad-img{padding:10px}.ad-teste .ad-img i{font-size:30px;margin-bottom:4px}}
+.ad-tag{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.quiz{max-width:680px;margin:0 auto;padding:22px 0 40px}
+.quiz-bar{height:8px;border-radius:99px;background:var(--line);overflow:hidden;margin:14px 0 26px}.quiz-bar span{display:block;height:100%;background:var(--qc);border-radius:99px;transition:width .3s}
+.quiz h1{font-size:clamp(30px,5vw,42px);line-height:1.08}.quiz h2{font-size:clamp(24px,4vw,30px);line-height:1.2;margin:0 0 18px}
+.quiz-ops{display:grid;gap:10px}.quiz-op{text-align:left;font:inherit;font-size:17px;padding:16px 18px;border-radius:16px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;transition:border-color .15s,transform .1s}
+.quiz-op:hover{border-color:var(--qc)}.quiz-op:active{transform:scale(.99)}
+.quiz-nav{display:flex;justify-content:space-between;align-items:center;margin-top:18px;font-size:14px;color:var(--muted)}
+.quiz-nav button{font:inherit;background:none;border:0;color:var(--muted);cursor:pointer;text-decoration:underline}
+.quiz-res{background:var(--surface);border:1.5px solid var(--line);border-radius:24px;padding:26px 24px;animation:balaoPop .5s cubic-bezier(.34,1.56,.64,1) both}
+.quiz-res .pct{display:inline-block;background:var(--qc);color:#fff;font-weight:700;border-radius:99px;padding:5px 14px;font-size:14px}
+.quiz-res h2{font-size:clamp(30px,5vw,40px);margin:12px 0 10px}.quiz-alt{display:grid;gap:8px;margin-top:18px}
+.quiz-alt div{display:flex;justify-content:space-between;gap:10px;padding:10px 14px;border-radius:12px;background:var(--bg);font-size:15px}
+.quiz-acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
 </style>
 </head>
 <body>
@@ -326,6 +343,7 @@ footer .wrap{display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap}
 
 <script src="data.js"></script>
 <script src="banners.js"></script>
+<script src="testes.js"></script>
 <script>
 (function(){
 "use strict";
@@ -524,9 +542,11 @@ function card(o){
     </div>
   </article>`;
 }
-function banner(onde){
-  const bs=(window.BANNERS||[]).filter(b=>b.ativo!==false && (b.onde||["inicio"]).includes(onde)).slice(0,4);
-  if(!bs.length) return "";
+function cardTeste(k){ const t=(window.TESTES||{})[k]; if(!t) return "";
+  return `<a class="ad ad-teste" href="#${t.slug}" style="--bn:${t.cor}"><span class="ad-img"><span><i aria-hidden="true">${k==="graduacao"?"🎓":"🏛️"}</i><b>${esc(t.titulo)}</b></span></span><span class="ad-body"><span class="ad-tag">Teste grátis · 10 perguntas</span><strong>${k==="graduacao"?"Descubra sua área de faculdade":"Descubra seu concurso ideal"}</strong><em>Fazer o teste →</em></span></a>`; }
+function banner(onde, extras=[]){
+  const bs=(window.BANNERS||[]).filter(b=>b.ativo!==false && (b.onde||["inicio"]).includes(onde)).slice(0,4-extras.length);
+  if(!bs.length && !extras.length) return "";
   const slot=b=>{
     let href=b.link; try{ const u=new URL(b.link); if(b.utm!==false && !/shopee|amazon|mercadoli|amzn/.test(u.hostname)){ u.searchParams.set("utm_source","nuriteca"); u.searchParams.set("utm_medium","banner"); u.searchParams.set("utm_campaign",b.id||"parceiro"); href=u.toString(); } }catch(e){}
     return `<a class="ad" href="${esc(href)}" target="_blank" rel="sponsored noopener" style="--bn:${esc(b.cor||"var(--coral)")}">
@@ -534,8 +554,8 @@ function banner(onde){
       <span class="ad-body">${b.loja?`<span class="ad-loja">${esc(b.loja)}</span>`:""}<strong>${esc(b.titulo||"")}</strong>${b.texto?`<span class="ad-txt">${esc(b.texto)}</span>`:""}<em>${esc(b.botao||"Ver oferta")} →</em></span></a>`;
   };
   const vazio=`<a class="ad ad-vazio" href="#anuncie"><span class="ad-body"><span class="ad-mais">+</span><strong>Seu anúncio aqui</strong><span class="ad-txt">Fale com a Nuriteca</span></span></a>`;
-  const slots=bs.map(slot); while(slots.length<4) slots.push(vazio);
-  return `<aside class="ads" aria-label="Publicidade"><small>Publicidade</small><div class="ads-grid">${slots.join("")}</div></aside>`;
+  const slots=bs.map(slot); if(extras.length) slots.splice(Math.min(1,slots.length),0,...extras.map(cardTeste)); while(slots.length<4) slots.push(vazio);
+  return `<aside class="ads" aria-label="${extras.length?"Testes e publicidade":"Publicidade"}"><small>${extras.length?"Testes e publicidade":"Publicidade"}</small><div class="ads-grid">${slots.join("")}</div></aside>`;
 }
 const grid = list => list.length ? `<div class="grid">${list.map(card).join("")}</div>` : `<div class="empty">Nada por aqui no momento.</div>`;
 function sourceNote(){
@@ -613,7 +633,7 @@ function viewInicio(){
       ${HOME_CATS.map(k=>[k,CATS[k]]).map(([k,c])=>`<a class="cat" href="#buscar" data-cat="${k}"><span class="door" style="background:radial-gradient(90% 70% at 50% 20%,color-mix(in srgb,${c.cor} 45%,#fff),${c.cor})">${count(k)}</span>${esc(c.curto)}</a>`).join("")}
     </nav>
     ${sec("Encerrando em breve", encerrando, "#buscar", 4)}
-    ${banner("inicio")}
+    ${banner("inicio",["graduacao","concurso"])}
     ${sec("Novas oportunidades", novas, "#buscar")}
     ${sec("Concursos abertos", conc, "#buscar")}
     ${sec("Pós-graduações gratuitas", pos, "#buscar")}
@@ -1044,7 +1064,49 @@ async function saveDoc(o){
 }
 
 /* ---------- roteador ---------- */
-const VIEWS = {inicio:viewInicio, descontos:viewDescontos, intercambios:viewIntercambios, carreira:viewCarreira, contato:viewContato, anuncie:viewAnuncie, termos:()=>viewLegal("termos"), privacidade:()=>viewLegal("privacidade"), cookies:()=>viewLegal("cookies"), reembolso:()=>viewLegal("reembolso"), buscar:viewBuscar, calendario:viewCalendario, minhas:viewMinhas, alertas:viewAlertas, admin:viewAdmin, sobre:viewSobre};
+
+/* ---------- testes de perfil ---------- */
+const QZ={};
+function qzState(k){ return QZ[k]||(QZ[k]={i:0,r:[]}); }
+function qzResultado(k){
+  const t=TESTES[k], st=qzState(k), pts={}, fora=new Set(); let dica="";
+  Object.keys(t.resultados).forEach(a=>pts[a]=0);
+  st.r.forEach((oi,qi)=>{ const o=t.perguntas[qi].o[oi]; Object.entries(o.p||{}).forEach(([a,v])=>pts[a]=(pts[a]||0)+v); (o.x||[]).forEach(a=>fora.add(a)); if(o.d) dica=o.d; });
+  let lista=Object.entries(pts).filter(([a])=>!fora.has(a)).sort((a,b)=>b[1]-a[1]);
+  if(!lista.length) lista=Object.entries(pts).sort((a,b)=>b[1]-a[1]);
+  const tot=lista.slice(0,3).reduce((s,[,v])=>s+Math.max(v,0),0)||1;
+  return {lista:lista.slice(0,3).map(([a,v])=>({a,pct:Math.max(8,Math.round(100*Math.max(v,0)/tot))})),dica};
+}
+function viewTeste(k){
+  const t=TESTES[k], st=qzState(k), n=t.perguntas.length;
+  if(st.i>=n){
+    const {lista,dica}=qzResultado(k), top=t.resultados[lista[0].a];
+    const txt=`Fiz o teste da Nuriteca e deu "${top.nome}" (${lista[0].pct}%). Descubra o seu: https://nuriteca.com.br/#${t.slug}`;
+    return `<div class="wrap"><div class="quiz" style="--qc:${t.cor}">
+      <p class="note">${esc(t.titulo)}</p>
+      <div class="quiz-res"><span class="pct">${lista[0].pct}% de afinidade</span><h2>${esc(top.nome)}</h2><p>${esc(top.desc)}</p><p style="margin-top:10px"><b>Exemplos:</b> ${esc(top.ex)}.</p>
+      ${dica&&t.dicas?`<p class="note" style="margin-top:12px">💡 ${esc(t.dicas[dica])}</p>`:""}
+      ${lista.length>1?`<div class="quiz-alt"><b style="font-size:14px">Também combina com você:</b>${lista.slice(1).map(x=>`<div><span>${esc(t.resultados[x.a].nome)}</span><b>${x.pct}%</b></div>`).join("")}</div>`:""}
+      <div class="quiz-acts">${t.links.map(([l,h],i)=>`<a class="btn${i?" ghost":""}" href="${h}">${esc(l)}</a>`).join("")}<a class="btn ghost" href="https://wa.me/?text=${encodeURIComponent(txt)}" target="_blank" rel="noopener">Compartilhar no WhatsApp</a></div>
+      </div>
+      <div class="quiz-nav"><button type="button" onclick="QZ['${k}']={i:0,r:[]};render()">Refazer o teste</button><a href="#teste-${k==="graduacao"?"concurso":"graduacao"}">Fazer o outro teste →</a></div>
+      <p class="note" style="margin-top:22px;font-size:13px">Este teste é uma brincadeira para ajudar a pensar, não uma avaliação vocacional profissional. Requisitos e salários mudam: confira sempre o edital ou o site da instituição.</p>
+    </div></div>`;
+  }
+  const q=t.perguntas[st.i];
+  return `<div class="wrap"><div class="quiz" style="--qc:${t.cor}">
+    ${st.i===0?`<h1>${esc(t.titulo)}</h1><p class="note" style="margin-top:8px">${esc(t.chamada)}</p>`:`<p class="note">${esc(t.titulo)}</p>`}
+    <div class="quiz-bar" aria-hidden="true"><span style="width:${Math.round(100*st.i/n)}%"></span></div>
+    <p class="note" style="margin-bottom:6px">Pergunta ${st.i+1} de ${n}</p>
+    <h2>${esc(q.q)}</h2>
+    <div class="quiz-ops">${q.o.map((o,oi)=>`<button type="button" class="quiz-op" onclick="qzResp('${k}',${oi})">${esc(o.t)}</button>`).join("")}</div>
+    <div class="quiz-nav">${st.i>0?`<button type="button" onclick="qzVolta('${k}')">← Voltar</button>`:"<span></span>"}<span>${n-st.i} restantes</span></div>
+  </div></div>`;
+}
+window.QZ=QZ;window.qzResp=qzResp;window.qzVolta=qzVolta;window.render=render;
+function qzResp(k,oi){ const st=qzState(k); st.r[st.i]=oi; st.i++; render(); window.scrollTo(0,0); }
+function qzVolta(k){ const st=qzState(k); if(st.i>0){ st.i--; st.r.length=st.i; } render(); }
+const VIEWS = {"teste-graduacao":()=>viewTeste("graduacao"), "teste-concurso":()=>viewTeste("concurso"), inicio:viewInicio, descontos:viewDescontos, intercambios:viewIntercambios, carreira:viewCarreira, contato:viewContato, anuncie:viewAnuncie, termos:()=>viewLegal("termos"), privacidade:()=>viewLegal("privacidade"), cookies:()=>viewLegal("cookies"), reembolso:()=>viewLegal("reembolso"), buscar:viewBuscar, calendario:viewCalendario, minhas:viewMinhas, alertas:viewAlertas, admin:viewAdmin, sobre:viewSobre};
 function route(){ const h = (location.hash||"#inicio").slice(1); if(h.startsWith("op-")) return {v:"op", id:h.slice(3)}; return {v: VIEWS[h]?h:"inicio"}; }
 let lastRoute = "";
 function render(){
