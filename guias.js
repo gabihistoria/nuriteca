@@ -158,5 +158,82 @@ window.GUIAS = [
     ["Yale Young Global Scholars", "https://globalscholars.yale.edu"],
     ["Reach Cambridge", "https://www.reachcambridge.com"],
   ]
-}
+},
+{
+  slug: "trabalhar-com-treinamento-de-ia",
+  titulo: "Treinamento de IA: como ganhar em dólar trabalhando de casa sendo brasileiro",
+  descricao: "O que faz quem treina inteligência artificial, quanto paga, quais os requisitos e os sites que contratam brasileiros para trabalhar de casa, com link direto.",
+  atualizado: "2026-11-08",
+  html: `
+<p>Os robôs de conversa, como ChatGPT, Gemini e Claude, aprendem a escrever melhor com a ajuda de gente de verdade. Alguém precisa ler as respostas, dizer qual ficou melhor, apontar o erro e reescrever o que saiu ruim. Esse trabalho tem nome: <b>treinamento de IA</b> (ou avaliação de IA). Ele é feito de casa, por pessoas do mundo todo, e muitas plataformas pagam em dólar.</p>
+<p>E o português do Brasil está em alta: as empresas precisam de quem entenda gíria, sotaque, cultura e o jeito brasileiro de escrever.</p>
+
+<h2>O que você faz na prática</h2>
+<ul>
+<li>Lê duas respostas da IA e escolhe a melhor, explicando por quê.</li>
+<li>Confere se uma resposta está correta, se tem informação errada ou inventada.</li>
+<li>Reescreve uma resposta fraca para ficar clara e natural em português.</li>
+<li>Escreve perguntas e pedidos para testar a IA.</li>
+<li>Em alguns projetos, conversa por voz com a IA ou revisa traduções entre inglês e português.</li>
+</ul>
+
+<h2>Quem pode trabalhar</h2>
+<p>Os requisitos mudam de uma plataforma para outra, mas o básico costuma ser:</p>
+<ul>
+<li><b>Português nativo</b> e boa escrita. Saber escrever bem é o principal.</li>
+<li><b>Inglês para ler instruções.</b> Mesmo nos projetos em português, os manuais e testes muitas vezes estão em inglês.</li>
+<li><b>Computador e internet estáveis.</b></li>
+<li><b>Atenção a detalhes e paciência</b> para seguir regras longas.</li>
+<li><b>Faculdade ajuda muito.</b> Algumas vagas pedem diploma, e quem tem formação em uma área (história, direito, saúde, exatas) pode entrar em projetos de especialista, que pagam mais.</li>
+</ul>
+
+<h2>Quanto paga</h2>
+<p>O pagamento é por hora ou por tarefa e varia muito conforme o projeto e a sua experiência. Para dar uma ideia, em novembro de 2026:</p>
+<ul>
+<li>Na <b>Outlier</b>, o valor divulgado para português do Brasil é de <b>até US$ 10 por hora</b>, com pagamento semanal por PayPal ou Airtm.</li>
+<li>Na <b>DataAnnotation</b>, a página para quem fala português anuncia <b>até US$ 40 por hora</b>, com pagamento semanal.</li>
+<li>Vagas de especialista em português em outras plataformas aparecem na faixa de <b>US$ 15 a US$ 40 por hora</b>.</li>
+</ul>
+<p>Não é salário fixo. Você trabalha como prestador de serviço (freelancer), recebe pelo que fez, e há semanas com muita tarefa e semanas sem nenhuma.</p>
+
+<h2>Sites que contratam brasileiros</h2>
+<ul>
+<li><b><a href="https://outlier.ai/languages/pt-br" target="_blank" rel="noopener">Outlier</a></b>: uma das mais fáceis de entrar para brasileiros. Você cria a conta, confirma identidade e telefone e faz um teste de habilidades.</li>
+<li><b><a href="https://dataannotation.tech/portuguese-br-pt" target="_blank" rel="noopener">DataAnnotation</a></b>: paga melhor, mas o teste de entrada é exigente, não é pago, e muita gente não passa.</li>
+<li><b><a href="https://www.alignerr.com" target="_blank" rel="noopener">Alignerr</a></b>: tem projetos para especialistas em língua portuguesa, revisão de transcrições e áreas específicas.</li>
+<li><b><a href="https://joinhandshake.com" target="_blank" rel="noopener">Handshake AI</a></b>: abriu vaga de avaliação de IA para quem mora no Brasil, pedindo diploma de bacharelado e inglês intermediário-avançado.</li>
+<li><b><a href="https://www.telusinternational.ai/cmp/contributor/jobs/available" target="_blank" rel="noopener">TELUS Digital AI Community</a></b>: projetos de avaliação de anúncios, buscas e dados. As instruções e os testes são em inglês.</li>
+<li><b><a href="https://www.opentrain.ai/jobs/language/pt/" target="_blank" rel="noopener">OpenTrain</a></b>: reúne vagas de várias empresas para quem fala português. Bom para ver o que está aberto.</li>
+</ul>
+<p>Dá para se cadastrar em mais de uma ao mesmo tempo, e é o que a maioria faz, porque nem sempre tem tarefa disponível.</p>
+
+<h2>Dicas para ser aprovado</h2>
+<ul>
+<li>Faça o teste com calma, em um horário sem interrupção. Capricho vale mais que pressa.</li>
+<li>Leia as instruções inteiras antes de começar. Quem pula regra é reprovado.</li>
+<li>No perfil, destaque escrita, revisão, idiomas e a sua área de formação.</li>
+<li>Não conte com o dinheiro na primeira semana: entre cadastro, teste e primeira tarefa, pode levar de dias a semanas.</li>
+</ul>
+
+<h2>Cuidado com golpes</h2>
+<ul>
+<li><b>Plataforma séria não cobra nada.</b> Se pedirem taxa de inscrição, curso obrigatório pago ou "kit", é golpe.</li>
+<li>Candidate-se sempre pelo site oficial, nunca por link recebido em WhatsApp ou direct.</li>
+<li>Desconfie de "aprovação" sem teste e de entrevista feita só por aplicativo de mensagem.</li>
+<li>Nada a ver com os apps que pagam para curtir e seguir no Instagram: esses pagam centavos e podem fazer você perder a conta.</li>
+</ul>
+
+<h2>E o imposto?</h2>
+<p>Dinheiro recebido do exterior por pessoa física precisa ser declarado. Em geral, o recolhimento é feito todo mês pelo <a href="https://www.gov.br/pt-br/servicos/apurar-carne-leao" target="_blank" rel="noopener">Carnê-Leão</a>, com login gov.br. Se você tem MEI ou empresa, converse com um contador para ver se vale receber por ela. Fique de olho também nas taxas de conversão do PayPal e de outras plataformas, que comem uma parte do valor.</p>
+
+<p class="aviso">Valores, requisitos e vagas mudam com frequência e variam por projeto. Confira sempre a página oficial de cada plataforma antes de se candidatar. A Nuriteca não tem parceria com nenhuma delas.</p>
+`,
+  fontes: [
+    ["Outlier: português (Brasil)", "https://outlier.ai/languages/pt-br"],
+    ["DataAnnotation: treinador de IA em português", "https://dataannotation.tech/portuguese-br-pt"],
+    ["BP Money: Handshake AI abre vaga para brasileiros", "https://bpmoney.com.br/?p=428924"],
+    ["OpenTrain: vagas de treinamento de IA em português", "https://www.opentrain.ai/jobs/language/pt/"],
+    ["gov.br: Apurar Carnê-Leão", "https://www.gov.br/pt-br/servicos/apurar-carne-leao"],
+  ]
+},
 ];
