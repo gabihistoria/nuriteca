@@ -236,4 +236,81 @@ window.GUIAS = [
     ["gov.br: Apurar Carnê-Leão", "https://www.gov.br/pt-br/servicos/apurar-carne-leao"],
   ]
 },
+{
+  slug: "concursos-que-mais-pagam",
+  titulo: "Os concursos que mais pagam no Brasil e a formação que cada um exige",
+  descricao: "Juiz, procurador, auditor fiscal, delegado, diplomata: os maiores salários iniciais do serviço público em 2026 e qual faculdade e experiência cada cargo pede.",
+  atualizado: "2026-11-08",
+  abertos: { categoria: "concursos", titulo: "Concursos com inscrições abertas agora" },
+  html: `
+<p>Os maiores salários do serviço público estão concentrados em poucas áreas: Justiça, Ministério Público, fiscalização de impostos, controle das contas públicas, Legislativo federal, Polícia Federal e diplomacia. Abaixo estão os valores <b>iniciais</b> de cada carreira e, principalmente, o que cada uma exige de formação. Tem muita coisa que não é só para quem fez Direito.</p>
+<p>Os valores são o salário de entrada, sem auxílios e gratificações extras, conforme os editais e tabelas oficiais mais recentes. Eles mudam com reajustes, então confira sempre no edital.</p>
+
+<h2>Carreiras jurídicas: as que mais pagam, e as que mais exigem</h2>
+<ul>
+<li><b>Procurador da República (Ministério Público Federal):</b> R$ 39.753,22 no último concurso. Exige <b>bacharelado em Direito e três anos de atividade jurídica</b> depois de formado.</li>
+<li><b>Juiz federal substituto:</b> R$ 37.765,55. Exige <b>Direito e três anos de atividade jurídica</b>.</li>
+<li><b>Juiz substituto estadual:</b> varia por estado. No Tribunal de Justiça de São Paulo, R$ 34.083,14. Mesma exigência: <b>Direito e três anos de atividade jurídica</b>.</li>
+<li><b>Advogado da União e procuradores da Fazenda Nacional e do Banco Central (AGU):</b> R$ 24.967,31. Exige <b>Direito</b>.</li>
+<li><b>Defensor público federal:</b> exige <b>Direito, inscrição na OAB e três anos de atividade jurídica</b>.</li>
+</ul>
+<p>Os "três anos de atividade jurídica" contam só depois da formatura. Estágio de faculdade não vale. Advocacia e cargos que exigem diploma de Direito, sim.</p>
+
+<h2>Legislativo federal</h2>
+<ul>
+<li><b>Consultor legislativo e advogado do Senado:</b> R$ 33.461,68 no último edital, entre os maiores do país. O consultor exige formação ligada à área da vaga, e o advogado, Direito e OAB.</li>
+<li><b>Analista legislativo do Senado:</b> R$ 25.897,76.</li>
+<li><b>Técnico legislativo (policial legislativo) do Senado:</b> R$ 19.427,79.</li>
+</ul>
+
+<h2>Área fiscal: qualquer faculdade serve</h2>
+<p>É a área com mais salários altos abertos a qualquer formação.</p>
+<ul>
+<li><b>Auditores fiscais estaduais (Sefaz):</b> os maiores do país estão aqui. Mato Grosso pagou R$ 32.971,87 e Goiás R$ 32.163,30 nos concursos recentes. Rio de Janeiro, R$ 27.430,94. Em geral pedem <b>nível superior em qualquer área</b>, mas cada estado define no edital.</li>
+<li><b>Auditor-fiscal da Receita Federal:</b> R$ 22.921,71, mais um bônus de eficiência que pode passar de R$ 10 mil por mês. Exige <b>nível superior em qualquer área</b>.</li>
+<li><b>Auditor-fiscal do Trabalho:</b> R$ 22.921,71. <b>Nível superior em qualquer área</b>.</li>
+<li><b>Auditores fiscais municipais:</b> algumas capitais pagam muito, como Manaus (R$ 27.270,61).</li>
+</ul>
+
+<h2>Controle das contas públicas</h2>
+<ul>
+<li><b>Auditor federal de controle externo do TCU:</b> R$ 26.159,01 no concurso de 2025. <b>Nível superior em qualquer área</b>.</li>
+<li><b>Auditores dos tribunais de contas dos estados (TCEs):</b> também estão entre os bem pagos, com valores que variam por estado.</li>
+</ul>
+
+<h2>Polícia Federal e polícias civis</h2>
+<ul>
+<li><b>Delegado e perito criminal da Polícia Federal:</b> R$ 26.800, o maior salário inicial do Executivo federal. O delegado exige <b>Direito e três anos de atividade jurídica ou policial</b>. O perito exige formação na área da vaga, como contabilidade, engenharia ou informática.</li>
+<li><b>Delegado de polícia civil:</b> alguns estados pagam perto disso, como Paraná (R$ 26.876,48) e Distrito Federal (cerca de R$ 26,6 mil). Também exigem <b>Direito e três anos de atividade jurídica ou policial</b>.</li>
+<li><b>Agente, escrivão e papiloscopista da Polícia Federal:</b> R$ 14.164,81, com <b>nível superior em qualquer área</b>.</li>
+</ul>
+
+<h2>Diplomacia</h2>
+<ul>
+<li><b>Diplomata (Itamaraty):</b> R$ 22.558,56. Exige <b>nível superior em qualquer área</b> e ser <b>brasileiro nato</b>. Depois da aprovação, há um curso de formação obrigatório no Instituto Rio Branco, em Brasília.</li>
+</ul>
+
+<h2>Outras carreiras federais que pagam bem</h2>
+<p>Com salário inicial de R$ 18.033,52, todas de nível superior: auditor federal de finanças e controle (CGU), auditor do Banco Central, analista de planejamento e orçamento, analista de comércio exterior, especialista em políticas públicas e gestão governamental, técnico de planejamento e pesquisa do Ipea e analistas da CVM e da Susep.</p>
+
+<h2>Resumo: o que a sua faculdade permite</h2>
+<ul>
+<li><b>Fez Direito?</b> Pode tentar as carreiras jurídicas e também todas as de qualquer área, mas juiz, promotor, procurador, defensor e delegado ainda pedem três anos de experiência jurídica depois de formado.</li>
+<li><b>Fez qualquer outro curso superior?</b> Dá para tentar auditor fiscal (federal e estadual), TCU, diplomata, Polícia Federal (agente e escrivão) e várias carreiras de gestão federal. Pedagogia, história, letras, administração: todos servem.</li>
+<li><b>Tem formação técnica específica?</b> Contabilidade, economia, engenharia e TI têm vagas próprias, como perito da PF e especialidades de auditoria.</li>
+</ul>
+
+<p class="aviso">Salário alto vem com concorrência alta: esses concursos costumam ter centenas, às vezes milhares, de inscritos por vaga e provas longas, com várias fases. Os valores mudam com reajustes e variam de um edital para outro. O documento que vale é sempre o edital oficial.</p>
+`,
+  fontes: [
+    ["MPF: 31º Concurso de Procurador da República", "https://www.mpf.mp.br/o-mpf/unidades/procuradoria-geral-da-republica-pgr/noticias/edital-do-31o-concurso-para-procurador-da-republica-esta-assinado-e-sera-publicado-em-breve"],
+    ["TRF2: estrutura remuneratória da magistratura federal (2026)", "https://static.trf2.jus.br/nas-internet/documento/transparencia/gestao-de-pessoas/estrutura-remuneratoria/trf2/2026/estrutura-remuneratoria-trf2-2026-07.pdf"],
+    ["Cebraspe: edital de Diplomata (IRBr)", "https://www.cebraspe.org.br/irbr-publicado-edital-do-concurso-publico-para-a-carreira-de-diplomata/"],
+    ["Qconcursos Folha Dirigida: maiores salários do Executivo federal em 2026", "https://folha.qconcursos.com/n/maiores-salarios-de-concursos"],
+    ["Estratégia Concursos: salários do concurso Senado", "https://www.estrategiaconcursos.com.br/blog/concurso-senado-salarios-iniciais/amp/"],
+    ["Estratégia Concursos: remuneração do Auditor do TCU", "https://www.estrategiaconcursos.com.br/blog/?p=1636560"],
+    ["Cebraspe: edital de Delegado da PCDF (requisitos)", "https://cdn.cebraspe.org.br/concursos/pc_df_26_delegado/arquivos/AB33269BAEE85A8B5F2B677143253D9A0AA14CBCF0AD38B51483D17B62084C6B.pdf"],
+    ["Magistrar: maiores salários de concursos fiscais", "https://magistrarcursos.com.br/blog/?p=47341"],
+  ]
+},
 ];
