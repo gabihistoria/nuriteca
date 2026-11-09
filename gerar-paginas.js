@@ -31,7 +31,7 @@ const MESES = ["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov"
 const esc = s => String(s ?? "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
 const slugify = s => String(s).normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
 const cut = (s, n) => { s = String(s||"").replace(/\s+/g," ").trim(); return s.length <= n ? s : s.slice(0, n-1).replace(/\s+\S*$/,"") + "…"; };
-const ok = v => v && !/^informação não confirmada$/i.test(String(v).trim());
+const ok = v => v && !/^informação não confirmada/i.test(String(v).trim());
 
 function parseDate(s, end){ if(!s) return null; const t = s.length > 10 ? s : s + (end ? "T23:59" : "T00:00"); return new Date(t + ":00-03:00"); }
 function fmtDate(s){ if(!s) return ""; const [y,m,d] = s.slice(0,10).split("-"); const h = s.length > 10 ? ` às ${s.slice(11,16).replace(":","h")}` : ""; return `${d}/${m}/${y}${h}`; }
@@ -77,6 +77,7 @@ dt,dd{padding:11px 0;border-bottom:1px solid var(--line);margin:0}dt{font-weight
 .list span{font-size:14px;color:var(--muted)}
 .cats{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0}.cats a{font-size:14px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);text-decoration:none;color:var(--ink);background:var(--surface)}
 .guia h2{margin-top:38px}.guia ul{padding-left:22px}.guia li{margin:6px 0}.guia p,.guia li{font-size:17.5px}.aviso{background:#FBEDE3;border:1px solid #F1D3C2;border-radius:16px;padding:14px 18px;font-size:16px!important}.fontes{font-size:14px;color:var(--muted)}.fontes li{font-size:14px!important}
+.intro{font-size:19px;line-height:1.55}.steps{padding-left:22px}.steps li{margin:8px 0;font-size:17px}.upd{font-size:14px;color:var(--muted);margin-top:18px}h3{font-family:Fraunces,serif;font-size:21px;margin:26px 0 8px}
 footer{margin-top:50px;border-top:1px solid var(--line);padding:26px 0 40px;font-size:14px;color:var(--muted)}
 @media(max-width:640px){dl{grid-template-columns:1fr}dt{border-bottom:0;padding-bottom:0}}`;
 
@@ -86,54 +87,183 @@ const FOOTER = `<footer><div class="wrap"><p><strong>Navegue por categoria</stro
 <p style="margin-top:22px">A Nuriteca reúne oportunidades gratuitas e leva você ao site oficial. Aqui não há inscrição nem cobrança. Confira sempre o edital.</p>
 <p><a href="/">Página inicial</a> · <a href="https://www.instagram.com/nuriteca/" rel="noopener">@nuriteca no Instagram</a> · <a href="/#contato">Fale conosco</a> · <a href="/#termos">Termos de uso</a> · <a href="/#privacidade">Privacidade</a></p></div></footer>`;
 
-function page({title, desc, url, body, ogType="website"}){
+function page({title, desc, url, body, ogType="website", noindex=false, jsonld=null, modified=""}){
+  const ld = jsonld ? `<script type="application/ld+json">${JSON.stringify(jsonld).replace(/</g,"\\u003c")}</script>` : "";
   return `<!DOCTYPE html>
 <html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${esc(title)}</title><meta name="description" content="${esc(desc)}"><link rel="canonical" href="${SITE}${url}">
+<title>${esc(title)}</title><meta name="description" content="${esc(desc)}"><link rel="canonical" href="${SITE}${url}">${noindex ? `<meta name="robots" content="noindex,follow">` : `<meta name="robots" content="index,follow,max-image-preview:large">`}${modified ? `<meta property="article:modified_time" content="${esc(modified)}">` : ""}${ld}
 <meta property="og:type" content="${ogType}"><meta property="og:site_name" content="Nuriteca"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(desc)}"><meta property="og:url" content="${SITE}${url}"><meta property="og:image" content="${SITE}/icon-512.png"><meta property="og:locale" content="pt_BR">
 <meta name="theme-color" content="#FBF4EC">${ICON}${FONTS}<style>${CSS}</style></head>
 <body><header><div class="wrap">${LOGO}<a class="back" href="/">Ver todas →</a></div></header>
 <main class="wrap">${body}</main>${FOOTER}${BEACON}</body></html>`;
 }
 
+// ---------- SEO de cada oportunidade ----------
+// Campos opcionais no data.js para escrever à mão (têm prioridade sobre o texto automático):
+//   seo: { titulo: "...", descricao: "...", intro: "...", sobre: "..." }
+const hash = s => [...String(s)].reduce((h,c) => (h*31 + c.charCodeAt(0)) >>> 0, 7);
+const pick = (o, arr) => arr[hash(o.id) % arr.length];
+const lower1 = s => !s || /^.[A-ZÀ-Ý0-9]/.test(s) || /^[A-ZÀ-Ý][a-zà-ý]+ (de|do|da|dos|das) [A-ZÀ-Ý]/.test(s) && !/^(Curso|Cursos|Concurso|Seleção|Especialização|Programa|Bolsa|Mestrado|Doutorado|Processo)/.test(s) ? s : s.charAt(0).toLowerCase() + s.slice(1);
+const noPeriod = s => String(s||"").trim().replace(/[.;:]+$/,"");
+const vagasTxt = o => { let v = String(o.vagas||"").trim(); if(!ok(v) || /^ver |sem limite|ilimitad|conforme/i.test(v)) return "";
+  let m = v.match(/^(\d[\d.]*)\s*\+\s*(\d[\d.]*\s*)?cadastro/i); if (m) return `${m[1]} vagas${m[2] ? ` e ${m[2].trim()} em cadastro reserva` : " e cadastro reserva"}`;
+  m = v.match(/^(\d[\d.]*)\s+em\s+(.+)$/i); if (m) return `${m[1]} vagas em ${m[2]}`;
+  if (/^\d[\d.]*$/.test(v)) return `${v} ${v === "1" ? "vaga" : "vagas"}`;
+  m = v.match(/^(\d[\d.]*)\s*\((.+)\)$/); if (m) return `${m[1]} vagas ${m[2].toLowerCase()}`;
+  return /vaga|bolsa/i.test(v) ? lower1(v) : ""; };
+const isPaid = o => ok(o.taxa) && !/gratuit|isent|não há|sem taxa|ver site/i.test(o.taxa);
+const ondeTxt = o => (o.municipio && /^(polos|provas|cerca)/i.test(o.municipio) ? lower1(o.municipio) + (o.estado !== "Nacional" && ESTADOS[o.estado] && !o.municipio.includes(ESTADOS[o.estado]) ? ` (${o.estado})` : "") : null) || (o.estado === "Nacional" ? (o.municipio && !/on-?line/i.test(o.municipio) ? o.municipio : (o.modalidade === "EAD" ? "on-line, para todo o Brasil" : "para todo o Brasil")) : (o.municipio && ESTADOS[o.estado] && o.municipio.includes(ESTADOS[o.estado]) ? o.municipio : [o.municipio, ESTADOS[o.estado] || o.estado].filter(Boolean).join(", ")));
+const art = n => /^(prefeitura|universidade|fundação|secretaria|defensoria|câmara|polícia|escola|empresa|agência|assembleia|procuradoria|controladoria|faculdade|caixa|petrobras)/i.test(n) ? "A " : /^(instituto|tribunal|ministério|governo|banco|conselho|senado|centro|programa|serviço|departamento|hospital|comando|corpo|exército)/i.test(n) ? "O " : "";
+const year = o => ((o.titulo.match(/20\d\d/) || [])[0]) || "";
+const hostOf = u => { try { return new URL(u).hostname.replace(/^www\./,""); } catch(e) { return ""; } };
+const KW = {
+  concursos:   ["vagas, requisitos e inscrições", "salário, vagas e como se inscrever"],
+  cursos:      ["como se inscrever e certificado", "inscrições, requisitos e certificado"],
+  graduacao:   ["vagas e como se inscrever", "como entrar e prazos"],
+  pos:         ["vagas, requisitos e inscrição", "como se inscrever e prazos"],
+  stricto:     ["seleção, requisitos e inscrições", "como se inscrever e prazos"],
+  bolsas:      ["quem pode e como se candidatar", "requisitos e prazo"],
+  descontos:   ["como funciona e quem pode", "requisitos e prazo"],
+  intercambio: ["quem pode e como se candidatar", "requisitos, bolsa e prazo"],
+  carreira:    ["requisitos e inscrições", "quem pode e como se inscrever"],
+};
+function seoTitle(o){
+  if (o.seo && o.seo.titulo) return o.seo.titulo.length <= 58 ? `${o.seo.titulo} | Nuriteca` : o.seo.titulo;
+  const t = o.titulo.replace(/\s*\((edital|edital nº)[^)]*\)\s*$/i, "").trim();
+  for (const kw of [pick(o, KW[o.categoria] || KW.cursos), ...(KW[o.categoria] || [])]) {
+    const full = `${t}: ${kw} | Nuriteca`; if (full.length <= 72) return full;
+  }
+  return `${o.titulo} | Nuriteca`;
+}
+function seoDesc(o){
+  if (o.seo && o.seo.descricao) return o.seo.descricao;
+  const st = status(o), v = vagasTxt(o);
+  const prazo = o.fluxoContinuo ? "Inscrições abertas o ano todo." : (o.encerramento && st.cls !== "closed" ? `Inscrições até ${fmtShort(o.encerramento)}.` : (st.cls === "closed" ? "Inscrições encerradas." : ""));
+  return cut([`${o.titulo}${v ? `: ${v}` : ""}.`, prazo, o.descricao].filter(Boolean).join(" "), 158);
+}
+function autoIntro(o){
+  if (o.seo && o.seo.intro) return o.seo.intro;
+  const st = status(o), v = vagasTxt(o), onde = ondeTxt(o), y = year(o);
+  const prazo = o.fluxoContinuo ? "com inscrições abertas o ano todo" : (st.cls === "closed" ? `com inscrições encerradas em ${fmtDate(o.encerramento)}` : st.cls === "soon" ? `com inscrições a partir de ${fmtDate(o.abertura)}` : (o.encerramento ? `com inscrições até ${fmtDate(o.encerramento)}` : ""));
+  const NO = {AC:"no",AP:"no",AM:"no",BA:"na",CE:"no",DF:"no",ES:"no",MA:"no",PA:"no",PB:"na",PR:"no",PI:"no",RJ:"no",RN:"no",RS:"no",TO:"no"};
+  const prep = onde && onde === ESTADOS[o.estado] ? (NO[o.estado] || "em") : "em";
+  const fatos = [v, onde && `${prep} ${onde}`.replace(/^em on-line/, "on-line").replace(/^em para todo/, "para todo"), prazo].filter(Boolean).join(", ");
+  const nome = o.titulo.replace(/\s*\([^)]*\)\s*$/, "");
+  const F = fatos ? `, ${fatos}` : "", Fc = fatos ? (nome.includes(":") ? `. Em resumo: ${fatos}` : `: ${fatos}`) : "", inst = String(o.instituicao).split(" · ")[0], siglas = (inst.match(/\(([^)]+)\)/g) || []).map(x => x.slice(1, -1)), semInst = [inst.split(/[ (,·]/)[0], ...siglas].some(t => t && o.titulo.toLowerCase().includes(t.toLowerCase()));
+  const quem = semInst ? "" : ` Quem oferece: ${inst}.`;
+  const hooks = {
+    concursos: [
+      `${art(inst)}${inst} ${st.cls === "soon" ? "vai abrir inscrições" : st.cls === "closed" ? "teve seleção" : "está com seleção aberta"}${Fc}. Nesta página você confere quem pode participar, os requisitos, a taxa e o link oficial de inscrição.`,
+      `Procurando informações sobre ${/^(sele|prova|especializ|bolsa|chamada|resid|olimp|gradua|vaga)/i.test(nome) ? "a" : "o"} ${lower1(nome)}? Em resumo${Fc || ": veja abaixo os detalhes"}. Abaixo estão requisitos, prazos e como se inscrever.`,
+    ],
+    cursos: [
+      semInst ? `Quer estudar de graça${/certific/i.test(o.certificacao||"") ? " e ainda ganhar certificado" : ""}? ${nome}${Fc}.` : `Quer estudar de graça${/certific/i.test(o.certificacao||"") ? " e ainda ganhar certificado" : ""}? ${art(inst)}${inst} oferece ${lower1(nome)}${F}.`,
+      `${nome}${Fc}.${quem} Veja como funciona e como se inscrever.`,
+    ],
+    graduacao: [
+      `Dá para fazer faculdade pública e gratuita${o.modalidade === "EAD" ? " a distância" : ""}: ${inst} está selecionando alunos${F}.`.replace(": "+inst, ": "+art(inst).toLowerCase()+inst),
+      `${nome}${Fc}.${quem} Veja quem pode participar e como se inscrever.`,
+    ],
+    pos: [
+      `Procurando pós-graduação gratuita? ${art(inst)}${inst} abriu seleção${F}.`,
+      `${nome}: especialização sem mensalidade${F}.${quem}`,
+    ],
+    stricto: [ `Seleção aberta para mestrado ou doutorado: ${lower1(nome)}${F}.${quem}` ],
+    bolsas: [ `${nome}${Fc}.${quem} Veja quem pode se candidatar e como.` ],
+    descontos: [ `${nome}${Fc}.${quem} Veja quem pode participar e como.` ],
+    intercambio: [
+      `Estudar fora sem pagar tudo do próprio bolso é possível. ${nome}${Fc}.`,
+      `${nome}${Fc}. Veja requisitos, o que a bolsa cobre e o prazo.`,
+    ],
+    carreira: [ `${art(inst)}${inst} abriu inscrições para ${lower1(nome)}${F}. Veja requisitos, benefícios e como se candidatar.` ],
+  };
+  return pick(o, hooks[o.categoria] || hooks.cursos);
+}
+function autoSobre(o){
+  const p = [];
+  if (ok(o.modalidade) || ok(o.area)) p.push(`${ok(o.modalidade) ? `A oportunidade é ${o.modalidade === "EAD" ? "a distância (EaD)" : lower1(o.modalidade)}` : "A oportunidade"}${ok(o.area) && !/diversas/i.test(o.area) ? `, na área de ${lower1(o.area)}` : ""}${o.subtipo ? ` (${lower1(o.subtipo)})` : ""}.`);
+  if (isPaid(o)) p.push(`A taxa de inscrição é de ${noPeriod(o.taxa)}${/gratuito/i.test(o.gratuidade||"") ? ", mas o curso em si é gratuito" : ""}.`);
+  else if (/gratuit/i.test((o.taxa||"") + (o.gratuidade||""))) p.push("A inscrição é gratuita.");
+  if (ok(o.certificacao) && !/não se aplica/i.test(o.certificacao)) p.push(/^certificad|^diploma/i.test(o.certificacao) ? `${noPeriod(o.certificacao)}.` : `Certificado: ${lower1(noPeriod(o.certificacao))}.`);
+  return p.join(" ");
+}
+function howTo(o){
+  const st = status(o), host = hostOf(o.linkInscricao || o.siteOficial || o.linkEdital);
+  const steps = [];
+  steps.push(o.linkEdital ? "Leia o edital completo (link abaixo): ele é o documento que vale, com todas as regras." : "Leia o edital ou as regras completas no site oficial antes de se inscrever.");
+  if (ok(o.escolaridade) || ok(o.prerequisitos)) steps.push(`Confira se você cumpre os requisitos${ok(o.escolaridade) ? `, como a escolaridade exigida (${lower1(noPeriod(o.escolaridade))})` : ""}.`);
+  if (isPaid(o)) steps.push(`Separe o valor da taxa (${noPeriod(o.taxa)}).${ok(o.isencao) && !/não se aplica|conforme o edital/i.test(o.isencao) ? ` Isenção: ${lower1(noPeriod(o.isencao))}.` : " Veja no edital se você tem direito à isenção."}`);
+  if (ok(o.documentos) && !/^os listados no edital/i.test(o.documentos)) steps.push(`Tenha em mãos: ${lower1(noPeriod(o.documentos))}.`);
+  if (st.cls !== "closed") steps.push(`Faça a inscrição ${host ? `pelo site oficial (${host})` : "pelo site oficial"}${o.fluxoContinuo ? ", que fica aberto o ano todo" : (o.encerramento ? `, até ${fmtDate(o.encerramento)}` : "")}.`);
+  steps.push("Guarde o comprovante e acompanhe as próximas etapas e resultados pelo site oficial.");
+  return steps;
+}
+const EDU = { cursos:1, graduacao:1, pos:1, stricto:1 };
+function itemJsonLd(o){
+  const c = CATS[o.categoria], url = SITE + itemUrl(o);
+  const crumbs = { "@type": "BreadcrumbList", itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Início", item: SITE + "/" },
+    { "@type": "ListItem", position: 2, name: c.nome, item: `${SITE}/${c.slug}/` },
+    { "@type": "ListItem", position: 3, name: o.titulo, item: url } ] };
+  const pageLd = { "@type": "WebPage", "@id": url, url, name: o.titulo, description: seoDesc(o), inLanguage: "pt-BR",
+    dateModified: o.verificadoEm || o.criadoEm, datePublished: o.criadoEm || o.verificadoEm, isPartOf: { "@type": "WebSite", name: "Nuriteca", url: SITE + "/" } };
+  const graph = [crumbs, pageLd];
+  if (EDU[o.categoria]) {
+    graph.push({ "@type": "Course", name: o.titulo, description: cut(o.descricao, 300), url, inLanguage: "pt-BR",
+      provider: { "@type": "Organization", name: o.instituicao, ...(o.siteOficial || o.linkInscricao ? { sameAs: o.siteOficial || o.linkInscricao } : {}) },
+      ...(/gratuit/i.test((o.gratuidade||"")+(o.taxa||"")) ? { isAccessibleForFree: true } : {}) });
+  }
+  return { "@context": "https://schema.org", "@graph": graph };
+}
+function related(o){
+  const same = DATA.filter(x => x.categoria === o.categoria && x.id !== o.id && isOpen(x));
+  const score = x => (x.estado === o.estado ? 2 : 0) + (x.area && x.area === o.area ? 1 : 0) + (x.estado === "Nacional" ? 0.5 : 0);
+  return same.sort((a,b) => score(b) - score(a)).slice(0, 5);
+}
+function guidesFor(o){
+  const txt = [o.titulo, o.descricao, o.area, o.subtipo].join(" ");
+  const fit = g => { const a = g.abertos;
+    if (a && a.categoria === o.categoria && (!a.filtro || a.filtro.test(txt)) && (!a.subtipo || a.subtipo.test(o.subtipo||""))) return 2;
+    if (a && a.filtro && a.filtro.test(txt)) return 2;
+    return (g.categorias || []).includes(o.categoria) && !(a && (a.filtro || a.subtipo)) ? 1 : 0; };
+  return GUIAS.map(g => ({ g, n: fit(g) })).filter(r => r.n).sort((x,y) => y.n - x.n).slice(0, 3).map(r => r.g);
+}
+function closedLong(o){ const e = parseDate(o.encerramento, true); return !o.fluxoContinuo && e && (NOW - e) > 90*864e5; }
+
 function itemPage(o){
   const c = CATS[o.categoria], st = status(o);
-  const local = o.estado === "Nacional" ? (o.municipio || "Brasil todo") : [o.municipio, ESTADOS[o.estado] || o.estado].filter(Boolean).join(" · ");
-  const rows = [
-    ["Quem pode participar", o.prerequisitos || o.escolaridade],
-    ["Escolaridade", o.escolaridade],
-    ["Vagas", o.vagas],
-    ["Área", o.area],
-    ["Onde", local],
-    ["Modalidade", o.modalidade],
-    ["Benefícios ou valor", o.gratuidade && !/^gratuito$/i.test(o.gratuidade) ? o.gratuidade : ""],
-    ["Taxa de inscrição", o.taxa],
-    ["Isenção da taxa", o.isencao && !/não se aplica/i.test(o.isencao) ? o.isencao : ""],
-    ["Documentos e etapas", o.documentos],
-    ["Certificado", o.certificacao && !/não se aplica/i.test(o.certificacao) ? o.certificacao : ""],
-    ["Abertura das inscrições", o.abertura ? fmtDate(o.abertura) : ""],
-    ["Fim das inscrições", o.fluxoContinuo ? "Fluxo contínuo" : (o.encerramento ? fmtDate(o.encerramento) : "")],
-    ["Conferido pela Nuriteca em", o.verificadoEm ? fmtDate(o.verificadoEm) : ""],
-  ].filter(([,v]) => ok(v));
+  const sec = (title, rows) => { rows = rows.filter(([,v]) => ok(v)); return rows.length ? `<h2>${esc(title)}</h2><dl>${rows.map(([k,v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}</dl>` : ""; };
+  const sobreExtra = (o.seo && o.seo.sobre) || autoSobre(o);
   const btns = [
     o.linkInscricao && `<a class="btn" href="${esc(o.linkInscricao)}" rel="noopener" target="_blank">Ir para a inscrição oficial</a>`,
     o.linkEdital && `<a class="btn ghost" href="${esc(o.linkEdital)}" rel="noopener" target="_blank">Ler o edital</a>`,
     o.siteOficial && `<a class="btn ${o.linkInscricao ? "ghost" : ""}" href="${esc(o.siteOficial)}" rel="noopener" target="_blank">Site oficial</a>`,
   ].filter(Boolean).join("");
-  const outros = DATA.filter(x => x.categoria === o.categoria && x.id !== o.id && isOpen(x)).slice(0, 5);
-  const prazo = o.encerramento && !o.fluxoContinuo ? ` Inscrições até ${fmtShort(o.encerramento)}.` : "";
-  const desc = cut(`${o.titulo}.${prazo} ${o.descricao}`, 158);
+  const rel = related(o), guias = guidesFor(o);
   const body = `<nav class="crumbs"><a href="/">Início</a> › <a href="/${c.slug}/">${esc(c.nome)}</a></nav>
 <div class="arch" style="background:linear-gradient(180deg,${c.cor}cc,${c.cor})"></div>
-<h1>${esc(o.titulo)}</h1>
+<h1>${esc((o.seo && o.seo.h1) || o.titulo)}</h1>
 <p class="meta">${esc([o.instituicao, o.subtipo].filter(Boolean).join(" · "))}</p>
 <span class="status ${st.cls}">${esc(st.txt)}</span>
-<p class="desc">${esc(o.descricao)}</p>
-<dl>${rows.map(([k,v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}</dl>
+<p class="intro">${esc(autoIntro(o))}</p>
+<h2>Sobre ${{concursos:"o concurso",cursos:"o curso",graduacao:"a graduação",pos:"a pós-graduação",stricto:"a seleção",bolsas:"a bolsa",descontos:"a oportunidade",intercambio:"o programa",carreira:"o programa"}[o.categoria] || "a oportunidade"}</h2>
+<p class="desc">${esc(o.descricao)}</p>${sobreExtra ? `<p>${esc(sobreExtra)}</p>` : ""}
+${sec("Quem pode participar", [["Requisitos", /^confira os requisitos completos no edital/i.test(o.prerequisitos||"") ? "" : o.prerequisitos], ["Escolaridade", o.escolaridade], ["Onde", ondeTxt(o)], ["Modalidade", o.modalidade]])}
+${sec("Vagas, benefícios e certificado", [["Vagas", o.vagas], ["Área", /diversas/i.test(o.area||"") ? "" : o.area], ["Custo", o.gratuidade && !/^gratuito$/i.test(o.gratuidade) ? o.gratuidade : (/gratuit/i.test(o.gratuidade||"") ? "Gratuito" : "")], ["Certificado", o.certificacao && !/não se aplica/i.test(o.certificacao) ? o.certificacao : ""]])}
+${sec("Datas e prazos", [["Abertura das inscrições", o.abertura ? fmtDate(o.abertura) : ""], ["Fim das inscrições", o.fluxoContinuo ? "Fluxo contínuo" : (o.encerramento ? fmtDate(o.encerramento) : "")], ["Situação", st.txt], ["Taxa de inscrição", o.taxa], ["Isenção da taxa", o.isencao && !/não se aplica/i.test(o.isencao) ? o.isencao : ""]])}
+<h2>Como se inscrever</h2>
+<ol class="steps">${howTo(o).map(x => `<li>${esc(x)}</li>`).join("")}</ol>
 <div class="btns">${btns}<a class="btn ghost" href="/#op-${esc(o.id)}">Salvar na Nuriteca</a></div>
-<p class="note">A inscrição é feita só no site oficial da instituição. Datas podem ser prorrogadas ou mudar: confira sempre o edital.${o.fonte ? ` Fonte: <a href="${esc(o.fonte)}" rel="noopener nofollow" target="_blank">${esc(new URL(o.fonte).hostname.replace(/^www\./,""))}</a>.` : ""}</p>
-${outros.length ? `<h2>Mais em ${esc(c.nome.toLowerCase())}</h2><ul class="list">${outros.map(listItem).join("")}</ul>` : ""}`;
-  return page({ title: `${o.titulo} | Nuriteca`, desc, url: itemUrl(o), body, ogType: "article" });
+<p class="note">A inscrição é feita só no site oficial da instituição. Datas podem ser prorrogadas ou mudar: confira sempre o edital.${o.fonte ? ` Fonte da informação: <a href="${esc(o.fonte)}" rel="noopener nofollow" target="_blank">${esc(hostOf(o.fonte))}</a>${o.fonteTipo === "oficial" ? " (fonte oficial)" : ""}.` : ""}</p>
+<p class="upd">Última atualização: ${esc(fmtDate(o.verificadoEm || o.criadoEm || ""))}</p>
+${guias.length ? `<h2>Leia também</h2><ul class="list">${guias.map(g => `<li><a href="/guias/${g.slug}/"><strong>${esc(g.titulo)}</strong><span>Guia da Nuriteca</span></a></li>`).join("")}</ul>` : ""}
+${rel.length ? `<h2>Oportunidades relacionadas</h2><ul class="list">${rel.map(listItem).join("")}</ul>` : ""}
+<p style="margin-top:22px"><a href="/${c.slug}/">Ver todas em ${esc(c.nome.toLowerCase())} →</a>${o.estado && o.estado !== "Nacional" && ESTADOS[o.estado] ? ` · <a href="/estados/${slugify(ESTADOS[o.estado])}/">Oportunidades em ${esc(ESTADOS[o.estado])} →</a>` : ""}</p>`;
+  return page({ title: seoTitle(o), desc: seoDesc(o), url: itemUrl(o), body, ogType: "article", noindex: closedLong(o), jsonld: itemJsonLd(o), modified: o.verificadoEm || "" });
+}
+
+function redirectPage(to){
+  return `<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><title>Página movida | Nuriteca</title><link rel="canonical" href="${SITE}${to}"><meta name="robots" content="noindex,follow"><meta http-equiv="refresh" content="0; url=${to}"></head><body><p>Esta página mudou de endereço: <a href="${to}">${SITE}${to}</a></p></body></html>`;
 }
 
 function listItem(o){
@@ -155,8 +285,11 @@ function catPage(key){
 ${c.intro || ""}<p class="meta">Lista conferida pela Nuriteca, com link para o site oficial de cada oportunidade. Atualizada em ${fmtDate(new Date(NOW.getTime()-3*3600e3).toISOString().slice(0,10))}.</p>
 ${abertas.length ? `<ul class="list">${abertas.map(listItem).join("")}</ul>` : `<p class="note">Nenhuma oportunidade aberta nesta categoria agora. Volte em breve ou siga a <a href="https://www.instagram.com/nuriteca/">@nuriteca</a>.</p>`}
 ${fechadas.length ? `<h2>Encerradas recentemente</h2><ul class="list">${fechadas.map(listItem).join("")}</ul>` : ""}
+${(() => { const gs = GUIAS.filter(g => guideCats(g).has(key)); return gs.length ? `<h2>Guias sobre ${esc(c.nome.toLowerCase())}</h2><ul class="list">${gs.map(g => `<li><a href="/guias/${g.slug}/"><strong>${esc(g.titulo)}</strong><span>${esc(cut(g.descricao, 120))}</span></a></li>`).join("")}</ul>` : ""; })()}
 <div class="btns"><a class="btn" href="/">Buscar no site da Nuriteca</a></div>`;
-  return page({ title: `${c.titulo} | Nuriteca`, desc, url, body });
+  const ld = { "@context": "https://schema.org", "@type": "CollectionPage", name: c.titulo, url: SITE + url, inLanguage: "pt-BR",
+    mainEntity: { "@type": "ItemList", itemListElement: abertas.slice(0, 30).map((o, i) => ({ "@type": "ListItem", position: i + 1, url: SITE + itemUrl(o), name: o.titulo })) } };
+  return page({ title: `${c.titulo} | Nuriteca`, desc, url, body, jsonld: ld });
 }
 
 function statePage(uf){
@@ -188,21 +321,30 @@ function guiaPage(g){
   if (g.abertos) {
     const a = g.abertos;
     const byEnd = (x,y) => ((parseDate(x.encerramento,true)||Infinity) - (parseDate(y.encerramento,true)||Infinity));
-    const items = DATA.filter(o => o.categoria === a.categoria && isOpen(o) && (!a.subtipo || a.subtipo.test(o.subtipo||"")) && (!a.escolaridade || a.escolaridade.test((o.escolaridade||"")+" "+(o.prerequisitos||"")))).sort(byEnd);
-    abertos = `<h2>${esc(a.titulo)}</h2>${items.length ? `<ul class="list">${items.map(listItem).join("")}</ul>` : `<p class="note">Nenhum aberto neste momento. Esta lista se atualiza sozinha quando a Nuriteca confere um novo edital.</p>`}<p><a href="/${CATS[a.categoria].slug}/">Ver todos em ${esc(CATS[a.categoria].nome.toLowerCase())} →</a></p>`;
+    const items = DATA.filter(o => (!a.categoria || o.categoria === a.categoria) && isOpen(o) && (!a.subtipo || a.subtipo.test(o.subtipo||"")) && (!a.escolaridade || a.escolaridade.test((o.escolaridade||"")+" "+(o.prerequisitos||""))) && (!a.filtro || a.filtro.test([o.titulo,o.descricao,o.area,o.subtipo].join(" ")))).sort(byEnd);
+    abertos = `<h2>${esc(a.titulo)}</h2>${items.length ? `<ul class="list">${items.map(listItem).join("")}</ul>` : `<p class="note">Nenhum aberto neste momento. Esta lista se atualiza sozinha quando a Nuriteca confere um novo edital.</p>`}${a.categoria ? `<p><a href="/${CATS[a.categoria].slug}/">Ver todos em ${esc(CATS[a.categoria].nome.toLowerCase())} →</a></p>` : ""}`;
   }
   const fontes = (g.fontes||[]).length ? `<h2>Fontes</h2><ul class="fontes">${g.fontes.map(([t,u]) => `<li><a href="${esc(u)}" rel="noopener nofollow" target="_blank">${esc(t)}</a></li>`).join("")}</ul>` : "";
   const body = `<nav class="crumbs"><a href="/">Início</a> › <a href="/guias/">Guias</a></nav>
 <div class="arch" style="background:linear-gradient(180deg,#D9A441cc,#B9583C)"></div>
 <h1>${esc(g.titulo)}</h1><p class="meta">Guia da Nuriteca · Atualizado em ${fmtDate(g.atualizado)}</p>
-<article class="guia">${g.html}</article>${abertos}${fontes}`;
-  return page({ title: `${g.titulo} | Nuriteca`, desc: cut(g.descricao, 158), url, body, ogType: "article" });
+<article class="guia">${g.html}</article>${abertos}${fontes}${relGuias(g)}`;
+  const ld = { "@context": "https://schema.org", "@graph": [
+    { "@type": "Article", headline: g.titulo, description: g.descricao, inLanguage: "pt-BR", datePublished: g.publicado || g.atualizado, dateModified: g.atualizado, mainEntityOfPage: SITE + url, author: { "@type": "Organization", name: "Nuriteca", url: SITE + "/" }, publisher: { "@type": "Organization", name: "Nuriteca", logo: { "@type": "ImageObject", url: SITE + "/icon-512.png" } } },
+    { "@type": "BreadcrumbList", itemListElement: [ { "@type": "ListItem", position: 1, name: "Início", item: SITE + "/" }, { "@type": "ListItem", position: 2, name: "Guias", item: SITE + "/guias/" }, { "@type": "ListItem", position: 3, name: g.titulo, item: SITE + url } ] } ] };
+  return page({ title: `${g.seoTitulo || g.titulo} | Nuriteca`, desc: cut(g.descricao, 158), url, body, ogType: "article", jsonld: ld, modified: g.atualizado });
+}
+function guideCats(g){ return new Set([...(g.categorias||[]), g.abertos && g.abertos.categoria].filter(Boolean)); }
+function relGuias(g){
+  const mine = guideCats(g);
+  const others = GUIAS.filter(x => x.slug !== g.slug).map(x => ({ x, n: [...guideCats(x)].filter(k => mine.has(k)).length })).sort((a,b) => b.n - a.n).slice(0, 3).map(r => r.x);
+  return others.length ? `<h2>Outros guias</h2><ul class="list">${others.map(x => `<li><a href="/guias/${x.slug}/"><strong>${esc(x.titulo)}</strong><span>${esc(cut(x.descricao, 120))}</span></a></li>`).join("")}</ul>` : "";
 }
 function guiasIndex(){
   const body = `<nav class="crumbs"><a href="/">Início</a> › Guias</nav><h1>Guias da Nuriteca</h1>
 <p class="meta">Explicações curtas e conferidas para você se organizar antes de o edital abrir.</p>
 <ul class="list">${GUIAS.map(g => `<li><a href="/guias/${g.slug}/"><strong>${esc(g.titulo)}</strong><span>${esc(g.descricao)}</span></a></li>`).join("")}</ul>`;
-  return page({ title: "Guias da Nuriteca: estágio, trainee, jovem aprendiz e intercâmbio", desc: "Guias para se organizar: calendário de trainee e estágio, Jovem Aprendiz e intercâmbio gratuito no ensino médio.", url: "/guias/", body });
+  return page({ title: "Guias da Nuriteca: concursos, cursos gratuitos, bolsas e carreira", desc: "Guias para se organizar: concursos que mais pagam, cursos gratuitos com certificado, trainee, Jovem Aprendiz, intercâmbio e trabalho remoto.", url: "/guias/", body });
 }
 
 // limpa as pastas geradas e recria
@@ -219,9 +361,13 @@ for (const key of Object.keys(CATS)) {
 for (const o of DATA) {
   if (!CATS[o.categoria]) continue;
   write(itemUrl(o).slice(1, -1), itemPage(o));
-  urls.push({ loc: itemUrl(o), lastmod: (o.verificadoEm || o.criadoEm || NOW.toISOString()).slice(0,10), pr: isOpen(o) ? "0.7" : "0.3" });
+  if (!closedLong(o)) urls.push({ loc: itemUrl(o), lastmod: (o.verificadoEm || o.criadoEm || NOW.toISOString()).slice(0,10), pr: isOpen(o) ? "0.7" : "0.3" });
   n++;
 }
+// endereços antigos de oportunidades fundidas continuam funcionando (redirecionam para a página atual)
+for (const o of DATA) for (const old of (o.redirects || [])) { if (old !== itemUrl(o)) write(old.replace(/^\/|\/$/g, ""), redirectPage(itemUrl(o))); }
+fs.writeFileSync(path.join(ROOT, "404.html"), page({ title: "Página não encontrada | Nuriteca", desc: "Esta página não existe mais. Veja as oportunidades abertas na Nuriteca.", url: "/404.html", noindex: true,
+  body: `<h1 style="margin-top:30px">Esta página não foi encontrada</h1><p class="intro">A oportunidade pode ter mudado de endereço ou saído do ar. Veja o que está aberto agora:</p>${catLinks()}<div class="btns"><a class="btn" href="/">Ir para a página inicial</a></div>` }));
 const UFS = Object.keys(ESTADOS).filter(uf => uf !== "Nacional" && DATA.some(o => o.estado === uf && CATS[o.categoria])).sort((a,b) => ESTADOS[a].localeCompare(ESTADOS[b], "pt"));
 write("estados", statesIndex(UFS));
 urls.push({ loc: "/estados/", lastmod: NOW.toISOString().slice(0,10), pr: "0.8" });

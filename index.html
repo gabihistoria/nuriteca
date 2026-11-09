@@ -730,6 +730,7 @@ function viewDetalhe(id){
         <p><strong>Fonte:</strong> ${fonte?`<a href="${esc(fonte)}" target="_blank" rel="noopener">${o.fonteTipo==="oficial"?"página oficial":"notícia ou agregador"}</a>`:"não informada"}</p>
         <p style="margin-bottom:0">A inscrição é feita só no site da instituição. Confira sempre o edital: datas podem ser prorrogadas ou alteradas.</p>
       </div>
+      ${(()=>{const sl={concursos:"concursos",cursos:"cursos",graduacao:"graduacao",pos:"pos-graduacao",stricto:"mestrado-e-doutorado",bolsas:"bolsas",descontos:"descontos",intercambio:"intercambios-gratuitos",carreira:"estagio-e-trainee"}[o.categoria]; if(!sl) return ""; const perm=`https://nuriteca.com.br/${sl}/${o.id}/`; return `<div class="box note"><p style="margin-top:0"><strong>Página desta oportunidade</strong></p><p>Endereço fixo, bom para compartilhar: <a href="${esc(perm)}">${esc(perm.replace("https://",""))}</a></p><button class="btn ghost" type="button" onclick="(navigator.clipboard?navigator.clipboard.writeText('${esc(perm)}'):Promise.reject()).then(()=>{this.textContent='Link copiado'}).catch(()=>{})">Copiar link</button></div>`})()}
     </aside>
   </div></div>`;
 }

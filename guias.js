@@ -3,6 +3,7 @@
 window.GUIAS = [
 {
   slug: "calendario-trainee-e-estagio",
+  categorias: ["carreira"],
   titulo: "Calendário de trainee e estágio: quando os grandes programas abrem",
   descricao: "Quando abrem os programas de trainee e estágio das grandes empresas no Brasil, mês a mês, e o que preparar antes para não perder o prazo.",
   atualizado: "2026-11-07",
@@ -103,6 +104,7 @@ window.GUIAS = [
 },
 {
   slug: "intercambio-gratuito-ensino-medio",
+  categorias: ["intercambio"],
   titulo: "Intercâmbio de graça no ensino médio: os programas que existem",
   descricao: "Programas de intercâmbio gratuito para estudantes do ensino médio: Jovens Embaixadores, Prontos pro Mundo, Ganhando o Mundo, Reach Cambridge e Yale.",
   atualizado: "2026-11-07",
@@ -161,6 +163,7 @@ window.GUIAS = [
 },
 {
   slug: "trabalhar-com-treinamento-de-ia",
+  categorias: ["carreira"],
   titulo: "Treinamento de IA: como ganhar em dólar trabalhando de casa sendo brasileiro",
   descricao: "O que faz quem treina inteligência artificial, quanto paga, quais os requisitos e os sites que contratam brasileiros para trabalhar de casa, com link direto.",
   atualizado: "2026-11-08",
@@ -238,6 +241,7 @@ window.GUIAS = [
 },
 {
   slug: "concursos-que-mais-pagam",
+  categorias: ["concursos"],
   titulo: "Os concursos que mais pagam no Brasil e a formação que cada um exige",
   descricao: "Juiz, procurador, auditor fiscal, delegado, diplomata: os maiores salários iniciais do serviço público em 2026 e qual faculdade e experiência cada cargo pede.",
   atualizado: "2026-11-08",
@@ -311,6 +315,50 @@ window.GUIAS = [
     ["Estratégia Concursos: remuneração do Auditor do TCU", "https://www.estrategiaconcursos.com.br/blog/?p=1636560"],
     ["Cebraspe: edital de Delegado da PCDF (requisitos)", "https://cdn.cebraspe.org.br/concursos/pc_df_26_delegado/arquivos/AB33269BAEE85A8B5F2B677143253D9A0AA14CBCF0AD38B51483D17B62084C6B.pdf"],
     ["Magistrar: maiores salários de concursos fiscais", "https://magistrarcursos.com.br/blog/?p=47341"],
+  ]
+},
+{
+  slug: "curso-gratuito-de-ingles-com-certificado",
+  categorias: ["cursos", "intercambio"],
+  titulo: "Curso gratuito de inglês com certificado: onde fazer em 2026",
+  descricao: "Cursos de inglês gratuitos e com certificado de institutos federais, on-line e presenciais, com inscrições abertas. Veja qual escolher para concurso, mestrado ou intercâmbio.",
+  publicado: "2026-11-09",
+  atualizado: "2026-11-09",
+  abertos: { categoria: "cursos", filtro: /ingl[eê]s/i, titulo: "Cursos gratuitos de inglês com inscrições abertas agora" },
+  html: `
+<p>Dá para estudar inglês de graça e sair com certificado, sem cair em promessa de "fluência em 30 dias". Os melhores caminhos gratuitos hoje estão nos <b>institutos federais</b>, que oferecem cursos on-line no seu ritmo, cursos com turma e aulas presenciais. Abaixo estão as opções conferidas pela Nuriteca, com prazo e link oficial.</p>
+
+<h2>As opções abertas agora</h2>
+<ul>
+<li><b><a href="/cursos/ifrs-aprenda-mais-ingles-espanhol-2026/">Inglês on-line do IFRS (Plataforma Aprenda Mais)</a></b>: módulos de Inglês 1 a 13, mais Inglês Aplicado a Eventos, a distância e no seu ritmo. A inscrição é gratuita e fica aberta até 31/12/2026. É a opção para quem quer começar do zero, de qualquer lugar do Brasil.</li>
+<li><b><a href="/cursos/ifrj-estrategias-leitura-ingles-ead-2026/">Estratégias para Leitura em Inglês (IFRJ)</a></b>: curso on-line de 40 horas focado em ler e entender textos, com inscrições até 11/12/2026.</li>
+<li><b><a href="/cursos/ifms-idiomas-ingles-espanhol-libras-2027-1/">Inglês, espanhol e Libras presenciais no IFMS</a></b>: turmas em cinco cidades de Mato Grosso do Sul, com inscrições até 18/11/2026. A maior parte das vagas é para alunos e servidores do IFMS, e o restante para a comunidade.</li>
+</ul>
+
+<h2>Qual escolher</h2>
+<ul>
+<li><b>Para concurso e seleção de mestrado:</b> a prova de inglês costuma cobrar leitura e interpretação de texto, não conversação. Um curso de leitura, como o do IFRJ, vai direto ao ponto.</li>
+<li><b>Para começar do zero:</b> os módulos on-line do IFRS seguem uma sequência, do básico em diante, e você estuda no seu horário.</li>
+<li><b>Para praticar a fala:</b> turmas presenciais, como as do IFMS, têm professor e colegas para conversar. Fique de olho nos editais dos institutos federais da sua cidade, que abrem turmas todo semestre.</li>
+</ul>
+
+<h2>O que o certificado comprova (e o que não comprova)</h2>
+<p>O certificado desses cursos é de <b>curso livre ou de formação inicial</b>: comprova que você fez o curso e a carga horária. Ele serve para currículo, horas complementares e prova de títulos, quando o edital aceitar cursos livres.</p>
+<p>Ele <b>não é um certificado de proficiência</b>. Bolsas e universidades no exterior costumam exigir exames como TOEFL, IELTS ou Cambridge, que são pagos e aplicados por instituições próprias. Se o seu objetivo é intercâmbio, use o curso gratuito para estudar e veja na <a href="/intercambios-gratuitos/">aba de intercâmbios</a> qual exame cada programa pede.</p>
+
+<h2>Dicas para não desistir no meio</h2>
+<ul>
+<li>Escolha um horário fixo na semana, mesmo que seja meia hora por dia.</li>
+<li>Termine um módulo antes de começar outro: o certificado sai por curso concluído.</li>
+<li>Leia as regras de certificação de cada curso (nota mínima, prazo para concluir) logo no começo.</li>
+</ul>
+
+<p class="aviso">Prazos e regras mudam de um semestre para o outro. Confira sempre a página oficial do curso antes de se inscrever.</p>
+`,
+  fontes: [
+    ["IFRS: Cursos EaD 2026 da Plataforma Aprenda Mais", "https://estude.ifrs.edu.br/inscricoes-abertas/cursos-ead-2025-plataforma-aprenda/"],
+    ["IFMS: Edital 74/2026 (cursos de idiomas FIC/CENID)", "https://selecao.ifms.edu.br/edital/files/edital-74-2026-fic-cenid-2027-1-edital-74-2026-fic-cenid-2027-1-retificado-29-10-2026.pdf"],
+    ["F5 Cariri: cursos livres EaD do IFRJ", "https://www.f5cariri.com.br/2026/09/instituto-federal-oferece-cursos-ead.html"],
   ]
 },
 ];
