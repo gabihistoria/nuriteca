@@ -84,3 +84,6 @@ Ficam no `guias.js`. Cada guia tem `slug` (endereço), `titulo`, `seoTitulo`, `d
 - Lista do que encerra nos próximos 3 dias (pauta pronta para post de última chamada).
 - Oportunidades abertas que ninguém confere há mais de 14 dias.
 - Avisos: título do Google longo ou ausente, descrição curta, possível duplicata, item só com fonte secundária.
+
+## Endereços das páginas (desde 10/11/2026)
+Cada tela do app tem endereço próprio (/buscar/, /sobre/, /contato/, /termos/ etc.) e cada oportunidade abre no endereço da sua página (/concursos/<id>/), para o Cloudflare contar as visitas por página. As pastas dessas telas são cópias do index.html geradas pelo gerar-paginas.js: **sempre que mudar o index.html, rode `node gerar-paginas.js` de novo** para atualizar as cópias. Links antigos com # (ex.: /#op-xyz, /#contato) continuam funcionando e são convertidos para o endereço novo.

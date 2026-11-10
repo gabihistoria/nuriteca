@@ -85,7 +85,7 @@ const LOGO = `<a class="logo" href="/"><svg viewBox="0 0 32 32" aria-hidden="tru
 const catLinks = () => `<div class="cats">${Object.values(CATS).map(c=>`<a href="/${c.slug}/">${esc(c.nome)}</a>`).join("")}</div>`;
 const FOOTER = `<footer><div class="wrap"><p><strong>Navegue por categoria</strong></p>${catLinks()}<p style="margin-top:14px"><a href="/estados/">Ver oportunidades por estado →</a> · <a href="/guias/">Guias da Nuriteca →</a></p>
 <p style="margin-top:22px">A Nuriteca reúne oportunidades gratuitas e leva você ao site oficial. Aqui não há inscrição nem cobrança. Confira sempre o edital.</p>
-<p><a href="/">Página inicial</a> · <a href="https://www.instagram.com/nuriteca/" rel="noopener">@nuriteca no Instagram</a> · <a href="/#contato">Fale conosco</a> · <a href="/#termos">Termos de uso</a> · <a href="/#privacidade">Privacidade</a></p></div></footer>`;
+<p><a href="/">Página inicial</a> · <a href="https://www.instagram.com/nuriteca/" rel="noopener">@nuriteca no Instagram</a> · <a href="/contato/">Fale conosco</a> · <a href="/sobre/">Sobre</a> · <a href="/termos/">Termos de uso</a> · <a href="/privacidade/">Privacidade</a></p></div></footer>`;
 
 function page({title, desc, url, body, ogType="website", noindex=false, jsonld=null, modified=""}){
   const ld = jsonld ? `<script type="application/ld+json">${JSON.stringify(jsonld).replace(/</g,"\\u003c")}</script>` : "";
@@ -376,6 +376,29 @@ if (GUIAS.length) {
   write("guias", guiasIndex()); urls.push({ loc: "/guias/", lastmod: NOW.toISOString().slice(0,10), pr: "0.8" });
   for (const g of GUIAS) { write(`guias/${g.slug}`, guiaPage(g)); urls.push({ loc: `/guias/${g.slug}/`, lastmod: g.atualizado || NOW.toISOString().slice(0,10), pr: "0.9" }); }
 }
+// telas do app com endereço próprio (cópias da página principal; o app lê o endereço e abre a tela certa).
+// Sempre que mudar o index.html, rode este script de novo para atualizar as cópias.
+const APP_PAGES = {
+  "buscar": ["Buscar oportunidades gratuitas | Nuriteca", 1], "calendario": ["Calendário de prazos | Nuriteca", 1],
+  "descontos-e-bolsas": ["Descontos e bolsas de estudo | Nuriteca", 1], "intercambios": ["Intercâmbios gratuitos | Nuriteca", 1],
+  "carreira": ["Estágio, trainee e jovem aprendiz | Nuriteca", 1], "contato": ["Fale conosco | Nuriteca", 1],
+  "anuncie": ["Anuncie na Nuriteca", 1], "sobre": ["Sobre a Nuriteca e como verificamos as oportunidades", 1],
+  "termos": ["Termos de uso | Nuriteca", 1], "privacidade": ["Política de privacidade | Nuriteca", 1],
+  "cookies": ["Política de cookies | Nuriteca", 1], "reembolso": ["Política de reembolso | Nuriteca", 0],
+  "teste-concurso": ["Teste: qual concurso combina com você? | Nuriteca", 1], "teste-graduacao": ["Teste: qual faculdade combina com você? | Nuriteca", 1],
+  "minhas": ["Minhas oportunidades | Nuriteca", 0], "alertas": ["Alertas | Nuriteca", 0], "painel": ["Painel | Nuriteca", 0],
+};
+const APP = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
+for (const [slug, [title, idx]] of Object.entries(APP_PAGES)) {
+  const url = `${SITE}/${slug}/`;
+  let h = APP.replace(/<link rel="canonical" href="[^"]*">/, `<link rel="canonical" href="${url}">`)
+             .replace(/<meta property="og:url" content="[^"]*">/, `<meta property="og:url" content="${url}">`)
+             .replace(/<title>[^<]*<\/title>/, `<title>${esc(title)}</title>`);
+  if (!idx) h = h.replace("<head>", `<head><meta name="robots" content="noindex,follow">`);
+  write(slug, h);
+  if (idx) urls.push({ loc: `/${slug}/`, lastmod: NOW.toISOString().slice(0,10), pr: "0.5" });
+}
+
 fs.writeFileSync(path.join(ROOT, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(u => `  <url><loc>${SITE}${u.loc}</loc><lastmod>${u.lastmod}</lastmod><priority>${u.pr}</priority></url>`).join("\n")}\n</urlset>\n`);
 fs.writeFileSync(path.join(ROOT, "robots.txt"), `User-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`);
 console.log(`Páginas geradas: ${n} oportunidades + ${Object.keys(CATS).length} categorias + ${UFS.length} estados + ${GUIAS.length} guias. sitemap.xml com ${urls.length} endereços.`);
