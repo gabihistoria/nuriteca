@@ -632,13 +632,13 @@ function viewInicio(){
     <nav class="cats" aria-label="Categorias">
       ${HOME_CATS.map(k=>[k,CATS[k]]).map(([k,c])=>`<a class="cat" href="/buscar/" data-cat="${k}"><span class="door" style="background:radial-gradient(90% 70% at 50% 20%,color-mix(in srgb,${c.cor} 45%,#fff),${c.cor})">${count(k)}</span>${esc(c.curto)}</a>`).join("")}
     </nav>
-    ${sec("Encerrando em breve", encerrando, "#buscar", 4)}
+    ${sec("Encerrando em breve", encerrando, "/buscar/", 4)}
     ${banner("inicio",["graduacao","concurso"])}
-    ${sec("Novas oportunidades", novas, "#buscar")}
-    ${sec("Concursos abertos", conc, "#buscar")}
-    ${sec("Pós-graduações gratuitas", pos, "#buscar")}
-    ${sec("Graduações com inscrições abertas", grad, "#buscar")}
-    ${sec("Cursos gratuitos com certificado", certificado, "#buscar")}
+    ${sec("Novas oportunidades", novas, "/buscar/")}
+    ${sec("Concursos abertos", conc, "/buscar/")}
+    ${sec("Pós-graduações gratuitas", pos, "/buscar/")}
+    ${sec("Graduações com inscrições abertas", grad, "/buscar/")}
+    ${sec("Cursos gratuitos com certificado", certificado, "/buscar/")}
   </div>`;
 }
 
