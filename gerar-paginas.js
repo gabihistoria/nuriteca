@@ -90,7 +90,7 @@ const FOOTER = `<footer><div class="wrap"><p><strong>Navegue por categoria</stro
 function page({title, desc, url, body, ogType="website", noindex=false, jsonld=null, modified=""}){
   const ld = jsonld ? `<script type="application/ld+json">${JSON.stringify(jsonld).replace(/</g,"\\u003c")}</script>` : "";
   return `<!DOCTYPE html>
-<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="google-adsense-account" content="ca-pub-9947070003952894"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9947070003952894" crossorigin="anonymous"></script><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(title)}</title><meta name="description" content="${esc(desc)}"><link rel="canonical" href="${SITE}${url}">${noindex ? `<meta name="robots" content="noindex,follow">` : `<meta name="robots" content="index,follow,max-image-preview:large">`}${modified ? `<meta property="article:modified_time" content="${esc(modified)}">` : ""}${ld}
 <meta property="og:type" content="${ogType}"><meta property="og:site_name" content="Nuriteca"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(desc)}"><meta property="og:url" content="${SITE}${url}"><meta property="og:image" content="${SITE}/icon-512.png"><meta property="og:locale" content="pt_BR">
 <meta name="theme-color" content="#FBF4EC">${ICON}${FONTS}<style>${CSS}</style></head>
