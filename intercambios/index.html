@@ -621,7 +621,7 @@ function banner(onde, extras=[]){
   const slot=b=>{
     let href=b.link; try{ const u=new URL(b.link); if(b.utm!==false && !/shopee|amazon|mercadoli|amzn/.test(u.hostname)){ u.searchParams.set("utm_source","nuriteca"); u.searchParams.set("utm_medium","banner"); u.searchParams.set("utm_campaign",b.id||"parceiro"); href=u.toString(); } }catch(e){}
     return `<a class="ad" href="${esc(href)}" target="_blank" rel="sponsored noopener" style="--bn:${esc(b.cor||"var(--coral)")}">
-      ${b.imagem?`<span class="ad-img"><img src="${esc(b.imagem)}" alt="${esc(b.titulo||"")}" loading="lazy"></span>`:""}
+      ${b.imagem?`<span class="ad-img"><img src="${esc(/^(https?:)?\/\//.test(b.imagem)||b.imagem.startsWith("/")?b.imagem:"/"+b.imagem)}" alt="${esc(b.titulo||"")}" loading="lazy"></span>`:""}
       <span class="ad-body">${b.loja?`<span class="ad-loja">${esc(b.loja)}</span>`:""}<strong>${esc(b.titulo||"")}</strong>${b.texto?`<span class="ad-txt">${esc(b.texto)}</span>`:""}<em>${esc(b.botao||"Ver oferta")} →</em></span></a>`;
   };
   const vazio=`<a class="ad ad-vazio" href="/anuncie/"><span class="ad-body"><span class="ad-mais">+</span><strong>Seu anúncio aqui</strong><span class="ad-txt">Fale com a Nuriteca</span></span></a>`;
@@ -704,7 +704,7 @@ function viewInicio(){
       ${HOME_CATS.map(k=>[k,CATS[k]]).map(([k,c])=>`<a class="cat" href="/buscar/" data-cat="${k}"><span class="door" style="background:radial-gradient(90% 70% at 50% 20%,color-mix(in srgb,${c.cor} 45%,#fff),${c.cor})">${count(k)}</span>${esc(c.curto)}</a>`).join("")}
     </nav>
     ${sec("Encerrando em breve", encerrando, "/buscar/", 4)}
-    ${banner("inicio",["graduacao","concurso","curriculo"])}
+    ${banner("inicio",["concurso","curriculo"])}
     ${sec("Novas oportunidades", novas, "/buscar/")}
     ${sec("Concursos abertos", conc, "/buscar/")}
     ${sec("Pós-graduações gratuitas", pos, "/buscar/")}
