@@ -386,14 +386,16 @@ const APP_PAGES = {
   "termos": ["Termos de uso | Nuriteca", 1], "privacidade": ["Política de privacidade | Nuriteca", 1],
   "cookies": ["Política de cookies | Nuriteca", 1], "reembolso": ["Política de reembolso | Nuriteca", 0],
   "teste-concurso": ["Teste: qual concurso combina com você? | Nuriteca", 1], "teste-graduacao": ["Teste: qual faculdade combina com você? | Nuriteca", 1],
+  "curriculo": ["Criador de currículo grátis: 3 modelos para baixar em PDF | Nuriteca", 1, "Crie seu currículo profissional grátis e sem cadastro. Escolha entre 3 modelos, inclusive um para primeiro emprego, preencha e baixe em PDF."],
   "minhas": ["Minhas oportunidades | Nuriteca", 0], "alertas": ["Alertas | Nuriteca", 0], "painel": ["Painel | Nuriteca", 0],
 };
 const APP = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
-for (const [slug, [title, idx]] of Object.entries(APP_PAGES)) {
+for (const [slug, [title, idx, desc]] of Object.entries(APP_PAGES)) {
   const url = `${SITE}/${slug}/`;
   let h = APP.replace(/<link rel="canonical" href="[^"]*">/, `<link rel="canonical" href="${url}">`)
              .replace(/<meta property="og:url" content="[^"]*">/, `<meta property="og:url" content="${url}">`)
              .replace(/<title>[^<]*<\/title>/, `<title>${esc(title)}</title>`);
+  if (desc) h = h.replace(/<meta name="description" content="[^"]*">/, `<meta name="description" content="${esc(desc)}">`);
   if (!idx) h = h.replace("<head>", `<head><meta name="robots" content="noindex,follow">`);
   write(slug, h);
   if (idx) urls.push({ loc: `/${slug}/`, lastmod: NOW.toISOString().slice(0,10), pr: "0.5" });

@@ -304,6 +304,75 @@ footer .wrap{display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap}
 .quiz-res h2{font-size:clamp(30px,5vw,40px);margin:12px 0 10px}.quiz-alt{display:grid;gap:8px;margin-top:18px}
 .quiz-alt div{display:flex;justify-content:space-between;gap:10px;padding:10px 14px;border-radius:12px;background:var(--bg);font-size:15px}
 .quiz-acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+
+/* ---------- criador de currículo ---------- */
+.cv-wrap{padding-top:22px;padding-bottom:30px}
+.cv-intro h1{font-size:clamp(30px,5vw,42px);margin:8px 0 6px}.cv-intro .note{max-width:70ch}
+.cv-modelos{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0 20px}
+.cv-mod{display:grid;gap:4px;text-align:left;font:inherit;color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:var(--radius);padding:12px;cursor:pointer}
+.cv-mod[aria-checked="true"]{border-color:var(--terracota);box-shadow:0 0 0 3px color-mix(in srgb,var(--terracota) 22%,transparent)}
+.cv-mod small{color:var(--muted);font-size:13px;line-height:1.35}
+.cv-thumb{display:grid;gap:5px;height:74px;padding:9px;border-radius:10px;background:#fff;border:1px solid #e6ded6;margin-bottom:4px;align-content:start}
+.cv-thumb i{display:block;height:6px;border-radius:3px;background:#d9d2cb}.cv-thumb i:first-child{height:9px;width:55%;background:#3a3330}
+.cv-thumb-classico i:first-child{margin:0 auto}
+.cv-thumb-moderno{background:linear-gradient(90deg,#B9583C 0 30%,#fff 30%)}.cv-thumb-moderno i{margin-left:34%}.cv-thumb-moderno i:first-child{background:#fff;margin-left:0;width:24%}
+.cv-thumb-primeiro{border-top:6px solid #E8735F}.cv-thumb-primeiro i:nth-child(3){width:70%;background:#f3c9bf}
+.cv-app{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:22px;align-items:start}
+.cv-form{display:grid;gap:14px}
+.cv-fs{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);padding:12px 14px 14px;margin:0;min-width:0}
+.cv-fs legend{font-family:var(--display);font-weight:600;font-size:19px;padding:0 6px}
+.cv-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.cv-grid .field:has(textarea){grid-column:1/-1}
+.cv-fs>.field{margin-top:4px}.cv-fs textarea{font:inherit;font-size:15px;resize:vertical}
+.cv-item{border-bottom:1px dashed var(--line);padding:8px 0 12px;margin-bottom:10px}
+.cv-item-head{display:flex;justify-content:space-between;align-items:center;font-size:14px;color:var(--muted);margin-bottom:6px}
+.cv-x{font:inherit;font-size:13px;background:none;border:0;color:var(--terracota);text-decoration:underline;cursor:pointer}
+.cv-prev{position:sticky;top:12px}
+.cv-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
+.cv-scale{position:relative;overflow:hidden;border-radius:6px;box-shadow:var(--shadow);background:#fff}
+.cv-page{width:210mm;min-height:297mm;background:#fff;color:#1f1b19;transform-origin:top left;position:absolute;top:0;left:0}
+.cv-dica{margin-top:10px}.cv-ver{display:none}
+.cv-dicas{max-width:760px;margin-top:34px}
+@media (max-width:900px){.cv-ver{display:flex;justify-content:center;margin-top:14px}#cv-prev{scroll-margin-top:12px}.cv-app{grid-template-columns:1fr}.cv-prev{position:static}.cv-modelos{grid-template-columns:1fr}.cv-mod{grid-template-columns:90px 1fr;column-gap:12px}.cv-mod .cv-thumb{grid-row:span 2;height:64px}}
+@media (max-width:520px){.cv-grid{grid-template-columns:1fr}}
+/* o currículo em si: sempre papel branco, mesmo no modo escuro */
+.cv{font-family:"DM Sans",Arial,sans-serif;font-size:10.5pt;line-height:1.45;color:#1f1b19;min-height:297mm}
+.cv h1{margin:0;font-weight:700;line-height:1.1}.cv h3{margin:0 0 6px;font-size:10pt;letter-spacing:.08em;text-transform:uppercase}
+.cv p{margin:0 0 4px}.cv ul{margin:2px 0 0;padding-left:16px}.cv li{margin:1px 0}
+.cv .cvs{margin-top:13px;break-inside:avoid-page}.cv .cv-ent{margin-bottom:9px;break-inside:avoid}
+.cv-ent-top{display:flex;justify-content:space-between;gap:10px}.cv-ent-top span{white-space:nowrap;color:#6b605a;font-size:9.5pt}
+.cv-ent-sub{color:#5b514c;font-size:10pt}.cv-dim{color:#8a7f79}
+.cv .cv-plain{list-style:none;padding:0}
+.cv .cv-tags{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:5px}.cv-tags li{padding:2px 9px;border-radius:99px;font-size:9.5pt}
+.cv-cargo{font-size:12pt}
+/* Clássico */
+.cv-classico{padding:16mm 18mm}.cv-classico .cv-head{text-align:center;border-bottom:1.5px solid #1f1b19;padding-bottom:10px}
+.cv-classico h1{font-family:Georgia,"Times New Roman",serif;font-size:24pt;font-weight:400;letter-spacing:.02em}
+.cv-classico .cv-cargo{color:#4a413c;margin-top:3px}.cv-classico .cv-contato{font-size:9.5pt;color:#4a413c;margin-top:5px}
+.cv-classico h3{border-bottom:.75px solid #bdb3ac;padding-bottom:3px;font-family:Georgia,serif;letter-spacing:.12em}
+/* Moderno */
+.cv-moderno{display:grid;grid-template-columns:66mm 1fr}
+.cv-side{background:#B9583C;color:#fff;padding:16mm 8mm 12mm 10mm;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.cv-side h1{font-family:Fraunces,Georgia,serif;font-size:21pt;font-weight:600;color:#fff}.cv-side .cv-cargo{color:#fde6dc;margin-top:4px;font-size:11pt}
+.cv-side h3{color:#fff;border-bottom:1px solid rgba(255,255,255,.4);padding-bottom:3px;margin-top:4px}.cv-side .cvs{margin-top:16px}
+.cv-side li,.cv-side p{color:#fff;overflow-wrap:anywhere}.cv-side .cv-tags li{background:rgba(255,255,255,.18)}
+.cv-main{padding:16mm 12mm 12mm 10mm}.cv-main h3{color:#B9583C}.cv-main .cvs:first-child{margin-top:0}
+/* Primeiro emprego */
+.cv-primeiro{padding:0 18mm 16mm;border-top:7mm solid #E8735F;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.cv-primeiro .cv-head{padding-top:11mm;padding-bottom:8px;border-bottom:1px solid #eadbcb}
+.cv-primeiro h1{font-family:Fraunces,Georgia,serif;font-size:24pt;font-weight:600}.cv-primeiro .cv-cargo{color:#B9583C;font-weight:600;margin-top:2px}
+.cv-primeiro .cv-contato{font-size:9.5pt;color:#4a413c;margin-top:4px}
+.cv-primeiro h3{color:#B9583C;display:flex;align-items:center;gap:8px}.cv-primeiro h3::after{content:"";flex:1;height:1px;background:#eadbcb}
+.cv-primeiro .cv-tags li{background:#fbe3dc;color:#7a3523;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.cv-classico .cv-tags li{border:1px solid #bdb3ac}
+@media print{
+  @page{size:A4;margin:0}
+  body.cv-print{background:#fff}
+  body.cv-print>*:not(main),body.cv-print .cv-intro,body.cv-print .cv-modelos,body.cv-print .cv-form,body.cv-print .cv-bar,body.cv-print .cv-dica,body.cv-print .cv-dicas{display:none!important}
+  body.cv-print .wrap,body.cv-print .cv-app{display:block;padding:0;margin:0;max-width:none;width:auto}
+  body.cv-print .cv-scale{height:auto!important;overflow:visible;box-shadow:none;border-radius:0}
+  body.cv-print .cv-page{position:static;transform:none!important;width:210mm;min-height:0}
+  body.cv-print .cv{min-height:297mm}
+}
 </style>
 </head>
 <body>
@@ -333,7 +402,7 @@ footer .wrap{display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap}
   <div class="wrap">
     <a class="foot-insta" href="https://www.instagram.com/nuriteca/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg><span>Novas oportunidades todos os dias no Instagram: <b>@nuriteca</b></span><em>Seguir →</em></a>
     <span>Nuriteca reúne oportunidades e leva você ao site oficial. Aqui não há inscrição nem cobrança.</span>
-    <span class="foot-links foot-cats"><a href="/concursos/">Concursos</a><a href="/cursos/">Cursos gratuitos</a><a href="/graduacao/">Graduação</a><a href="/pos-graduacao/">Pós-graduação</a><a href="/mestrado-e-doutorado/">Mestrado e doutorado</a><a href="/bolsas/">Bolsas</a><a href="/intercambios-gratuitos/">Intercâmbios gratuitos</a><a href="/estagio-e-trainee/">Estágio e trainee</a><a href="/estados/">Por estado</a><a href="/guias/">Guias</a></span>
+    <span class="foot-links foot-cats"><a href="/concursos/">Concursos</a><a href="/cursos/">Cursos gratuitos</a><a href="/graduacao/">Graduação</a><a href="/pos-graduacao/">Pós-graduação</a><a href="/mestrado-e-doutorado/">Mestrado e doutorado</a><a href="/bolsas/">Bolsas</a><a href="/intercambios-gratuitos/">Intercâmbios gratuitos</a><a href="/estagio-e-trainee/">Estágio e trainee</a><a href="/estados/">Por estado</a><a href="/curriculo/">Criar currículo</a><a href="/guias/">Guias</a></span>
     <span class="foot-links"><a href="/contato/">Fale conosco</a><a href="/anuncie/">Anuncie</a><a href="/alertas/">Alertas</a><a href="/sobre/">Como verificamos</a><span>Criado por: <a href="https://www.instagram.com/gabihistoriaa/" target="_blank" rel="noopener">@gabihistoriaa</a></span></span>
     <span class="foot-copy">© 2026 Gabi História LTDA. Todos os direitos reservados. Gabi História® é marca registrada no INPI. É proibida a reprodução total ou parcial de textos, imagens e vídeos deste site sem autorização prévia, conforme a Lei nº 9.610/98.</span>
     <span class="foot-legal">Páginas legais: <a href="/termos/">Termos de uso</a> · <a href="/privacidade/">Privacidade</a> · <a href="/cookies/">Cookies</a></span>
@@ -343,6 +412,7 @@ footer .wrap{display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap}
 
 <script src="/data.js"></script>
 <script src="/banners.js"></script>
+<script src="/curriculo.js"></script>
 <script src="/testes.js"></script>
 <script>
 (function(){
@@ -554,7 +624,7 @@ function banner(onde, extras=[]){
       <span class="ad-body">${b.loja?`<span class="ad-loja">${esc(b.loja)}</span>`:""}<strong>${esc(b.titulo||"")}</strong>${b.texto?`<span class="ad-txt">${esc(b.texto)}</span>`:""}<em>${esc(b.botao||"Ver oferta")} →</em></span></a>`;
   };
   const vazio=`<a class="ad ad-vazio" href="/anuncie/"><span class="ad-body"><span class="ad-mais">+</span><strong>Seu anúncio aqui</strong><span class="ad-txt">Fale com a Nuriteca</span></span></a>`;
-  const slots=bs.map(slot); if(extras.length) slots.splice(Math.min(1,slots.length),0,...extras.map(cardTeste)); while(slots.length<4) slots.push(vazio);
+  const slots=bs.map(slot); if(extras.length) slots.splice(Math.min(1,slots.length),0,...extras.map(k=>k==="curriculo"?cardCurriculo():cardTeste(k))); while(slots.length<4) slots.push(vazio);
   return `<aside class="ads" aria-label="${extras.length?"Testes e publicidade":"Publicidade"}"><small>${extras.length?"Testes e publicidade":"Publicidade"}</small><div class="ads-grid">${slots.join("")}</div></aside>`;
 }
 const grid = list => list.length ? `<div class="grid">${list.map(card).join("")}</div>` : `<div class="empty">Nada por aqui no momento.</div>`;
@@ -633,7 +703,7 @@ function viewInicio(){
       ${HOME_CATS.map(k=>[k,CATS[k]]).map(([k,c])=>`<a class="cat" href="/buscar/" data-cat="${k}"><span class="door" style="background:radial-gradient(90% 70% at 50% 20%,color-mix(in srgb,${c.cor} 45%,#fff),${c.cor})">${count(k)}</span>${esc(c.curto)}</a>`).join("")}
     </nav>
     ${sec("Encerrando em breve", encerrando, "/buscar/", 4)}
-    ${banner("inicio",["graduacao","concurso"])}
+    ${banner("inicio",["graduacao","concurso","curriculo"])}
     ${sec("Novas oportunidades", novas, "/buscar/")}
     ${sec("Concursos abertos", conc, "/buscar/")}
     ${sec("Pós-graduações gratuitas", pos, "/buscar/")}
@@ -876,7 +946,7 @@ function viewCarreira(){
     <h1 style="font-size:40px;margin-top:10px">Estágio, trainee e jovem aprendiz</h1>
     <p class="note" style="max-width:64ch">Programas de grandes empresas para quem está começando a carreira. A inscrição é sempre gratuita e feita no site oficial de cada empresa. Desconfie de quem cobra para inscrever você.</p>
     ${balaoIA()}
-    ${banner("carreira")}
+    ${banner("carreira",["curriculo"])}
     <section class="block"><div class="block-head"><h2>Inscrições abertas</h2></div>${abertas.length?grid(abertas):`<div class="empty">Nenhum programa com inscrições abertas agora. Veja abaixo quando os principais costumam abrir.</div>`}</section>
     <section class="block"><div class="block-head"><h2>Programas para ficar de olho</h2></div><p class="note">Abrem todo ano. Quando abrir a próxima edição, aparece em "Inscrições abertas".</p>
       <div class="prog-grid">${PROGRAMAS_CARREIRA.map(p=>`<article class="prog"><h3>${esc(p.nome)}</h3><p><b>Quem pode:</b> ${esc(p.quem)}</p><p><b>O que oferece:</b> ${esc(p.oque)}</p><p><b>Quando abre:</b> ${esc(p.quando)}</p>${p.link?`<a href="${esc(p.link)}" target="_blank" rel="noopener">Site oficial ↗</a>`:""}</article>`).join("")}</div>
@@ -928,7 +998,7 @@ privacidade:{t:"Política de privacidade", h:`
 <h2>2. Você não precisa de cadastro</h2>
 <p>Para pesquisar oportunidades não é preciso criar conta nem informar nenhum dado pessoal.</p>
 <h2>3. Dados que ficam só no seu aparelho</h2>
-<p>As oportunidades salvas, os alertas e os filtros de busca ficam guardados <b>apenas no seu navegador</b> (armazenamento local). Eles não são enviados para a Nuriteca. Você pode apagá-los limpando os dados do site no navegador.</p>
+<p>As oportunidades salvas, os alertas, os filtros de busca e o currículo que você monta no <a href="/curriculo/">criador de currículo</a> ficam guardados <b>apenas no seu navegador</b> (armazenamento local). Eles não são enviados para a Nuriteca. Você pode apagá-los limpando os dados do site no navegador.</p>
 <h2>4. Dados que você nos envia</h2>
 <p><b>Fale conosco:</b> nome, e-mail, assunto e mensagem, usados apenas para responder você. O envio passa pelo serviço FormSubmit, que entrega a mensagem no nosso e-mail. A base legal é o atendimento ao seu pedido.</p>
 <h2>5. Dados técnicos e estatísticas</h2>
@@ -1122,9 +1192,9 @@ function viewTeste(k){
 window.QZ=QZ;window.qzResp=qzResp;window.qzVolta=qzVolta;window.render=render;
 function qzResp(k,oi){ const st=qzState(k); st.r[st.i]=oi; st.i++; render(); window.scrollTo(0,0); }
 function qzVolta(k){ const st=qzState(k); if(st.i>0){ st.i--; st.r.length=st.i; } render(); }
-const VIEWS = {"teste-graduacao":()=>viewTeste("graduacao"), "teste-concurso":()=>viewTeste("concurso"), inicio:viewInicio, descontos:viewDescontos, intercambios:viewIntercambios, carreira:viewCarreira, contato:viewContato, anuncie:viewAnuncie, termos:()=>viewLegal("termos"), privacidade:()=>viewLegal("privacidade"), cookies:()=>viewLegal("cookies"), reembolso:()=>viewLegal("reembolso"), buscar:viewBuscar, calendario:viewCalendario, minhas:viewMinhas, alertas:viewAlertas, admin:viewAdmin, sobre:viewSobre};
+const VIEWS = {"teste-graduacao":()=>viewTeste("graduacao"), "teste-concurso":()=>viewTeste("concurso"), inicio:viewInicio, descontos:viewDescontos, intercambios:viewIntercambios, carreira:viewCarreira, contato:viewContato, anuncie:viewAnuncie, termos:()=>viewLegal("termos"), privacidade:()=>viewLegal("privacidade"), cookies:()=>viewLegal("cookies"), reembolso:()=>viewLegal("reembolso"), buscar:viewBuscar, calendario:viewCalendario, minhas:viewMinhas, alertas:viewAlertas, admin:viewAdmin, sobre:viewSobre, curriculo:()=>viewCurriculo()};
 /* ---------- endereços: cada tela e cada oportunidade tem um endereço próprio (contabilizado no Cloudflare) ---------- */
-const VIEW_PATH = {"inicio": "/", "buscar": "/buscar/", "calendario": "/calendario/", "minhas": "/minhas/", "descontos": "/descontos-e-bolsas/", "intercambios": "/intercambios/", "carreira": "/carreira/", "contato": "/contato/", "anuncie": "/anuncie/", "termos": "/termos/", "privacidade": "/privacidade/", "cookies": "/cookies/", "reembolso": "/reembolso/", "alertas": "/alertas/", "admin": "/painel/", "sobre": "/sobre/", "teste-graduacao": "/teste-graduacao/", "teste-concurso": "/teste-concurso/"};
+const VIEW_PATH = {"inicio": "/", "buscar": "/buscar/", "calendario": "/calendario/", "minhas": "/minhas/", "descontos": "/descontos-e-bolsas/", "intercambios": "/intercambios/", "carreira": "/carreira/", "contato": "/contato/", "anuncie": "/anuncie/", "termos": "/termos/", "privacidade": "/privacidade/", "cookies": "/cookies/", "reembolso": "/reembolso/", "alertas": "/alertas/", "admin": "/painel/", "sobre": "/sobre/", "teste-graduacao": "/teste-graduacao/", "teste-concurso": "/teste-concurso/", "curriculo": "/curriculo/"};
 const PATH_VIEW = Object.fromEntries(Object.entries(VIEW_PATH).map(([k,v])=>[v,k]));
 const CAT_SLUG = {concursos:"concursos",cursos:"cursos",graduacao:"graduacao",pos:"pos-graduacao",stricto:"mestrado-e-doutorado",bolsas:"bolsas",descontos:"descontos",intercambio:"intercambios-gratuitos",carreira:"estagio-e-trainee"};
 const SLUG_CAT = Object.fromEntries(Object.entries(CAT_SLUG).map(([k,v])=>[v,k]));
@@ -1151,8 +1221,9 @@ function render(){
   $("#nav-admin").hidden = !isAdmin;
   const key = location.pathname;
   if(key!==lastRoute){ window.scrollTo(0,0); lastRoute = key; }
+  if(r.v==="curriculo" && window.cvInit) cvInit();
   if(r.v==="alertas"){ const ids=new Set(store.get("vistos",[])); store.get("alertas",[]).forEach(a=>alertMatches(a).forEach(o=>ids.add(o.id))); setTimeout(()=>store.set("vistos",[...ids]),0); }
-  if(r.v==="op"){ const o=DATA.find(x=>x.id===r.id); document.title = o ? o.titulo+" · Nuriteca" : "Nuriteca"; } else document.title = r.v==="inicio" ? "Nuriteca: concursos, cursos, bolsas, intercâmbios e estágios gratuitos" : "Nuriteca";
+  if(r.v==="op"){ const o=DATA.find(x=>x.id===r.id); document.title = o ? o.titulo+" · Nuriteca" : "Nuriteca"; } else if(r.v==="curriculo") document.title = "Criador de currículo grátis | Nuriteca"; else document.title = r.v==="inicio" ? "Nuriteca: concursos, cursos, bolsas, intercâmbios e estágios gratuitos" : "Nuriteca";
 }
 window.addEventListener("popstate", render);
 
