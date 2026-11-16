@@ -87,3 +87,7 @@ Ficam no `guias.js`. Cada guia tem `slug` (endereço), `titulo`, `seoTitulo`, `d
 
 ## Endereços das páginas (desde 10/11/2026)
 Cada tela do app tem endereço próprio (/buscar/, /sobre/, /contato/, /termos/ etc.) e cada oportunidade abre no endereço da sua página (/concursos/<id>/), para o Cloudflare contar as visitas por página. As pastas dessas telas são cópias do index.html geradas pelo gerar-paginas.js: **sempre que mudar o index.html, rode `node gerar-paginas.js` de novo** para atualizar as cópias. Links antigos com # (ex.: /#op-xyz, /#contato) continuam funcionando e são convertidos para o endereço novo.
+
+## Números do site
+
+Os contadores (total de oportunidades, abertas e número por categoria) são calculados sozinhos a partir do `data.js`. O `gerar-paginas.js` coloca uma versão nova no endereço do `data.js` (`/data.js?v=...`) a cada execução, para que o navegador de quem visita baixe os dados novos na hora, em vez de mostrar números antigos guardados.
