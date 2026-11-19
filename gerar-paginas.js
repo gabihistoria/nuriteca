@@ -389,12 +389,13 @@ const APP_PAGES = {
   "curriculo": ["Criador de currículo grátis: 3 modelos para baixar em PDF | Nuriteca", 1, "Crie seu currículo profissional grátis e sem cadastro. Escolha entre 3 modelos, inclusive um para primeiro emprego, preencha e baixe em PDF."],
   "minhas": ["Minhas oportunidades | Nuriteca", 0], "alertas": ["Alertas | Nuriteca", 0], "painel": ["Painel | Nuriteca", 0],
 };
-// Versão do data.js: muda a cada geração, para o navegador do visitante baixar os dados novos (e os números do site atualizarem na hora).
+// Versão do data.js e do banners.js: muda a cada geração, para o navegador do visitante baixar os dados novos (e os números do site atualizarem na hora).
 const DATA_V = new Date().toISOString().slice(0, 16).replace(/[-T:]/g, "");
 {
   const ip = path.join(ROOT, "index.html");
   const src = fs.readFileSync(ip, "utf8");
-  const out = src.replace(/<script src="\/data\.js(\?v=[0-9]+)?">/, `<script src="/data.js?v=${DATA_V}">`);
+  const out = src.replace(/<script src="\/data\.js(\?v=[0-9]+)?">/, `<script src="/data.js?v=${DATA_V}">`)
+    .replace(/<script src="\/banners\.js(\?v=[0-9]+)?">/, `<script src="/banners.js?v=${DATA_V}">`);
   if (out !== src) fs.writeFileSync(ip, out);
 }
 const APP = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
