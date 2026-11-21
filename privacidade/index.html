@@ -285,6 +285,16 @@ footer .wrap{display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap}
 .balao p{margin:0;font-size:15.5px;line-height:1.4}.balao b{font-family:Fraunces,serif;font-size:18px;display:block;margin-bottom:2px}
 .balao a.ir{display:inline-block;margin-top:6px;font-weight:700;color:var(--lilas)}
 .balao-x{position:absolute;top:8px;right:10px;border:0;background:none;font-size:20px;line-height:1;color:var(--muted);cursor:pointer;padding:6px}
+.promo-bg{position:fixed;inset:0;z-index:999;display:grid;place-items:center;padding:18px;background:rgba(30,24,21,.55);animation:promoFade .3s ease both}
+.promo{position:relative;max-width:440px;width:100%;padding:28px 24px 22px;border-radius:24px;background:var(--surface);color:var(--ink);border:1.5px solid var(--line);box-shadow:0 20px 60px rgba(0,0,0,.25);text-align:center;animation:balaoPop .5s cubic-bezier(.34,1.56,.64,1) both}
+.promo-tag{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--terracota);background:color-mix(in srgb,var(--coral) 14%,var(--surface));padding:5px 12px;border-radius:999px}
+.promo h2{font-family:Fraunces,serif;font-size:26px;line-height:1.15;margin:12px 0 8px}
+.promo p{margin:0 0 18px;font-size:15.5px;line-height:1.45;color:var(--muted)}
+.promo .btn-promo{display:block;padding:13px 18px;border-radius:999px;background:var(--coral);color:#fff;font-weight:700;text-decoration:none}
+.promo .depois{margin-top:10px;border:0;background:none;color:var(--muted);font-size:14px;cursor:pointer;padding:6px}
+.promo-x{position:absolute;top:8px;right:12px;border:0;background:none;font-size:24px;line-height:1;color:var(--muted);cursor:pointer;padding:6px}
+@keyframes promoFade{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.promo,.promo-bg{animation:none}}
 @keyframes balaoPop{0%{opacity:0;transform:translateY(10px) scale(.85)}100%{opacity:1;transform:none}}
 @keyframes balaoBrilho{0%,100%{transform:rotate(0)}50%{transform:rotate(-8deg) scale(1.06)}}
 @media (prefers-reduced-motion:reduce){.balao,.balao-ico{animation:none}}
@@ -411,8 +421,8 @@ footer .wrap{display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap}
 </footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="/data.js?v=202611211504"></script>
-<script src="/banners.js?v=202611211504"></script>
+<script src="/data.js?v=202611211529"></script>
+<script src="/banners.js?v=202611211529"></script>
 <script src="/curriculo.js"></script>
 <script src="/testes.js"></script>
 <script>
@@ -1326,5 +1336,29 @@ render();
 })();
 </script>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4630aa3a77ee4dfab0a3afe9851de284"}'></script><!-- End Cloudflare Web Analytics -->
+<script>
+/* Popup de destaque: aparece uma vez por visitante e some sozinho depois do prazo. Para trocar, mude PROMO. */
+(function(){
+  var PROMO={id:"dubai-pfl-2026", ate:"2026-12-22T02:59:00Z", link:"/guias/sorteio-viagem-dubai-pfl/",
+    tag:"Sorteio gratuito", titulo:"Viagem para Dubai com acompanhante, de graça",
+    texto:"Uma liga de MMA está sorteando viagem para duas pessoas, com passagem, hotel, ingressos e US$ 1.000. E brasileiro pode participar. Inscrições até 21/12.",
+    botao:"Ver como participar"};
+  try{
+    if(new Date()>new Date(PROMO.ate)) return;
+    if(location.pathname.indexOf(PROMO.link)===0) return;
+    if(localStorage.getItem("promo-visto")===PROMO.id) return;
+  }catch(e){}
+  function fechar(){ try{localStorage.setItem("promo-visto",PROMO.id)}catch(e){} var b=document.getElementById("promo-bg"); if(b) b.remove(); document.removeEventListener("keydown",esc); }
+  function esc(e){ if(e.key==="Escape") fechar(); }
+  setTimeout(function(){
+    var bg=document.createElement("div"); bg.className="promo-bg"; bg.id="promo-bg";
+    bg.innerHTML='<div class="promo" role="dialog" aria-modal="true" aria-labelledby="promo-t"><button class="promo-x" type="button" aria-label="Fechar">×</button><span class="promo-tag">'+PROMO.tag+'</span><h2 id="promo-t">'+PROMO.titulo+'</h2><p>'+PROMO.texto+'</p><a class="btn-promo" href="'+PROMO.link+'">'+PROMO.botao+' →</a><button class="depois" type="button">Agora não</button></div>';
+    bg.addEventListener("click",function(e){ if(e.target===bg||e.target.classList.contains("promo-x")||e.target.classList.contains("depois")) fechar(); });
+    bg.querySelector(".btn-promo").addEventListener("click",function(){ try{localStorage.setItem("promo-visto",PROMO.id)}catch(e){} });
+    document.body.appendChild(bg); document.addEventListener("keydown",esc);
+    bg.querySelector(".btn-promo").focus();
+  },1200);
+})();
+</script>
 </body>
 </html>
