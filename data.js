@@ -6603,5 +6603,37 @@ window.SNAPSHOT = [
     "seo": {
       "titulo": "Bolsa Gates Cambridge 2027: pós com tudo pago"
     }
+  },
+  {
+    "id": "sorteio-pfl-road-to-dubai-2026",
+    "titulo": "Sorteio PFL Road to Dubai: viagem para Dubai com acompanhante para ver um evento de MMA",
+    "categoria": "bolsas",
+    "subtipo": "Sorteio de viagem",
+    "instituicao": "Professional Fighters League (PFL)",
+    "estado": "Nacional",
+    "municipio": "Dubai (Emirados Árabes Unidos)",
+    "area": "Viagem e esporte",
+    "modalidade": "Online (inscrição) e presencial (viagem)",
+    "vagas": "1 ganhador no último sorteio (4 no total, um por período)",
+    "escolaridade": "Não exigida",
+    "descricao": "Sorteio gratuito da liga de MMA PFL, aberto a residentes no Brasil maiores de idade. O prêmio é uma viagem de 5 dias e 4 noites para duas pessoas a um evento da PFL em Dubai no 1º trimestre de 2027, com passagens, hotel, dois ingressos e US$ 1.000 para gastos. O último período vai até 21/12/2026, com sorteio por volta de 22/12.",
+    "prerequisitos": "Morar legalmente no Brasil (ou nos EUA, Reino Unido, Espanha ou França) e ter a maioridade. Ganhador e acompanhante precisam de passaporte válido por pelo menos 6 meses depois da viagem; o acompanhante também precisa ser maior de idade e morar num dos países participantes.",
+    "documentos": "Na inscrição, só o formulário com uma enquete e os dados pessoais. Quem ganhar assina uma declaração de elegibilidade em até 3 dias.",
+    "abertura": "2026-08-24",
+    "encerramento": "2026-12-21T23:59",
+    "taxa": "Gratuito. Comprar algo não aumenta as chances.",
+    "isencao": "Não se aplica.",
+    "gratuidade": "Viagem para 2 pessoas com passagem, hotel, ingressos e US$ 1.000 (valor estimado de US$ 7.500)",
+    "certificacao": "Não se aplica.",
+    "linkEdital": "https://pflmma.com/roadtodubai-rules",
+    "linkInscricao": "https://pflmma.com/roadtodubai",
+    "siteOficial": "https://pflmma.com",
+    "fonte": "https://pflmma.com/roadtodubai-rules",
+    "fonteTipo": "oficial",
+    "verificadoEm": "2026-11-21",
+    "seo": {
+      "titulo": "Sorteio PFL Road to Dubai: viagem grátis para Dubai",
+      "descricao": "Sorteio gratuito aberto a brasileiros: viagem para 2 pessoas a Dubai para ver MMA, com passagem, hotel e US$ 1.000. Inscrições até 21/12/2026."
+    }
   }
 ];

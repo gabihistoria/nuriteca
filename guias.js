@@ -2,6 +2,71 @@
 // Cada guia vira uma página em /guias/<slug>/. O bloco "abertos" lista sozinho o que está aberto no data.js.
 window.GUIAS = [
 {
+  slug: "sorteio-viagem-dubai-pfl",
+  categorias: ["bolsas"],
+  titulo: "Sorteio de viagem para Dubai: como concorrer ao PFL Road to Dubai",
+  seoTitulo: "Sorteio PFL Road to Dubai: viagem grátis para Dubai aberta a brasileiros",
+  descricao: "A liga de MMA PFL sorteia uma viagem para duas pessoas a Dubai, com passagem, hotel, ingressos e US$ 1.000, e o Brasil está entre os países participantes. Veja como se inscrever até 21/12/2026.",
+  publicado: "2026-11-21",
+  atualizado: "2026-11-21",
+  html: `
+<p>Sorteio de viagem internacional que aceita brasileiro é raro. A maioria vale só para quem mora nos Estados Unidos. O <b>PFL Road to Dubai</b> é uma exceção: a Professional Fighters League, uma das maiores ligas de MMA do mundo, está sorteando viagens para Dubai e incluiu o Brasil entre os países participantes. A inscrição é gratuita, leva poucos minutos e vai até <b>21 de dezembro de 2026</b>.</p>
+
+<h2>O que é o Road to Dubai</h2>
+<p>Road to Dubai é a série de eventos de MMA que a PFL faz em Dubai desde 2025, numa parceria com o governo local, por meio do Departamento de Economia e Turismo e do Conselho de Esportes de Dubai. As lutas acontecem na Coca-Cola Arena, no bairro de City Walk. O sorteio é uma das ações de divulgação dessa parceria.</p>
+
+<h2>O que o prêmio inclui</h2>
+<ul>
+<li>Viagem de <b>5 dias e 4 noites para duas pessoas</b> a um evento da PFL em Dubai, no <b>primeiro trimestre de 2027</b>;</li>
+<li>Passagens de ida e volta em classe econômica, saindo do aeroporto principal mais perto de casa;</li>
+<li>Hotel, em quarto duplo;</li>
+<li><b>Dois ingressos</b> para o evento na Coca-Cola Arena;</li>
+<li><b>US$ 1.000</b> para gastos.</li>
+</ul>
+<p>O regulamento estima o valor de cada prêmio em US$ 7.500. A data exata da viagem e o evento escolhido são definidos pela PFL.</p>
+
+<h2>Quem pode participar</h2>
+<p>Moradores legais do Brasil, dos Estados Unidos, do Reino Unido, da Espanha e da França, com a maioridade do seu país. Funcionários da PFL, da empresa que organiza o sorteio e familiares deles não podem participar.</p>
+
+<h2>Como se inscrever</h2>
+<ol>
+<li>Entre no site oficial: <a href="https://pflmma.com/roadtodubai" rel="nofollow noopener" target="_blank">pflmma.com/roadtodubai</a>.</li>
+<li>Responda à enquete da página.</li>
+<li>Preencha nome, e-mail e os outros dados pedidos e envie.</li>
+</ol>
+<p>Não é preciso comprar nada. O próprio regulamento diz que uma compra não aumenta as chances.</p>
+
+<h2>Prazos e sorteio</h2>
+<p>O sorteio foi dividido em quatro períodos, com um ganhador em cada:</p>
+<ul>
+<li>24/8 a 20/9/2026, sorteado por volta de 21/9;</li>
+<li>21/9 a 20/10/2026, sorteado por volta de 21/10;</li>
+<li>21/10 a 17/11/2026, sorteado por volta de 18/11;</li>
+<li><b>18/11 a 21/12/2026, sorteado por volta de 22/12.</b> É o único que ainda está aberto.</li>
+</ul>
+<p>As inscrições de um período continuam valendo para os seguintes. Quem entra agora concorre ao último sorteio.</p>
+
+<h2>Antes de se inscrever, saiba disto</h2>
+<ul>
+<li><b>Passaporte:</b> você e o acompanhante precisam ter passaporte válido por pelo menos 6 meses depois da data de embarque. Se ainda não tem, vale já se programar, porque o prazo para a viagem é curto.</li>
+<li><b>Acompanhante:</b> precisa ser maior de idade e também morar num dos países participantes. Os dois viajam juntos, no mesmo itinerário.</li>
+<li><b>Prazo para responder:</b> o ganhador tem 3 dias para assinar a declaração de elegibilidade, e o acompanhante, 48 horas. Fique de olho no e-mail, inclusive na caixa de spam, a partir de 22 de dezembro.</li>
+<li><b>Custos extras:</b> o que não está na lista do prêmio, como seguro-viagem, refeições além dos US$ 1.000 e impostos, fica por conta do ganhador. O prêmio não pode ser trocado por dinheiro nem passado para outra pessoa.</li>
+<li><b>Visto:</b> confira as regras de entrada nos Emirados Árabes Unidos para brasileiros no site do Itamaraty antes de viajar.</li>
+</ul>
+
+<h2>É confiável?</h2>
+<p>Sim. O sorteio é organizado pela própria PFL e administrado pela Don Jagoda Associates, empresa americana especializada em promoções. O regulamento completo está em <a href="https://pflmma.com/roadtodubai-rules" rel="nofollow noopener" target="_blank">pflmma.com/roadtodubai-rules</a>. Mesmo assim, só se inscreva pelo site oficial, e desconfie de perfis que peçam dinheiro, senha ou dados bancários em nome do sorteio: a organização nunca cobra para entregar o prêmio.</p>
+
+<p class="aviso">Informações conferidas no regulamento oficial em 21/11/2026. Em caso de mudança, vale o que estiver no site da PFL.</p>
+`,
+  fontes: [
+    ["PFL: regulamento oficial do Road to Dubai Sweepstakes", "https://pflmma.com/roadtodubai-rules"],
+    ["PFL: página de inscrição", "https://pflmma.com/roadtodubai"],
+    ["PFL: parceria com o Departamento de Economia e Turismo de Dubai", "https://pflmma.com/news/dubai-department-of-economy-and-tourism-and-dubai-sports-council-partner-with-professional-fighters-league-to-position-dubai-as-a-global-hub-for-mma"],
+  ]
+},
+{
   slug: "calendario-trainee-e-estagio",
   categorias: ["carreira"],
   titulo: "Calendário de trainee e estágio: quando os grandes programas abrem",
