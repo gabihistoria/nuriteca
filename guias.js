@@ -2,6 +2,92 @@
 // Cada guia vira uma página em /guias/<slug>/. O bloco "abertos" lista sozinho o que está aberto no data.js.
 window.GUIAS = [
 {
+  slug: "mestrado-online-no-exterior",
+  categorias: ["stricto", "intercambio"],
+  titulo: "Mestrado online no exterior: 3 universidades baratas para estudar sem sair de casa",
+  seoTitulo: "Mestrado online no exterior: 3 opções baratas e quanto custam",
+  descricao: "Universidade Aberta (Portugal), UNED (Espanha) e University of the People (EUA): mestrados 100% a distância, quanto custa cada um em reais e se o diploma vale no Brasil.",
+  publicado: "2026-11-23",
+  atualizado: "2026-11-23",
+  html: `
+<p>Fazer mestrado fora do Brasil parece coisa de quem tem muito dinheiro, tempo livre e coragem para largar tudo. Mas existe um caminho bem mais acessível: universidades estrangeiras reconhecidas que oferecem <b>mestrado a distância</b>, com valores que cabem no bolso de muita gente, às vezes por menos do que um mestrado particular aqui.</p>
+<p>Reunimos três opções conhecidas, duas públicas na Europa e uma sem fins lucrativos nos Estados Unidos, com quanto custa cada uma, em que idioma são as aulas e o cuidado mais importante antes de se inscrever: <b>o reconhecimento do diploma no Brasil</b>.</p>
+
+<h2>Resumo rápido</h2>
+<div style="overflow-x:auto"><table>
+<tr><th>Universidade</th><th>Idioma</th><th>Curso inteiro</th><th>Destaque</th></tr>
+<tr><td>Universidade Aberta (Portugal)</td><td>Português</td><td>Cerca de 2.500 € a 4.400 € (R$ 15.500 a R$ 27.300)</td><td>Pública e em português</td></tr>
+<tr><td>UNED (Espanha)</td><td>Espanhol</td><td>Cerca de 1.950 € num mestrado de 60 créditos (R$ 12.000)</td><td>A mais barata da lista</td></tr>
+<tr><td>University of the People (EUA)</td><td>Inglês</td><td>US$ 5.780 a US$ 5.940 (R$ 31.800 a R$ 32.700)</td><td>Sem mensalidade e com bolsa</td></tr>
+</table></div>
+<p style="font-size:14px">Conversão aproximada, com o euro a cerca de R$ 6,20 e o dólar a cerca de R$ 5,50 (novembro de 2026). O câmbio muda todos os dias, e o valor final depende de taxas e do IOF.</p>
+
+<h2>1. Universidade Aberta (Portugal)</h2>
+<p>A Universidade Aberta é a universidade pública portuguesa de ensino a distância. A grande vantagem para brasileiros é óbvia: <b>as aulas são em português</b>. Não precisa de prova de proficiência em outro idioma, e os materiais, as discussões e a dissertação são na nossa língua.</p>
+<p><b>Quanto custa:</b> o valor varia conforme o curso. Na tabela de 2025/26, o Mestrado em Supervisão Pedagógica custava cerca de 2.500 € no total, e outros mestrados chegavam a uns 4.400 €. A universidade publica os valores de cada ano numa tabela própria para mestrados e doutoramentos, que deve ser consultada antes da candidatura.</p>
+<p><b>Áreas:</b> há mestrados em educação (como Supervisão Pedagógica e Administração e Gestão Educacional), gestão, estudos portugueses, literatura e artes, entre outros.</p>
+<p><b>Quando se inscrever:</b> em 2026, os editais (lá chamados de despachos de abertura) saíram entre o fim de abril e o início de maio. Vale ficar de olho no portal da universidade a partir de março de 2027. A candidatura é online e tem uma taxa.</p>
+
+<h2>2. UNED (Espanha)</h2>
+<p>A UNED, Universidad Nacional de Educación a Distancia, é a universidade pública a distância da Espanha e uma das maiores da Europa. É a opção mais barata desta lista, mas tudo é em espanhol.</p>
+<p><b>Quanto custa:</b> na UNED você paga por crédito. No ano letivo 2026/27, a maioria dos mestrados de Artes e Humanidades e de Ciências Sociais custa <b>28,58 € por crédito</b> na primeira matrícula. Alguns cursos de outras áreas são mais caros: em Ciências, por exemplo, o crédito sai por 33,81 €. A conta para um mestrado de 60 créditos, o mais comum:</p>
+<ul>
+<li>Créditos: 60 × 28,58 € = 1.714,80 €</li>
+<li>Taxas de secretaria para aluno novo: 45,45 €</li>
+<li>Emissão do diploma: 186,85 €</li>
+<li><b>Total aproximado: 1.950 €, cerca de R$ 12.000</b></li>
+</ul>
+<p>Mestrados de 90 ou 120 créditos custam proporcionalmente mais. E quem reprova numa disciplina paga mais caro para refazê-la.</p>
+<p><b>Atenção, diploma de fora da Europa:</b> quem se formou no Brasil precisa pedir uma autorização prévia do reitor antes da pré-inscrição. Esse pedido tem uma taxa pequena e não garante a vaga. Em 2026, a matrícula nos mestrados ficou aberta de 1º de julho a 21 de outubro, e as pré-inscrições de vários cursos aconteceram entre maio e julho. Comece o processo cedo.</p>
+<p>Um ponto que não conseguimos confirmar: se quem mora fora da Espanha paga o mesmo valor por crédito. A tabela oficial não mostra preço diferente, mas vale perguntar à universidade antes de se matricular.</p>
+
+<h2>3. University of the People (Estados Unidos)</h2>
+<p>A University of the People, ou UoPeople, é uma universidade americana sem fins lucrativos, totalmente online e em inglês. Ela <b>não cobra mensalidade</b> nem material: o aluno paga uma taxa de inscrição e uma taxa de avaliação ao final de cada disciplina.</p>
+<p><b>Quanto custa:</b> para quem garantir a vaga a partir de junho de 2026 (ano letivo 2026/27), os valores totais estimados são:</p>
+<ul>
+<li><b>Mestrado em Educação (M.Ed.):</b> US$ 60 de inscrição + 13 disciplinas de US$ 440 = cerca de US$ 5.780</li>
+<li><b>MBA:</b> US$ 60 + 12 disciplinas de US$ 490 = cerca de US$ 5.940</li>
+<li><b>Mestrado em Tecnologia da Informação (MSIT):</b> cerca de US$ 5.940</li>
+</ul>
+<p>Como você paga por disciplina, o custo fica diluído ao longo do curso. E para quem não consegue pagar as taxas, a universidade oferece bolsas.</p>
+<p><b>Para quem é:</b> é preciso ter graduação e saber inglês. As disciplinas duram nove semanas, com leituras, trabalhos escritos e discussões online toda semana, num formato pensado para quem trabalha.</p>
+
+<h2>O mais importante: o diploma vale no Brasil?</h2>
+<p>Aqui está o ponto que muita propaganda esconde. Um diploma de mestrado feito no exterior só tem validade oficial no Brasil depois de ser <b>reconhecido por uma universidade brasileira</b>, pelo processo da Plataforma Carolina Bori, do MEC.</p>
+<p>A regra atual, a Resolução CNE/CES nº 2, de dezembro de 2024, não proíbe o reconhecimento de cursos feitos a distância. Em 2025, o Conselho Nacional de Educação respondeu de forma direta a essa dúvida: a modalidade EaD não está vetada. Mas o reconhecimento não é automático. Cada universidade brasileira analisa o pedido, e há muitos casos de diplomas estrangeiros negados ou até reconhecidos e depois anulados.</p>
+<ul>
+<li>Se você quer o mestrado para <b>concurso, dar aula em faculdade ou progressão na carreira pública</b>, o reconhecimento é obrigatório. Pesquise antes, converse com a pós-graduação da universidade onde pretende pedir o reconhecimento e guarde todos os documentos do curso.</li>
+<li>Se você quer o título para <b>crescer no mercado, trabalhar fora, ganhar repertório ou mudar de área</b>, o mestrado tem valor mesmo sem reconhecimento oficial.</li>
+</ul>
+<p>Prefere um mestrado gratuito e válido no Brasil sem burocracia? Leia o guia <a href="/guias/mestrado-com-bolsa/">Mestrado com bolsa: como funciona a seleção</a>.</p>
+
+<h2>Dicas antes de se inscrever</h2>
+<ul>
+<li>Confira sempre os valores no site oficial da universidade. Eles mudam a cada ano letivo.</li>
+<li>Some o custo total, não só a mensalidade ou o valor por crédito: taxas de inscrição, de matrícula, de diploma e o câmbio.</li>
+<li>Pagamentos em euro ou dólar sofrem IOF e variação do câmbio. Contas internacionais costumam sair mais baratas que o cartão de crédito.</li>
+<li>Desconfie de empresas que vendem "mestrado no exterior com reconhecimento garantido". Ninguém pode garantir isso, porque quem decide é a universidade brasileira que analisa o pedido.</li>
+<li>Veja se o mestrado exige dissertação ou projeto final e se a defesa pode ser feita online.</li>
+</ul>
+
+<h2>Perguntas frequentes</h2>
+<p><b>Qual é o mestrado online no exterior mais barato?</b><br>Entre estas três opções, a UNED, da Espanha, com cerca de 1.950 € num curso de 60 créditos.</p>
+<p><b>Existe mestrado online em português fora do Brasil?</b><br>Sim. A Universidade Aberta, de Portugal, oferece mestrados a distância em português.</p>
+<p><b>Mestrado EaD feito no exterior é reconhecido no Brasil?</b><br>Pode ser, mas não é garantido. A regra não proíbe o reconhecimento de cursos a distância, mas cada universidade brasileira analisa o pedido caso a caso.</p>
+<p><b>Dá para conseguir bolsa?</b><br>A University of the People oferece bolsas para cobrir as taxas. Para outras opções, veja o guia <a href="/guias/bolsas-de-estudo-no-exterior/">Bolsas de estudo no exterior</a>.</p>
+
+<p class="aviso">Valores conferidos em novembro de 2026 nas tabelas oficiais de cada universidade, exceto o da Universidade Aberta, que vem da tabela de 2025/26. Preços e prazos mudam a cada ano letivo: confirme sempre no site oficial antes de se inscrever.</p>
+`,
+  fontes: [
+    ["Universidade Aberta: Tabela de Propinas 2026-2027", "https://portal.uab.pt/wp-content/uploads/2026/05/2026-2027-Tabela-de-Propinas.pdf"],
+    ["UNED: preços públicos dos mestrados, curso 2026-2027", "https://www.uned.es/universidad/inicio/dam/jcr:d057daec-a964-4b5e-9db6-6a6329f8c0e4/precios_Master_26-27.pdf"],
+    ["UNED: acesso para diplomados fora do Espaço Europeu", "https://www.uned.es/universidad/inicio/estudios/masteres/informacion-general/acceso-titulados-extranjeros.html"],
+    ["University of the People: taxas estimadas 2026-27 (catálogo)", "https://catalog.uopeople.edu/?p=190"],
+    ["Parecer CNE/CES nº 589/2025 sobre reconhecimento de diplomas EaD", "https://www.gov.br/mec/pt-br/cne/2025/setembro-2025/pces589_25.pdf"],
+    ["Plataforma Carolina Bori (gov.br)", "https://www.gov.br/pt-br/servicos/reconhecer-ou-revalidar-diploma-de-curso-superior-obtido-no-exterior"],
+  ]
+},
+{
   slug: "sorteio-viagem-dubai-pfl",
   categorias: ["bolsas"],
   titulo: "Sorteio de viagem para Dubai: como concorrer ao PFL Road to Dubai",
