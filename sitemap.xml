@@ -27,7 +27,7 @@
   <url><loc>https://nuriteca.com.br/cursos/enap-escola-virtual-gov/</loc><lastmod>2026-11-06</lastmod><priority>0.7</priority></url>
   <url><loc>https://nuriteca.com.br/concursos/ifmg-concurso-professor-ebtt-1077-2026/</loc><lastmod>2026-11-06</lastmod><priority>0.3</priority></url>
   <url><loc>https://nuriteca.com.br/concursos/ifsp-concurso-docentes-183-2026/</loc><lastmod>2026-11-06</lastmod><priority>0.3</priority></url>
-  <url><loc>https://nuriteca.com.br/concursos/trf3-concurso-2026/</loc><lastmod>2026-11-06</lastmod><priority>0.7</priority></url>
+  <url><loc>https://nuriteca.com.br/concursos/trf3-concurso-2026/</loc><lastmod>2026-11-23</lastmod><priority>0.7</priority></url>
   <url><loc>https://nuriteca.com.br/concursos/dpe-am-concurso-2026/</loc><lastmod>2026-11-06</lastmod><priority>0.7</priority></url>
   <url><loc>https://nuriteca.com.br/concursos/inb-concurso-2026/</loc><lastmod>2026-11-06</lastmod><priority>0.3</priority></url>
   <url><loc>https://nuriteca.com.br/pos-graduacao/ufvjm-especializacao-didatica-31-2026/</loc><lastmod>2026-11-06</lastmod><priority>0.3</priority></url>
@@ -58,7 +58,7 @@
   <url><loc>https://nuriteca.com.br/concursos/pmmg-cfo-2026/</loc><lastmod>2026-11-06</lastmod><priority>0.7</priority></url>
   <url><loc>https://nuriteca.com.br/concursos/ufcspa-professor-2026/</loc><lastmod>2026-11-06</lastmod><priority>0.3</priority></url>
   <url><loc>https://nuriteca.com.br/concursos/ufsm-professor-2026/</loc><lastmod>2026-11-06</lastmod><priority>0.7</priority></url>
-  <url><loc>https://nuriteca.com.br/concursos/trt4-concurso-2026/</loc><lastmod>2026-11-06</lastmod><priority>0.7</priority></url>
+  <url><loc>https://nuriteca.com.br/concursos/trt4-concurso-2026/</loc><lastmod>2026-11-23</lastmod><priority>0.7</priority></url>
   <url><loc>https://nuriteca.com.br/concursos/canoas-educacao-2026/</loc><lastmod>2026-11-06</lastmod><priority>0.3</priority></url>
   <url><loc>https://nuriteca.com.br/concursos/utfpr-substituto-pato-branco-2026/</loc><lastmod>2026-11-06</lastmod><priority>0.3</priority></url>
   <url><loc>https://nuriteca.com.br/descontos/integrado-macapa-vestibular-bolsas-2026/</loc><lastmod>2026-11-06</lastmod><priority>0.3</priority></url>
@@ -83,7 +83,7 @@
   <url><loc>https://nuriteca.com.br/concursos/tjap-juiz-substituto-2026/</loc><lastmod>2026-11-08</lastmod><priority>0.3</priority></url>
   <url><loc>https://nuriteca.com.br/concursos/dpe-sp-defensor-2026/</loc><lastmod>2026-11-08</lastmod><priority>0.3</priority></url>
   <url><loc>https://nuriteca.com.br/concursos/pm-sc-soldado-2026/</loc><lastmod>2026-11-08</lastmod><priority>0.3</priority></url>
-  <url><loc>https://nuriteca.com.br/concursos/ibge-recenseador-2026/</loc><lastmod>2026-11-08</lastmod><priority>0.7</priority></url>
+  <url><loc>https://nuriteca.com.br/concursos/ibge-recenseador-2026/</loc><lastmod>2026-11-23</lastmod><priority>0.7</priority></url>
   <url><loc>https://nuriteca.com.br/graduacao/cederj-2027-1-graduacao-ead/</loc><lastmod>2026-11-08</lastmod><priority>0.3</priority></url>
   <url><loc>https://nuriteca.com.br/graduacao/uern-tecnologia-gestao-financeira-ead-2027/</loc><lastmod>2026-11-08</lastmod><priority>0.3</priority></url>
   <url><loc>https://nuriteca.com.br/pos-graduacao/ifsc-especializacoes-2027-1/</loc><lastmod>2026-11-08</lastmod><priority>0.7</priority></url>
@@ -220,6 +220,42 @@
   <url><loc>https://nuriteca.com.br/graduacao/iffar-graduacao-2027/</loc><lastmod>2026-11-23</lastmod><priority>0.7</priority></url>
   <url><loc>https://nuriteca.com.br/graduacao/ufra-vestibulinho-2027/</loc><lastmod>2026-11-23</lastmod><priority>0.7</priority></url>
   <url><loc>https://nuriteca.com.br/bolsas/pe-de-meia-licenciaturas-2026/</loc><lastmod>2026-11-23</lastmod><priority>0.7</priority></url>
+  <url><loc>https://nuriteca.com.br/concursos/custodia-pe-concurso-2026/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
+  <url><loc>https://nuriteca.com.br/concursos/gcm-angra-dos-reis-concurso-2026/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
+  <url><loc>https://nuriteca.com.br/concursos/tijucas-concurso-geral-2026/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
+  <url><loc>https://nuriteca.com.br/estagio-e-trainee/estagio-trt-go-2026-edital-05/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
+  <url><loc>https://nuriteca.com.br/estagio-e-trainee/estagio-icatu-2027/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
+  <url><loc>https://nuriteca.com.br/estagio-e-trainee/estagio-vylor-2027/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
+  <url><loc>https://nuriteca.com.br/estagio-e-trainee/estagio-tempo-2027/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
+  <url><loc>https://nuriteca.com.br/estagio-e-trainee/trainee-slc-agricola-2027/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
+  <url><loc>https://nuriteca.com.br/estagio-e-trainee/trainee-metodo-fast-2027/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
+  <url><loc>https://nuriteca.com.br/estagio-e-trainee/jovem-aprendiz-pado-cambe-2027/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
+  <url><loc>https://nuriteca.com.br/concursos/see-sp-concurso-professor-pefm-2026/</loc><lastmod>2026-11-20</lastmod><priority>0.7</priority></url>
+  <url><loc>https://nuriteca.com.br/concursos/cbm-pb-cfo-2027/</loc><lastmod>2026-11-20</lastmod><priority>0.7</priority></url>
+  <url><loc>https://nuriteca.com.br/concursos/sao-joao-de-meriti-concurso-educacao-01-2026/</loc><lastmod>2026-11-20</lastmod><priority>0.7</priority></url>
+  <url><loc>https://nuriteca.com.br/concursos/barra-do-garcas-concurso-educacao-001-2026/</loc><lastmod>2026-11-20</lastmod><priority>0.7</priority></url>
+  <url><loc>https://nuriteca.com.br/estagio-e-trainee/estagio-vivo-2027/</loc><lastmod>2026-11-20</lastmod><priority>0.7</priority></url>
+  <url><loc>https://nuriteca.com.br/estagio-e-trainee/estagio-iff-2027/</loc><lastmod>2026-11-20</lastmod><priority>0.7</priority></url>
+  <url><loc>https://nuriteca.com.br/estagio-e-trainee/estagio-grupo-fleury-2027/</loc><lastmod>2026-11-20</lastmod><priority>0.7</priority></url>
+  <url><loc>https://nuriteca.com.br/estagio-e-trainee/trainee-sotreq-2027/</loc><lastmod>2026-11-20</lastmod><priority>0.7</priority></url>
+  <url><loc>https://nuriteca.com.br/intercambios-gratuitos/erasmus-mundus-journalism-2027/</loc><lastmod>2026-11-20</lastmod><priority>0.7</priority></url>
+  <url><loc>https://nuriteca.com.br/mestrado-e-doutorado/ufg-doutorado-matematica-2027-1/</loc><lastmod>2026-11-18</lastmod><priority>0.7</priority></url>
+  <url><loc>https://nuriteca.com.br/mestrado-e-doutorado/ufg-ppggea-mestrado-geociencias-2027/</loc><lastmod>2026-11-18</lastmod><priority>0.7</priority></url>
+  <url><loc>https://nuriteca.com.br/mestrado-e-doutorado/observatorio-nacional-geofisica-mestrado-doutorado-2027/</loc><lastmod>2026-11-18</lastmod><priority>0.7</priority></url>
+  <url><loc>https://nuriteca.com.br/pos-graduacao/if-goiano-especializacao-ia-dados-corporativos-2027/</loc><lastmod>2026-11-18</lastmod><priority>0.7</priority></url>
+  <url><loc>https://nuriteca.com.br/pos-graduacao/if-goiano-especializacao-formacao-professores-ipameri-2027/</loc><lastmod>2026-11-18</lastmod><priority>0.7</priority></url>
+  <url><loc>https://nuriteca.com.br/concursos/ministerio-da-saude-pss-01-2026/</loc><lastmod>2026-11-23</lastmod><priority>0.7</priority></url>
+  <url><loc>https://nuriteca.com.br/concursos/iffar-concurso-tae-406-2026/</loc><lastmod>2026-11-23</lastmod><priority>0.7</priority></url>
+  <url><loc>https://nuriteca.com.br/concursos/crp-rj-concurso-01-2026/</loc><lastmod>2026-11-23</lastmod><priority>0.7</priority></url>
+  <url><loc>https://nuriteca.com.br/concursos/santana-de-parnaiba-concurso-07-2026/</loc><lastmod>2026-11-23</lastmod><priority>0.7</priority></url>
+  <url><loc>https://nuriteca.com.br/cursos/ifro-tecnicos-subsequentes-2027-1/</loc><lastmod>2026-11-23</lastmod><priority>0.7</priority></url>
+  <url><loc>https://nuriteca.com.br/graduacao/ifro-graduacao-2027-1/</loc><lastmod>2026-11-23</lastmod><priority>0.7</priority></url>
+  <url><loc>https://nuriteca.com.br/graduacao/ifb-gama-tecnologia-2027-1/</loc><lastmod>2026-11-23</lastmod><priority>0.7</priority></url>
+  <url><loc>https://nuriteca.com.br/intercambios-gratuitos/hong-kong-phd-fellowship-2027/</loc><lastmod>2026-11-23</lastmod><priority>0.7</priority></url>
+  <url><loc>https://nuriteca.com.br/estagio-e-trainee/estagio-mercedes-benz-2027/</loc><lastmod>2026-11-23</lastmod><priority>0.7</priority></url>
+  <url><loc>https://nuriteca.com.br/estagio-e-trainee/estagio-eneva-2027/</loc><lastmod>2026-11-23</lastmod><priority>0.7</priority></url>
+  <url><loc>https://nuriteca.com.br/estagio-e-trainee/estagio-vibra-energia-2027/</loc><lastmod>2026-11-23</lastmod><priority>0.7</priority></url>
+  <url><loc>https://nuriteca.com.br/estagio-e-trainee/trainee-olx-next-ai-2027/</loc><lastmod>2026-11-23</lastmod><priority>0.7</priority></url>
   <url><loc>https://nuriteca.com.br/estados/</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
   <url><loc>https://nuriteca.com.br/estados/acre/</loc><lastmod>2026-11-23</lastmod><priority>0.7</priority></url>
   <url><loc>https://nuriteca.com.br/estados/amapa/</loc><lastmod>2026-11-23</lastmod><priority>0.7</priority></url>
