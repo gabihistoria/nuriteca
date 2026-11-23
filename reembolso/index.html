@@ -421,8 +421,8 @@ footer .wrap{display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap}
 </footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="/data.js?v=202611231528"></script>
-<script src="/banners.js?v=202611231528"></script>
+<script src="/data.js?v=202611231535"></script>
+<script src="/banners.js?v=202611231535"></script>
 <script src="/curriculo.js"></script>
 <script src="/testes.js"></script>
 <script>
@@ -1279,16 +1279,16 @@ document.addEventListener("submit", async ev=>{
     const d=Object.fromEntries(new FormData(f).entries());
     if(d._honey) return;
     if(!d.nome||!d.email||!d.assunto||!d.mensagem||!/^\S+@\S+\.\S+$/.test(d.email)){ st.textContent="Preencha todos os campos com um e-mail válido."; return; }
-    bt.disabled=true; st.textContent="Enviando...";
+    bt.disabled=true; st.textContent="Enviando... pode levar alguns segundos.";
     try{
-      const ac=new AbortController(), tm=setTimeout(()=>ac.abort(),15000);
+      const ac=new AbortController(), tm=setTimeout(()=>ac.abort(),45000);
       const r=await fetch("https://formsubmit.co/ajax/nuriteca@gabihistoria.com.br",{signal:ac.signal,method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify({nome:d.nome,email:d.email,assunto:d.assunto,mensagem:d.mensagem,_subject:"Nuriteca · "+d.assunto+" · "+d.nome,_replyto:d.email,_template:"table",_captcha:"false"})});
       clearTimeout(tm);
       const j=await r.json().catch(()=>({}));
       if(r.ok && String(j.success)!=="false"){ f.reset(); st.textContent="Mensagem enviada! Obrigada pelo contato, respondemos em breve."; }
       else if(/activat/i.test(j.message||"")){ console.warn("FormSubmit: formulário aguardando ativação no e-mail nuriteca@gabihistoria.com.br"); throw new Error("ativacao"); }
       else { console.error("FormSubmit:", r.status, j); throw new Error(j.message||"erro"); }
-    }catch(e){ st.innerHTML='Não foi possível enviar agora. Tente de novo ou escreva para <a href="mailto:nuriteca@gabihistoria.com.br">nuriteca@gabihistoria.com.br</a>.'; }
+    }catch(e){ if(e.name==="AbortError"){ st.innerHTML='O envio está demorando mais que o normal. Sua mensagem pode chegar mesmo assim. Se preferir garantir, escreva para <a href="mailto:nuriteca@gabihistoria.com.br">nuriteca@gabihistoria.com.br</a>.'; bt.disabled=false; return; } st.innerHTML='Não foi possível enviar agora. Tente de novo ou escreva para <a href="mailto:nuriteca@gabihistoria.com.br">nuriteca@gabihistoria.com.br</a>.'; }
     bt.disabled=false;
     return;
   }
