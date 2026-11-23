@@ -421,8 +421,8 @@ footer .wrap{display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap}
 </footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="/data.js?v=202611231031"></script>
-<script src="/banners.js?v=202611231031"></script>
+<script src="/data.js?v=202611231032"></script>
+<script src="/banners.js?v=202611231032"></script>
 <script src="/curriculo.js"></script>
 <script src="/testes.js"></script>
 <script>
@@ -647,6 +647,7 @@ function sourceNote(){
 /* ---------- telas ---------- */
 function viewInicio(){
   const now = new Date();
+  const natal = (now.getMonth()===10 && now.getDate()>=15) || now.getMonth()===11 || (now.getMonth()===0 && now.getDate()<=6);
   const abertas = DATA.filter(o=>statusOf(o,now)==="aberta");
   const encerrando = abertas.filter(o=>!o.fluxoContinuo && daysLeft(o,now)<=7).sort((a,b)=>daysLeft(a)-daysLeft(b));
   const novas = DATA.filter(o=>statusOf(o,now)!=="encerrada").sort((a,b)=>String(b.criadoEm).localeCompare(String(a.criadoEm))).slice(0,4);
@@ -684,6 +685,7 @@ function viewInicio(){
           </defs>
           <circle cx="368" cy="62" r="34" fill="var(--ocre)" opacity=".9"/>
           <circle cx="368" cy="62" r="48" fill="var(--ocre)" opacity=".18"/>
+          ${natal?`<g fill="var(--ocre)" opacity=".85"><path d="M250 58 l3 9 9 3 -9 3 -3 9 -3-9 -9-3 9-3z"/><path d="M300 128 l2 6 6 2 -6 2 -2 6 -2-6 -6-2 6-2z" opacity=".7"/><path d="M48 70 l2.5 7.5 7.5 2.5 -7.5 2.5 -2.5 7.5 -2.5-7.5 -7.5-2.5 7.5-2.5z" opacity=".75"/></g>`:""}
           <!-- livros em pé -->
           <rect x="40" y="150" width="54" height="230" rx="8" fill="url(#g-petroleo)"/>
           <rect x="48" y="180" width="38" height="5" rx="2.5" fill="#fff" opacity=".55"/><rect x="48" y="340" width="38" height="5" rx="2.5" fill="#fff" opacity=".55"/>
@@ -696,6 +698,7 @@ function viewInicio(){
           <rect x="300" y="336" width="120" height="22" rx="6" fill="url(#g-salvia)"/>
           <rect x="292" y="358" width="132" height="22" rx="6" fill="url(#g-petroleo)"/>
           <rect x="306" y="314" width="108" height="22" rx="6" fill="url(#g-coral)"/>
+          ${natal?`<rect x="352" y="314" width="9" height="66" fill="#FFF8EE" opacity=".85"/>`:""}
           <!-- livro aberto, páginas em arco -->
           <g transform="translate(296 236)">
             <path d="M0 74 C 18 40, 50 34, 62 46 L 62 82 C 46 72, 20 74, 0 86 Z" fill="url(#g-page)" stroke="var(--line)" stroke-width="2"/>
@@ -706,7 +709,35 @@ function viewInicio(){
           <!-- prateleira -->
           <rect x="20" y="380" width="410" height="12" rx="6" fill="var(--line)"/>
           <!-- folhinha -->
-          <path d="M70 140 C 60 110, 76 92, 96 90 C 96 114, 86 132, 70 140z" fill="var(--salvia)" opacity=".85"/>
+          ${natal?`
+          <!-- azevinho no livro petróleo -->
+          <g transform="translate(67 150)">
+            <path d="M0 -4 C -8 -16, -22 -14, -30 -8 C -24 -6, -22 0, -26 4 C -16 2, -8 2, 0 -4z" fill="#5E8A5A"/>
+            <path d="M0 -4 C 8 -16, 22 -14, 30 -8 C 24 -6, 22 0, 26 4 C 16 2, 8 2, 0 -4z" fill="#6F9B68"/>
+            <circle cx="-4" cy="-8" r="4.5" fill="#C8463B"/><circle cx="4" cy="-9" r="4.5" fill="#C8463B"/><circle cx="0" cy="-15" r="4.5" fill="#C8463B"/>
+          </g>
+          <!-- gorro de Papai Noel no livro coral -->
+          <path d="M158 104 C 156 72, 124 58, 98 72 C 90 77, 87 85, 89 92 L 106 104 Z" fill="#C8463B"/>
+          <rect x="96" y="98" width="70" height="15" rx="7.5" fill="#FFF8EE"/>
+          <circle cx="89" cy="95" r="8" fill="#FFF8EE"/>
+          <!-- soldadinho no livro ocre -->
+          <g>
+            <rect x="182" y="165" width="7" height="10" rx="2" fill="#3A2E29"/><rect x="191" y="165" width="7" height="10" rx="2" fill="#3A2E29"/>
+            <rect x="182" y="146" width="16" height="20" rx="2" fill="#FFF8EE"/>
+            <rect x="174" y="126" width="6" height="19" rx="3" fill="#C8463B"/><rect x="200" y="126" width="6" height="19" rx="3" fill="#C8463B"/>
+            <circle cx="177" cy="146" r="3" fill="#F3D2B3"/><circle cx="203" cy="146" r="3" fill="#F3D2B3"/>
+            <rect x="179" y="123" width="22" height="26" rx="4" fill="#C8463B"/>
+            <rect x="179" y="140" width="22" height="3.5" fill="var(--ocre)"/>
+            <circle cx="190" cy="129" r="1.6" fill="var(--ocre)"/><circle cx="190" cy="135" r="1.6" fill="var(--ocre)"/>
+            <rect x="182" y="106" width="16" height="18" rx="5" fill="#F3D2B3"/>
+            <circle cx="186.5" cy="113" r="1.3" fill="#3A2E29"/><circle cx="193.5" cy="113" r="1.3" fill="#3A2E29"/>
+            <circle cx="185" cy="117" r="2" fill="#C8463B" opacity=".35"/><circle cx="195" cy="117" r="2" fill="#C8463B" opacity=".35"/>
+            <path d="M184 119 Q 190 125 196 119 Q 190 121 184 119z" fill="#FFF8EE"/>
+            <rect x="181" y="86" width="18" height="22" rx="2.5" fill="#3A2E29"/>
+            <rect x="181" y="102" width="18" height="3" fill="var(--ocre)"/>
+            <circle cx="190" cy="85" r="3.5" fill="var(--ocre)"/>
+          </g>`:`
+          <path d="M70 140 C 60 110, 76 92, 96 90 C 96 114, 86 132, 70 140z" fill="var(--salvia)" opacity=".85"/>`}
         </svg>
       </div>
     </section>
