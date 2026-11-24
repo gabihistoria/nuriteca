@@ -6670,7 +6670,7 @@ window.SNAPSHOT = [
       "titulo": "Concurso DPDF 2026: 707 vagas e salário de R$ 11,5 mil"
     }
   },
-{
+  {
     "fluxoContinuo": false,
     "verificado": true,
     "verificadoEm": "2026-11-23",
@@ -6704,7 +6704,7 @@ window.SNAPSHOT = [
       "titulo": "Concurso professor BH 2027: 112 vagas, inscrição grátis"
     }
   },
-{
+  {
     "fluxoContinuo": false,
     "verificado": true,
     "verificadoEm": "2026-11-23",
@@ -6738,7 +6738,7 @@ window.SNAPSHOT = [
       "titulo": "Concurso professor Piraquara PR: 50 vagas"
     }
   },
-{
+  {
     "fluxoContinuo": false,
     "verificado": true,
     "verificadoEm": "2026-11-23",
@@ -6772,7 +6772,7 @@ window.SNAPSHOT = [
       "titulo": "Seletivo professor Nova Guataporanga SP 2026"
     }
   },
-{
+  {
     "fluxoContinuo": false,
     "verificado": true,
     "verificadoEm": "2026-11-23",
@@ -6806,7 +6806,7 @@ window.SNAPSHOT = [
       "titulo": "Seletivo Educação Francisco Morato SP: até R$ 4 mil"
     }
   },
-{
+  {
     "fluxoContinuo": false,
     "verificado": true,
     "verificadoEm": "2026-11-23",
@@ -6840,7 +6840,7 @@ window.SNAPSHOT = [
       "titulo": "Seleção Educação São José do Inhacorá RS 2026"
     }
   },
-{
+  {
     "fluxoContinuo": false,
     "verificado": true,
     "verificadoEm": "2026-11-23",
@@ -6874,7 +6874,7 @@ window.SNAPSHOT = [
       "titulo": "Concurso Prefeitura de Marabá 2026: 127 vagas"
     }
   },
-{
+  {
     "fluxoContinuo": false,
     "verificado": true,
     "verificadoEm": "2026-11-23",
@@ -6908,7 +6908,7 @@ window.SNAPSHOT = [
       "titulo": "Concurso Guarda Municipal Campinas: 100 vagas"
     }
   },
-{
+  {
     "fluxoContinuo": false,
     "verificado": true,
     "verificadoEm": "2026-11-23",
@@ -6942,7 +6942,7 @@ window.SNAPSHOT = [
       "titulo": "Concurso Câmara de Carmo da Cachoeira MG"
     }
   },
-{
+  {
     "fluxoContinuo": false,
     "verificado": true,
     "verificadoEm": "2026-11-23",
@@ -6976,7 +6976,7 @@ window.SNAPSHOT = [
       "titulo": "Doutorado Matemática Aplicada UFRGS 2027"
     }
   },
-{
+  {
     "fluxoContinuo": false,
     "verificado": true,
     "verificadoEm": "2026-11-23",
@@ -7010,7 +7010,7 @@ window.SNAPSHOT = [
       "titulo": "Especialização gratuita IFRS: Tecnologias na Educação"
     }
   },
-{
+  {
     "fluxoContinuo": false,
     "verificado": true,
     "verificadoEm": "2026-11-23",
@@ -7044,7 +7044,7 @@ window.SNAPSHOT = [
       "titulo": "Erasmus Mundus Euroculture 2027: mestrado com bolsa"
     }
   },
-{
+  {
     "fluxoContinuo": false,
     "verificado": true,
     "verificadoEm": "2026-11-23",
@@ -7078,7 +7078,7 @@ window.SNAPSHOT = [
       "titulo": "Choreomundus 2027: mestrado em dança e patrimônio"
     }
   },
-{
+  {
     "fluxoContinuo": false,
     "verificado": true,
     "verificadoEm": "2026-11-23",
@@ -7112,7 +7112,7 @@ window.SNAPSHOT = [
       "titulo": "FLEX Global 2027: ensino médio nos EUA grátis"
     }
   },
-{
+  {
     "fluxoContinuo": false,
     "verificado": true,
     "verificadoEm": "2026-11-23",
@@ -7180,7 +7180,7 @@ window.SNAPSHOT = [
       "titulo": "IFS 2027.1: 606 vagas de graduação com o Enem"
     }
   },
-{
+  {
     "fluxoContinuo": false,
     "verificado": true,
     "verificadoEm": "2026-11-23",
@@ -7214,7 +7214,7 @@ window.SNAPSHOT = [
       "titulo": "IFFar 2027: 1.750 vagas de graduação sem taxa"
     }
   },
-{
+  {
     "fluxoContinuo": false,
     "verificado": true,
     "verificadoEm": "2026-11-23",
@@ -7248,7 +7248,7 @@ window.SNAPSHOT = [
       "titulo": "Vestibulinho UFRA 2027: 344 vagas gratuitas"
     }
   },
-{
+  {
     "fluxoContinuo": false,
     "verificado": true,
     "verificadoEm": "2026-11-23",
@@ -7280,6 +7280,322 @@ window.SNAPSHOT = [
     "categoria": "bolsas",
     "seo": {
       "titulo": "Pé-de-Meia Licenciaturas: bolsa de R$ 1.050"
+    }
+  },
+  {
+    "fluxoContinuo": false,
+    "verificado": true,
+    "verificadoEm": "2026-11-24",
+    "criadoEm": "2026-11-24",
+    "parceiro": false,
+    "abertura": "",
+    "linkEdital": "",
+    "siteOficial": "https://estagiovivo.com.br/",
+    "certificacao": "Não se aplica",
+    "id": "estagio-vivo-2027",
+    "titulo": "Programa de Estágio Vivo 2027 (Start, Expert e Summer)",
+    "categoria": "carreira",
+    "subtipo": "Estágio",
+    "instituicao": "Vivo (Telefônica Brasil)",
+    "estado": "Nacional",
+    "municipio": "11 estados e DF (Start); São Paulo (Expert e Summer)",
+    "area": "Vários cursos",
+    "modalidade": "Híbrido ou presencial, conforme a trilha",
+    "vagas": "Mais de 500",
+    "escolaridade": "Graduação ou tecnólogo em andamento",
+    "descricao": "O estágio da Vivo tem três trilhas: Start, aberta a qualquer curso e sem exigir inglês nem experiência; Expert, focada em inteligência artificial e cibersegurança; e Summer, uma imersão de oito semanas nas férias em São Paulo. Metade das vagas é reservada para pessoas negras.",
+    "prerequisitos": "Start: formatura prevista entre 03/2028 e 12/2030, qualquer curso de bacharelado ou tecnólogo. Expert: cursos de tecnologia, dados, design ou letras, formatura entre 2028 e o 1º semestre de 2029. Summer: a partir do 2º ano da graduação, no Brasil ou no exterior.",
+    "documentos": "Inscrição online no site do programa.",
+    "encerramento": "2026-12-16",
+    "taxa": "Gratuita",
+    "isencao": "Não se aplica.",
+    "gratuidade": "Bolsa de R$ 1.660 a R$ 2.075 na trilha Start (até R$ 3 mil nas outras, segundo a imprensa)",
+    "linkInscricao": "https://estagiovivo.com.br/",
+    "fonte": "https://estagiovivo.com.br/",
+    "fonteTipo": "oficial",
+    "seo": {
+      "titulo": "Estágio Vivo 2027: mais de 500 vagas e bolsa",
+      "intro": "Mais de 500 vagas, metade reservada para pessoas negras, e uma trilha que não pede inglês nem experiência."
+    }
+  },
+  {
+    "fluxoContinuo": false,
+    "verificado": true,
+    "verificadoEm": "2026-11-24",
+    "criadoEm": "2026-11-24",
+    "parceiro": false,
+    "abertura": "2026-11-10",
+    "linkEdital": "",
+    "siteOficial": "https://www.vibraenergia.com.br/",
+    "certificacao": "Não se aplica",
+    "id": "estagio-vibra-2027",
+    "titulo": "Programa de Estágio Vibra 2027",
+    "categoria": "carreira",
+    "subtipo": "Estágio",
+    "instituicao": "Vibra Energia",
+    "estado": "Nacional",
+    "municipio": "Rio de Janeiro, São Paulo, Belém e Marabá",
+    "area": "Vários cursos",
+    "modalidade": "Presencial",
+    "vagas": "Mais de 40",
+    "escolaridade": "Graduação ou curso técnico em andamento",
+    "descricao": "Programa de estágio da Vibra, antiga BR Distribuidora, com vagas de nível superior no Rio e em São Paulo e de nível técnico no Rio, em Belém e em Marabá. A seleção tem testes online, dinâmica, painel e entrevista com o gestor.",
+    "prerequisitos": "Segundo a imprensa, formatura prevista entre o 2º semestre de 2028 e o 1º semestre de 2029. Confira no site do programa.",
+    "documentos": "Inscrição online no site do programa.",
+    "encerramento": "2026-12-10",
+    "taxa": "Gratuita",
+    "isencao": "Não se aplica.",
+    "gratuidade": "Bolsa-auxílio (valor não informado)",
+    "linkInscricao": "https://vibra.academiadouniversitario.com.br/",
+    "fonte": "https://vibra.academiadouniversitario.com.br/",
+    "fonteTipo": "oficial",
+    "seo": {
+      "titulo": "Estágio Vibra Energia 2027: vagas no RJ, SP e PA"
+    }
+  },
+  {
+    "fluxoContinuo": false,
+    "verificado": true,
+    "verificadoEm": "2026-11-24",
+    "criadoEm": "2026-11-24",
+    "parceiro": false,
+    "abertura": "",
+    "linkEdital": "",
+    "siteOficial": "https://www.eneva.com.br/",
+    "certificacao": "Não se aplica",
+    "id": "estagio-eneva-2027",
+    "titulo": "Programa de Estágio Eneva 2027",
+    "categoria": "carreira",
+    "subtipo": "Estágio",
+    "instituicao": "Eneva",
+    "estado": "RJ",
+    "municipio": "Rio de Janeiro",
+    "area": "Vários cursos",
+    "modalidade": "Presencial",
+    "vagas": "Não informado",
+    "escolaridade": "Graduação em andamento",
+    "descricao": "Estágio de até 24 meses na Eneva, maior operadora privada de gás natural do Brasil, aberto a estudantes de qualquer curso superior. O trabalho é presencial, com bolsa compatível com o mercado e benefícios como plano de saúde e vale-refeição.",
+    "prerequisitos": "Qualquer curso superior, com formatura prevista a partir do 2º semestre de 2028, e disponibilidade de 6 horas por dia.",
+    "documentos": "Inscrição online no site de carreiras da Eneva.",
+    "encerramento": "2026-12-13",
+    "taxa": "Gratuita",
+    "isencao": "Não se aplica.",
+    "gratuidade": "Bolsa-auxílio compatível com o mercado",
+    "linkInscricao": "https://www.eneva.com.br/carreiras/estagio/",
+    "fonte": "https://napratica.org.br/noticias/mercedes-btg-olx-eneva-e-mais-as-novas-vagas-de-estagio-e-trainee-de-novembro-de-2026",
+    "fonteTipo": "secundaria",
+    "seo": {
+      "titulo": "Estágio Eneva 2027 no Rio: todos os cursos"
+    }
+  },
+  {
+    "fluxoContinuo": false,
+    "verificado": true,
+    "verificadoEm": "2026-11-24",
+    "criadoEm": "2026-11-24",
+    "parceiro": false,
+    "abertura": "",
+    "linkEdital": "",
+    "siteOficial": "",
+    "certificacao": "Não se aplica",
+    "id": "estagio-mercedes-benz-caminhoes-2027",
+    "titulo": "Programa de Estágio Mercedes-Benz Caminhões e Ônibus 2027",
+    "categoria": "carreira",
+    "subtipo": "Estágio",
+    "instituicao": "Mercedes-Benz do Brasil",
+    "estado": "SP",
+    "municipio": "São Bernardo do Campo",
+    "area": "Engenharias, TI, gestão, comunicação e outras",
+    "modalidade": "Presencial ou híbrido",
+    "vagas": "Não informado",
+    "escolaridade": "Graduação ou tecnólogo em andamento",
+    "descricao": "Estágio na fábrica de caminhões e ônibus da Mercedes-Benz em São Bernardo do Campo, para cursos como Engenharias, TI, Administração, Comércio Exterior, Marketing, Jornalismo, Contábeis e Direito. A bolsa vai de R$ 1.800 a R$ 1.999.",
+    "prerequisitos": "Conclusão do curso a partir de junho de 2028 e inglês pré-intermediário.",
+    "documentos": "Inscrição online no site da Cia de Estágios.",
+    "encerramento": "2026-11-29",
+    "taxa": "Gratuita",
+    "isencao": "Não se aplica.",
+    "gratuidade": "Bolsa de R$ 1.800 (R$ 1.999 no último ano)",
+    "linkInscricao": "https://www.ciadeestagios.com.br/vagas/mbdobrasil/",
+    "fonte": "https://napratica.org.br/noticias/mercedes-btg-olx-eneva-e-mais-as-novas-vagas-de-estagio-e-trainee-de-novembro-de-2026",
+    "fonteTipo": "secundaria",
+    "seo": {
+      "titulo": "Estágio Mercedes-Benz 2027 em São Bernardo (SP)"
+    }
+  },
+  {
+    "fluxoContinuo": false,
+    "verificado": true,
+    "verificadoEm": "2026-11-24",
+    "criadoEm": "2026-11-24",
+    "parceiro": false,
+    "abertura": "",
+    "linkEdital": "",
+    "siteOficial": "",
+    "certificacao": "Não se aplica",
+    "id": "estagio-vylor-2027",
+    "titulo": "Programa de Estágio Vylor 2027 (trilhas Agro e Corporativo)",
+    "categoria": "carreira",
+    "subtipo": "Estágio",
+    "instituicao": "Vylor",
+    "estado": "Nacional",
+    "municipio": "Alphaville (SP), Santa Cruz do Sul (RS) e Indianópolis (MG)",
+    "area": "Agronomia e vários cursos",
+    "modalidade": "Presencial",
+    "vagas": "Não informado",
+    "escolaridade": "Graduação em andamento",
+    "descricao": "Estágio com duas trilhas: Agro, para estudantes de Agronomia, e Corporativo, para vários cursos a partir do 2º ano. Está entre as bolsas mais altas do período, com R$ 2.920 na trilha Agro.",
+    "prerequisitos": "Trilha Agro: Agronomia. Trilha Corporativo: diversos cursos, a partir do 2º ano.",
+    "documentos": "Inscrição online no site da Cia de Estágios.",
+    "encerramento": "2026-12-06",
+    "taxa": "Gratuita",
+    "isencao": "Não se aplica.",
+    "gratuidade": "Bolsa de R$ 2.920 (Agro) ou R$ 2.200 (Corporativo)",
+    "linkInscricao": "https://www.ciadeestagios.com.br/vagas/vylor/",
+    "fonte": "https://napratica.org.br/noticias/mercedes-btg-olx-eneva-e-mais-as-novas-vagas-de-estagio-e-trainee-de-novembro-de-2026",
+    "fonteTipo": "secundaria",
+    "seo": {
+      "titulo": "Estágio Vylor 2027: bolsa de até R$ 2.920"
+    }
+  },
+  {
+    "fluxoContinuo": false,
+    "verificado": true,
+    "verificadoEm": "2026-11-24",
+    "criadoEm": "2026-11-24",
+    "parceiro": false,
+    "abertura": "",
+    "linkEdital": "",
+    "siteOficial": "",
+    "certificacao": "Não se aplica",
+    "id": "trainee-olx-next-ai-2027",
+    "titulo": "Next AI: Programa de Trainee em Inteligência Artificial do Grupo OLX",
+    "categoria": "carreira",
+    "subtipo": "Trainee",
+    "instituicao": "Grupo OLX",
+    "estado": "SP",
+    "municipio": "Grande São Paulo",
+    "area": "Dados, computação, IA e áreas afins",
+    "modalidade": "Híbrido, com encontros na Av. Paulista",
+    "vagas": "Não informado",
+    "escolaridade": "Graduação em andamento ou concluída",
+    "descricao": "Trainee de 12 meses em inteligência artificial no Grupo OLX, com contrato CLT. É para quem estuda ou já se formou em Ciência de Dados, Computação, Engenharia de Software, Estatística ou áreas afins e já usa ferramentas de IA.",
+    "prerequisitos": "Base em programação, prática com ferramentas de IA e morar na Grande São Paulo. Inglês é diferencial.",
+    "documentos": "Pré-inscrição online.",
+    "encerramento": "2026-12-04",
+    "taxa": "Gratuita",
+    "isencao": "Não se aplica.",
+    "gratuidade": "Contrato CLT com benefícios (salário não informado)",
+    "linkInscricao": "https://vagas.academiadouniversitario.com.br/programas/pre-inscricao-next-ai-programa-de-trainee-em-ia-do-grupo-olx",
+    "fonte": "https://napratica.org.br/noticias/mercedes-btg-olx-eneva-e-mais-as-novas-vagas-de-estagio-e-trainee-de-novembro-de-2026",
+    "fonteTipo": "secundaria",
+    "seo": {
+      "titulo": "Trainee em IA do Grupo OLX (Next AI) 2027"
+    }
+  },
+  {
+    "fluxoContinuo": false,
+    "verificado": true,
+    "verificadoEm": "2026-11-24",
+    "criadoEm": "2026-11-24",
+    "parceiro": false,
+    "abertura": "2026-11-17T16:00",
+    "linkEdital": "https://2026cpeducaaguasdechapeco.fepese.org.br/?go=edital&mn=1151b3eab3b069d5112ccae1943307c4&edital=1",
+    "siteOficial": "",
+    "certificacao": "Não se aplica",
+    "id": "aguas-de-chapeco-sc-concurso-educacao-2026",
+    "titulo": "Concurso da Educação de Águas de Chapecó (Edital 001/2026)",
+    "categoria": "concursos",
+    "subtipo": "Concurso público",
+    "instituicao": "Prefeitura de Águas de Chapecó",
+    "estado": "SC",
+    "municipio": "Águas de Chapecó",
+    "area": "Educação",
+    "modalidade": "Presencial",
+    "vagas": "2 imediatas e cadastro reserva",
+    "escolaridade": "Médio ou superior, conforme o cargo",
+    "descricao": "Concurso da FEPESE para a Educação de Águas de Chapecó, no oeste catarinense, com vagas de Professor de Educação Infantil e de Educação Especial, além de cadastro reserva para Ensino Religioso e Auxiliar de Sala. O salário de professor é de R$ 5.147,24 por 40 horas.",
+    "prerequisitos": "Professor: licenciatura na área. Auxiliar de Sala: ensino médio. Confira os requisitos no edital.",
+    "documentos": "Inscrição online no site da FEPESE.",
+    "encerramento": "2026-12-09T16:00",
+    "taxa": "R$ 150 (superior) e R$ 120 (médio)",
+    "gratuidade": "Não",
+    "isencao": "Prevista no edital para quem se enquadra nos critérios.",
+    "linkInscricao": "https://2026cpeducaaguasdechapeco.fepese.org.br/",
+    "fonte": "https://concursosnobrasil.com/concursos/sc/2026/11/18/concurso-prefeitura-de-aguas-de-chapeco-sc-oferece-salarios-de-ate-r-51-mil/",
+    "fonteTipo": "secundaria",
+    "seo": {
+      "titulo": "Concurso Águas de Chapecó (SC) 2026: professor R$ 5,1 mil"
+    }
+  },
+  {
+    "fluxoContinuo": false,
+    "verificado": true,
+    "verificadoEm": "2026-11-24",
+    "criadoEm": "2026-11-24",
+    "parceiro": false,
+    "abertura": "2026-11-25T12:00",
+    "linkEdital": "",
+    "siteOficial": "https://www.concursosfau.com.br/novo/concurso/pmpal",
+    "certificacao": "Não se aplica",
+    "id": "palmital-pr-concurso-2026",
+    "titulo": "Concurso da Prefeitura de Palmital (PR), Edital 01/2026",
+    "categoria": "concursos",
+    "subtipo": "Concurso público",
+    "instituicao": "Prefeitura de Palmital",
+    "estado": "PR",
+    "municipio": "Palmital",
+    "area": "Vários cargos, incluindo Educação",
+    "modalidade": "Presencial",
+    "vagas": "126 imediatas e cadastro reserva",
+    "escolaridade": "Fundamental, médio, técnico e superior",
+    "descricao": "Concurso com 126 vagas para todos os níveis de escolaridade, com cargos como Professor Licenciatura Plena, Educador Social e Técnico de Controle na Educação. A organização é da FAU, fundação ligada à Unicentro, e a prova está marcada para 21/02/2027.",
+    "prerequisitos": "Conforme o cargo, no Anexo I do edital.",
+    "documentos": "Inscrição online no site da FAU.",
+    "encerramento": "2026-12-27T23:59",
+    "taxa": "R$ 100 a R$ 200, conforme a escolaridade",
+    "gratuidade": "Não",
+    "isencao": "Para pessoas de baixa renda e doadores de medula, no prazo do edital.",
+    "linkInscricao": "https://www.concursosfau.com.br/novo/concurso/pmpal",
+    "fonte": "https://www.concursosfau.com.br/novo/concurso/pmpal",
+    "fonteTipo": "oficial",
+    "seo": {
+      "titulo": "Concurso Palmital (PR) 2026: 126 vagas, inscrições até 27/12"
+    }
+  },
+  {
+    "fluxoContinuo": false,
+    "verificado": true,
+    "verificadoEm": "2026-11-24",
+    "criadoEm": "2026-11-24",
+    "parceiro": false,
+    "abertura": "2026-09-08T14:00",
+    "linkEdital": "https://portal.ifsuldeminas.edu.br/attachments/article/7616/Edital%20212_2026_Subsequentes_2027_1.pdf",
+    "siteOficial": "https://vestibular.ifsuldeminas.edu.br/",
+    "certificacao": "Diploma de técnico de nível médio",
+    "id": "ifsuldeminas-tecnicos-subsequentes-2027-1",
+    "titulo": "Cursos técnicos subsequentes do IFSULDEMINAS 2027/1 (Edital 212/2026)",
+    "categoria": "cursos",
+    "subtipo": "Curso técnico",
+    "instituicao": "IFSULDEMINAS",
+    "estado": "MG",
+    "municipio": "Machado, Muzambinho, Poços de Caldas e Pouso Alegre",
+    "area": "Agropecuária, gestão, segurança do trabalho, eletrotécnica e química",
+    "modalidade": "Presencial",
+    "vagas": "Confira no edital",
+    "escolaridade": "Ensino médio completo",
+    "descricao": "Cursos técnicos gratuitos para quem já terminou o ensino médio, em quatro campi do Sul de Minas, com opções como Administração, Agropecuária, Contabilidade, Segurança do Trabalho, Eletrotécnica e Química. A seleção é por sorteio, sem prova, marcado para 11/01/2027.",
+    "prerequisitos": "Ensino médio completo até a matrícula (quem está terminando pode enviar declaração), CPF próprio e conta gov.br.",
+    "documentos": "Inscrição online no portal de vestibular do IFSULDEMINAS.",
+    "encerramento": "2026-12-24T17:59",
+    "taxa": "R$ 10",
+    "gratuidade": "Curso gratuito",
+    "isencao": "Prazo de isenção já encerrado (até 06/11).",
+    "linkInscricao": "https://vestibular.ifsuldeminas.edu.br/edital/405",
+    "fonte": "https://www.pebsp.com/?p=50218",
+    "fonteTipo": "secundaria",
+    "seo": {
+      "titulo": "Cursos técnicos IFSULDEMINAS 2027 por sorteio, sem prova"
     }
   }
 ];
