@@ -213,7 +213,27 @@ function itemJsonLd(o){
       provider: { "@type": "Organization", name: o.instituicao, ...(o.siteOficial || o.linkInscricao ? { sameAs: o.siteOficial || o.linkInscricao } : {}) },
       ...(/gratuit/i.test((o.gratuidade||"")+(o.taxa||"")) ? { isAccessibleForFree: true } : {}) });
   }
+  const vaga = jobPostingLd(o, url);
+  if (vaga) graph.push(vaga);
   return { "@context": "https://schema.org", "@graph": graph };
+}
+// Vagas do Google (JobPosting): só programas de estágio, trainee e jovem aprendiz com prazo definido e ainda abertos.
+// Concursos ficam de fora: uma página costuma reunir vários cargos, e o Google pede uma vaga por página.
+const SIGLAS_UF = "AC AL AP AM BA CE DF ES GO MA MT MS MG PA PB PR PE PI RJ RN RS RO RR SC SP SE TO".split(" ");
+function jobPostingLd(o, url){
+  if (o.categoria !== "carreira" || o.fluxoContinuo || !o.encerramento || !isOpen(o)) return null;
+  const tipo = /trainee/i.test(o.subtipo||"") ? ["FULL_TIME"] : /aprendiz/i.test(o.subtipo||"") ? ["PART_TIME"] : ["INTERN"];
+  const fim = o.encerramento.length === 10 ? `${o.encerramento}T23:59:00-03:00` : `${o.encerramento}:00-03:00`;
+  const inicio = (o.abertura || o.criadoEm || o.verificadoEm || "").slice(0, 10);
+  const uf = SIGLAS_UF.includes(o.estado) ? o.estado : "";
+  const cidade = ok(o.municipio) && !/[,;()]|\be\b|estados|todo|on-?line|remoto|nacional|conforme|vaga|divers|vári|a definir|brasil/i.test(o.municipio) ? o.municipio : "";
+  const descr = [o.descricao, ok(o.prerequisitos) && `Requisitos: ${o.prerequisitos}`, ok(o.gratuidade) && `Remuneração e benefícios: ${o.gratuidade}`,
+    ok(o.modalidade) && `Modalidade: ${o.modalidade}`].filter(Boolean).map(t => `<p>${esc(t)}</p>`).join("");
+  return { "@type": "JobPosting", title: o.titulo.replace(/\s*\([^)]*\)\s*$/, ""), description: descr, url,
+    ...(inicio ? { datePosted: inicio } : {}), validThrough: fim, employmentType: tipo, directApply: false,
+    hiringOrganization: { "@type": "Organization", name: String(o.instituicao).split(" · ")[0].replace(/\s*\([a-zà-ú][^)]*\)\s*$/, ""),
+      ...(o.siteOficial && !/ciadeestagios|academiadouniversitario|gupy|99jobs|eureca|vagas\.com|instagram|linkedin|ciee|nube/i.test(o.siteOficial) ? { sameAs: o.siteOficial } : {}) },
+    jobLocation: { "@type": "Place", address: { "@type": "PostalAddress", ...(cidade ? { addressLocality: cidade } : {}), ...(uf ? { addressRegion: uf } : {}), addressCountry: "BR" } } };
 }
 function related(o){
   const same = DATA.filter(x => x.categoria === o.categoria && x.id !== o.id && isOpen(x));
