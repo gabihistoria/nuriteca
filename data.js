@@ -1196,7 +1196,8 @@ window.SNAPSHOT = [
     "verificadoEm": "2026-11-06",
     "criadoEm": "2026-11-06",
     "seo": {
-      "titulo": "Processo seletivo Luís Eduardo Magalhães (BA) 2026: vagas"
+      "titulo": "Seletivo Luís Eduardo Magalhães 2026: 2.355 vagas",
+      "descricao": "Processo seletivo da Prefeitura de Luís Eduardo Magalhães (BA) 2026: 2.355 vagas e salário de até R$ 9.216. Inscrições encerradas em 15/11. Veja o edital."
     }
   },
   {
@@ -1536,7 +1537,8 @@ window.SNAPSHOT = [
     "verificadoEm": "2026-11-06",
     "criadoEm": "2026-11-06",
     "seo": {
-      "titulo": "Concurso Prefeitura de Contagem 2026: vagas, salários e inscrições"
+      "titulo": "Concurso Prefeitura de Contagem 2026: 272 vagas",
+      "descricao": "Concurso Prefeitura de Contagem 2026 (MG): 272 vagas e salário de até R$ 13.305. Inscrições encerradas em 17/11. Veja edital, cargos e próximos passos."
     }
   },
   {
@@ -1570,7 +1572,8 @@ window.SNAPSHOT = [
     "verificadoEm": "2026-11-06",
     "criadoEm": "2026-11-06",
     "seo": {
-      "titulo": "Concurso PMMG CFO 2026 (oficial): vagas, requisitos e inscrições"
+      "titulo": "Concurso PMMG CFO 2026: 90 vagas e inscrições",
+      "descricao": "Concurso PMMG CFO 2026 para oficial da Polícia Militar de Minas Gerais: 90 vagas, salário de até R$ 12.170 e inscrições até 10/12. Veja requisitos e etapas."
     }
   },
   {
@@ -2583,7 +2586,8 @@ window.SNAPSHOT = [
     "verificadoEm": "2026-11-08",
     "criadoEm": "2026-11-08",
     "seo": {
-      "titulo": "Vestibular Cederj 2027.1: graduação gratuita EaD no RJ"
+      "titulo": "Vestibular Cederj 2027.1: graduação EaD gratuita no RJ",
+      "descricao": "Vestibular Cederj EaD 2027.1: 7.165 vagas gratuitas em 16 cursos, como Pedagogia e Administração, em polos do RJ. Prova em 6/12/2026. Inscrições encerradas."
     }
   },
   {
@@ -3101,7 +3105,8 @@ window.SNAPSHOT = [
     "taxa": "Informação não confirmada.",
     "fonte": "https://folha.qconcursos.com/n/grupo-hospitalar-conceicao-abre-concurso-para-cadastro-de-reserva-em-porto-alegre-rs",
     "seo": {
-      "titulo": "Concurso GHC 2026 (edital 03): cargos, salários e inscrições"
+      "titulo": "Concurso GHC 2026: edital, inscrições, vagas e salários",
+      "descricao": "Concurso GHC 2026 (Hospital Conceição, Porto Alegre): edital 03/2026 da Fundatec, 52 cargos, salários de R$ 2.010 a R$ 12.974 e inscrições até 4/12."
     }
   },
   {
@@ -3241,7 +3246,8 @@ window.SNAPSHOT = [
     "taxa": "R$ 120, R$ 180 ou R$ 230",
     "fonte": "https://blog.grancursosonline.com.br/concursos-rio-grande-do-sul-rs/",
     "seo": {
-      "titulo": "Concurso Caxias do Sul 2026: vagas, salários e inscrições"
+      "titulo": "Concurso Prefeitura de Caxias do Sul 2026: inscrições",
+      "descricao": "Concurso Prefeitura de Caxias do Sul 2026: vagas de nível médio e superior pela Fundatec, inscrições até 29/11, taxa de R$ 120 a R$ 230 e prova em 24/1/2027."
     }
   },
   {
@@ -3311,7 +3317,8 @@ window.SNAPSHOT = [
     "taxa": "Informação não confirmada.",
     "fonte": "https://blog.grancursosonline.com.br/concurso-publico-9-novembro-2026/",
     "seo": {
-      "titulo": "Concurso Fundação Liberato 2026: professores e inscrições"
+      "titulo": "Concurso Fundação Liberato 2026: edital e inscrições",
+      "descricao": "Concurso Fundação Liberato 2026 (Novo Hamburgo, RS): vagas de professor, analista e agente administrativo, banca Legalle, inscrições até 8/12 e prova em 7/3."
     }
   },
   {
@@ -4186,7 +4193,8 @@ window.SNAPSHOT = [
     "certificacao": "Certificado gratuito de conclusão",
     "fonte": "https://www.folhauberaba.com.br/startup-sediada-na-unicamp-tem-15-cursos-gratuitos-com-certificado-em-ia-lean-e-gestao/",
     "seo": {
-      "titulo": "15 cursos gratuitos FM2S com certificado: IA, Lean e gestão"
+      "titulo": "FM2S cursos gratuitos com certificado: 15 opções",
+      "descricao": "FM2S cursos gratuitos com certificado: 15 cursos online de IA, Lean Seis Sigma, gestão de projetos, dados e liderança. Inscrições até 30/11. Veja a lista."
     }
   },
   {
@@ -4571,7 +4579,8 @@ window.SNAPSHOT = [
     "taxa": "Informação não confirmada.",
     "fonte": "https://focoenem.com.br/noticias/editais-de-10-de-novembro-de-2026-atualizacoes-e-prazos/",
     "seo": {
-      "titulo": "Concurso fiscal Cuiabá: 198 vagas autorizadas"
+      "titulo": "Concurso fiscal Cuiabá: 198 vagas autorizadas",
+      "descricao": "Concurso fiscal municipal de Cuiabá autorizado em 9/11/2026, com 198 vagas previstas de nível superior. Banca e datas ainda não definidas. Acompanhe aqui."
     }
   },
   {
@@ -5201,7 +5210,8 @@ window.SNAPSHOT = [
     "gratuidade": "Bolsa-auxílio compatível com o mercado",
     "fonte": "https://catracalivre.com.br/educacao/gerdau-abre-150-vagas-para-programa-de-estagio-em-varias-cidades/",
     "seo": {
-      "titulo": "Estágio Gerdau G.Start: 150 vagas em 12 estados"
+      "titulo": "Estágio Gerdau 2027 G.Start: 150 vagas em 12 estados",
+      "descricao": "Estágio Gerdau 2027 (G.Start): 150 vagas em 12 estados, 110 delas para Engenharia. Inscrições encerradas em 16/11. Veja como funciona o programa."
     }
   },
   {
@@ -5271,7 +5281,8 @@ window.SNAPSHOT = [
     "gratuidade": "Bolsa-auxílio",
     "fonte": "https://napratica.org.br/noticias/btg-boeing-honda-e-azul-as-melhores-vagas-de-novembro-de-2026",
     "seo": {
-      "titulo": "Estágio Blip 2027: vagas em tecnologia e IA"
+      "titulo": "Estágio Blip 2027: mais de 30 vagas em tecnologia e IA",
+      "descricao": "Programa de estágio Blip 2027: mais de 30 vagas em tecnologia e inteligência artificial para universitários de todo o Brasil. Inscrições até 30/11."
     }
   },
   {
@@ -5306,7 +5317,8 @@ window.SNAPSHOT = [
     "gratuidade": "Bolsa a combinar",
     "fonte": "https://clickpetroleoegas.com.br/24-meses-de-estagio-com-plano-de-saude-numa-empresa-de-navios-que-atendem-plataformas-de-petroleo-bram-offshore-abre-programa-de-estagio-com-inscricoes-ate-30-de-novembro-de-btl96-mhbb01/",
     "seo": {
-      "titulo": "Estágio Bram Offshore 2027 no Rio de Janeiro"
+      "titulo": "Estágio Bram Offshore 2027: inscrições até 30/11",
+      "descricao": "Estágio Bram Offshore 2027 no Rio, São Gonçalo e Porto do Açu: Administração, Contábeis, Economia e Engenharias, com plano de saúde. Inscrições até 30/11."
     }
   },
   {
@@ -5796,7 +5808,8 @@ window.SNAPSHOT = [
     "siteOficial": "https://institutoverbena.ufg.br/",
     "fonte": "https://concursosnobrasil.com/concursos/go/2026/09/14/concurso-prefeitura-de-sao-luis-dos-montes-belos-go-divulga-novo-edital/",
     "seo": {
-      "titulo": "Concurso São Luís de Montes Belos GO 2026: inscrições"
+      "titulo": "Concurso São Luís de Montes Belos 2026: edital",
+      "descricao": "Concurso Prefeitura de São Luís de Montes Belos (GO) 2026: 17 cargos, incluindo professor pedagogo, pelo Instituto Verbena. Inscrições encerradas em 25/11."
     }
   },
   {
@@ -6146,7 +6159,8 @@ window.SNAPSHOT = [
     "siteOficial": "https://www.tre-ms.jus.br/",
     "fonte": "https://acritica.net/cidades/estagio-tre-ms-2026/",
     "seo": {
-      "titulo": "Estágio TRE-MS 2026: bolsa de R$ 1.224 e inscrição"
+      "titulo": "Estágio TRE-MS 2026: bolsa de R$ 1.224 e inscrições",
+      "descricao": "Estágio TRE-MS 2026 em Campo Grande: bolsa de R$ 1.224 mais auxílio-transporte, 25 horas por semana, prova online pelo CIEE. Inscrições até 2/12, ao meio-dia."
     }
   },
   {
@@ -6391,7 +6405,8 @@ window.SNAPSHOT = [
     "siteOficial": "https://www.pmf.sc.gov.br/",
     "fonte": "https://concursosnobrasil.com/concursos/sc/2026/11/13/sc-prefeitura-de-florianopolis-abre-nova-selecao-para-docentes/",
     "seo": {
-      "titulo": "Seletivo professor Florianópolis 2027: até R$ 6,4 mil"
+      "titulo": "Processo seletivo Florianópolis 2027: professores",
+      "descricao": "Processo seletivo Florianópolis 2027 para professores temporários: salários de R$ 1.431 a R$ 6.493, prova prevista para 13/12. Inscrições encerradas em 26/11."
     }
   },
   {
@@ -6566,7 +6581,8 @@ window.SNAPSHOT = [
     "siteOficial": "https://www.ifg.edu.br",
     "fonte": "https://dhg1h5j42swfq.cloudfront.net/2026/10/16061110/diariooficial-6-30-45.pdf",
     "seo": {
-      "titulo": "Concurso IFG 2026: 36 vagas para técnicos em educação"
+      "titulo": "Concurso IFG 2026: 36 vagas, edital e inscrições",
+      "descricao": "Concurso IFG 2026 para técnico-administrativo: 36 vagas, salários de R$ 2.607 a R$ 5.215 mais auxílio-alimentação, inscrições até 23/12 e prova em 14/2/2027."
     }
   },
   {
@@ -6973,7 +6989,8 @@ window.SNAPSHOT = [
     "titulo": "Doutorado em Matemática Aplicada da UFRGS: seleção para 2027/1",
     "categoria": "stricto",
     "seo": {
-      "titulo": "Doutorado Matemática Aplicada UFRGS 2027"
+      "titulo": "Doutorado em Matemática Aplicada UFRGS 2027: seleção",
+      "descricao": "Seleção do doutorado em Matemática Aplicada da UFRGS para ingresso em 2027/1. Curso gratuito em Porto Alegre. Envio da documentação até 4/12/2026."
     }
   },
   {
@@ -7700,7 +7717,8 @@ window.SNAPSHOT = [
     "fonte": "https://bombeiros.pb.gov.br/wp-content/uploads/2026/11/EDITAL-CFO-2027.pdf",
     "fonteTipo": "oficial",
     "seo": {
-      "titulo": "Concurso Bombeiros PB 2027 (CFO): 20 vagas com nota do ENEM"
+      "titulo": "Concurso Bombeiros PB CFO 2027: 20 vagas pela nota do Enem",
+      "descricao": "Concurso Bombeiros PB CFO 2027: 20 vagas de cadete com seleção pela nota do Enem, salário de R$ 11.142 como 2º tenente. Inscrições até 11/12, taxa de R$ 120."
     }
   },
   {
