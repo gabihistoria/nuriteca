@@ -50,6 +50,7 @@ const itemUrl = o => `/${CATS[o.categoria].slug}/${slugify(o.id)}/`;
 
 const FONTS = `<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700&display=swap" rel="stylesheet">`;
 const ICON = `<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Cpath d=%22M2 24C6 15 12 13 16 16v12c-4-3-10-3-14 0z%22 fill=%22%23E8735F%22/%3E%3Cpath d=%22M30 24c-4-9-10-11-14-8v12c4-3 10-3 14 0z%22 fill=%22%23B9583C%22/%3E%3Ccircle cx=%2216%22 cy=%227%22 r=%223.4%22 fill=%22%23D9A441%22/%3E%3C/svg%3E">`;
+const POPUP_V = new Date().toISOString().slice(0, 16).replace(/[-T:]/g, "");
 const BEACON = `<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "4630aa3a77ee4dfab0a3afe9851de284"}'></script>`;
 const CSS = `:root{--bg:#FBF4EC;--surface:#FFFBF6;--ink:#2E2420;--muted:#7A6A60;--line:#EADBCB;--coral:#E8735F;--terra:#B9583C;--salvia:#7E9B7A;--ocre:#D9A441}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;line-height:1.6}
@@ -95,7 +96,7 @@ function page({title, desc, url, body, ogType="website", noindex=false, jsonld=n
 <meta property="og:type" content="${ogType}"><meta property="og:site_name" content="Nuriteca"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(desc)}"><meta property="og:url" content="${SITE}${url}"><meta property="og:image" content="${SITE}/icon-512.png"><meta property="og:locale" content="pt_BR">
 <meta name="theme-color" content="#FBF4EC">${ICON}${FONTS}<style>${CSS}</style></head>
 <body><header><div class="wrap">${LOGO}<a class="back" href="/">Ver todas →</a></div></header>
-<main class="wrap">${body}</main>${FOOTER}${BEACON}</body></html>`;
+<main class="wrap">${body}</main>${FOOTER}${BEACON}<script defer src="/popup.js?v=${POPUP_V}"></script></body></html>`;
 }
 
 // ---------- SEO de cada oportunidade ----------
@@ -415,7 +416,7 @@ const DATA_V = new Date().toISOString().slice(0, 16).replace(/[-T:]/g, "");
   const ip = path.join(ROOT, "index.html");
   const src = fs.readFileSync(ip, "utf8");
   const out = src.replace(/<script src="\/data\.js(\?v=[0-9]+)?">/, `<script src="/data.js?v=${DATA_V}">`)
-    .replace(/<script src="\/banners\.js(\?v=[0-9]+)?">/, `<script src="/banners.js?v=${DATA_V}">`);
+    .replace(/<script src="\/banners\.js(\?v=[0-9]+)?">/, `<script src="/banners.js?v=${DATA_V}">`).replace(/<script defer src="\/popup\.js(\?v=[0-9]+)?">/, `<script defer src="/popup.js?v=${DATA_V}">`);
   if (out !== src) fs.writeFileSync(ip, out);
 }
 const APP = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
