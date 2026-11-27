@@ -15,13 +15,13 @@ const GUIAS = window.GUIAS || [];
 
 const CATS = {
   concursos:   { slug: "concursos",            nome: "Concursos públicos",               titulo: "Concursos públicos com inscrições abertas",            cor: "#E8735F" },
-  cursos:      { slug: "cursos",               nome: "Cursos gratuitos",                 titulo: "Cursos gratuitos com inscrições abertas",              cor: "#D9A441" },
+  cursos:      { slug: "cursos",               nome: "Cursos gratuitos",                 titulo: "Cursos gratuitos com inscrições abertas",              cor: "#567F70" },
   graduacao:   { slug: "graduacao",            nome: "Graduações gratuitas",             titulo: "Graduações gratuitas e vestibulares",                  cor: "#7E9B7A" },
   pos:         { slug: "pos-graduacao",        nome: "Pós-graduações gratuitas",         titulo: "Pós-graduações gratuitas com inscrições abertas",      cor: "#B9583C" },
   stricto:     { slug: "mestrado-e-doutorado", nome: "Mestrados e doutorados",           titulo: "Mestrados e doutorados com inscrições abertas",        cor: "#2F6B73" },
   bolsas:      { slug: "bolsas",               nome: "Bolsas e oportunidades",           titulo: "Bolsas e oportunidades com inscrições abertas",        cor: "#C97B8E" },
   descontos:   { slug: "descontos",            nome: "Descontos e bolsas de estudo",     titulo: "Descontos e bolsas de estudo",                         cor: "#9C7FB4" },
-  intercambio: { slug: "intercambios-gratuitos", nome: "Intercâmbios gratuitos",         titulo: "Intercâmbios gratuitos e bolsas para estudar no exterior", cor: "#567F70",
+  intercambio: { slug: "intercambios-gratuitos", nome: "Intercâmbios gratuitos",         titulo: "Intercâmbios gratuitos e bolsas para estudar no exterior", cor: "#D9A441",
     intro: `<p class="desc">Intercâmbio gratuito existe, e não é só para quem já tem dinheiro. Aqui estão os programas de intercâmbio gratuito e com bolsa integral abertos para estudantes brasileiros: do ensino médio ao mestrado e doutorado, com curso, moradia ou passagem pagos. Cada um tem o prazo, quem pode participar e o link oficial para a inscrição.</p><p>Está no ensino médio? Leia o guia <a href="/guias/intercambio-gratuito-ensino-medio/">Intercâmbio de graça no ensino médio</a>, com Jovens Embaixadores, Prontos pro Mundo, Ganhando o Mundo e outros.</p>` },
   carreira:    { slug: "estagio-e-trainee",    nome: "Estágio, trainee e jovem aprendiz", titulo: "Programas de estágio, trainee e jovem aprendiz abertos", cor: "#C77A45" },
 };
