@@ -2,6 +2,99 @@
 // Cada guia vira uma página em /guias/<slug>/. O bloco "abertos" lista sozinho o que está aberto no data.js.
 window.GUIAS = [
 {
+  slug: "bolsas-de-intercambio-gratuitas-2027",
+  categorias: ["intercambio", "stricto"],
+  titulo: "Bolsas de intercâmbio gratuitas para 2027 com inscrições abertas",
+  seoTitulo: "Bolsas de intercâmbio gratuitas 2027: as que ainda estão abertas",
+  descricao: "Bolsas integrais para estudar fora em 2027 que ainda aceitam inscrição: Cambridge, Eiffel, KAUST, ISTA, Erasmus Mundus, Trinity College Dublin e mais, com prazo e o que cada uma paga.",
+  publicado: "2026-11-27",
+  atualizado: "2026-11-27",
+  abertos: { categoria: "intercambio", titulo: "Todas as bolsas e intercâmbios abertos agora (lista atualizada todo dia)" },
+  html: `
+<p>Muita gente começa a procurar bolsa para estudar fora quando as inscrições já fecharam. A boa notícia: no fim de 2026 ainda tem muita coisa aberta para quem quer começar em 2027, e várias pagam <b>tudo</b>: curso, moradia, passagem e uma mesada para viver.</p>
+<p>Separamos as bolsas que seguem com inscrição aberta, organizadas por nível de estudo, com o prazo e o que cada uma cobre. Cada uma tem uma ficha na Nuriteca com o link oficial. No fim da página, uma lista que se atualiza sozinha mostra tudo o que está aberto hoje.</p>
+
+<h2>Resumo dos prazos</h2>
+<div style="overflow-x:auto"><table>
+<tr><th>Bolsa</th><th>Para quem</th><th>Prazo</th></tr>
+<tr><td>Gates Cambridge e bolsas de Cambridge</td><td>Mestrado e doutorado</td><td>8/12/2026 ou 6/1/2027, conforme o curso</td></tr>
+<tr><td>Erasmus Mundus EMMIR (migração)</td><td>Mestrado</td><td>20/12/2026</td></tr>
+<tr><td>Erasmus Mundus EMLE (direito e economia)</td><td>Mestrado</td><td>31/12/2026</td></tr>
+<tr><td>KAUST (Arábia Saudita)</td><td>Mestrado e doutorado</td><td>3/1/2027</td></tr>
+<tr><td>Eiffel (França)</td><td>Mestrado e doutorado</td><td>6/1/2027, pela universidade</td></tr>
+<tr><td>Yale Young Global Scholars</td><td>Ensino médio</td><td>6/1/2027</td></tr>
+<tr><td>Erasmus Mundus MESPOM (meio ambiente)</td><td>Mestrado</td><td>7/1/2027</td></tr>
+<tr><td>Erasmus Mundus Europubhealth+ (saúde pública)</td><td>Mestrado</td><td>8/1/2027</td></tr>
+<tr><td>ISTA (Áustria)</td><td>Doutorado</td><td>8/1/2027</td></tr>
+<tr><td>Erasmus Mundus Journalism</td><td>Mestrado</td><td>10/1/2027</td></tr>
+<tr><td>Sciences Po, bolsa Émile Boutmy</td><td>Graduação</td><td>13/1/2027</td></tr>
+<tr><td>Erasmus Mundus Euroculture e Choreomundus</td><td>Mestrado</td><td>15/1/2027</td></tr>
+<tr><td>Uppsala Global Scholarship (Suécia)</td><td>Mestrado</td><td>15/1/2027</td></tr>
+<tr><td>ABEI/Haddad, Trinity College Dublin</td><td>Mestrado</td><td>18/1/2027</td></tr>
+<tr><td>Erasmus Mundus CLMCE (literatura infantil)</td><td>Mestrado</td><td>22/1/2027</td></tr>
+<tr><td>Erasmus Mundus EU-CORE (energia renovável)</td><td>Mestrado</td><td>31/1/2027</td></tr>
+</table></div>
+
+<h2>Ensino médio</h2>
+<p><b>Yale Young Global Scholars (Estados Unidos).</b> Programa de verão de duas semanas no campus de Yale para estudantes de 16 a 18 anos. As bolsas são parciais ou integrais, de acordo com a necessidade financeira da família, e algumas cobrem até a passagem. Prazo final: 6 de janeiro de 2027, às 23h59 de Nova York. Veja também o guia <a href="/guias/intercambio-gratuito-ensino-medio/">Intercâmbio de graça no ensino médio</a>.</p>
+
+<h2>Graduação</h2>
+<p><b>Sciences Po, bolsa Émile Boutmy (França).</b> Para quem quer fazer graduação numa das escolas de ciências sociais e política mais conhecidas da Europa. A bolsa pode zerar a anuidade ou dar um desconto de 9.500 euros no primeiro ano. O pedido é feito na própria inscrição, na parte de informações financeiras, até 13 de janeiro de 2027.</p>
+
+<h2>Mestrado com bolsa integral</h2>
+<p><b>Cambridge (Reino Unido).</b> Ao se inscrever num mestrado ou doutorado de Cambridge, você marca no formulário que quer concorrer às bolsas. A <b>Gates Cambridge</b> paga anuidade, ajuda de custo de £ 23.152 por ano, passagens e visto. As bolsas da universidade e do Cambridge Trust também podem cobrir anuidade e custo de vida. O prazo depende do curso: 8 de dezembro de 2026 ou 6 de janeiro de 2027. Confira o do seu antes de começar.</p>
+<p><b>Erasmus Mundus (Europa).</b> São mestrados de dois anos em que você estuda em dois ou mais países. A bolsa paga 1.400 euros por mês durante 24 meses, além das taxas do curso. Estes seguem abertos:</p>
+<ul>
+<li><b>EMMIR</b>, em migração e relações interculturais, até 20/12/2026.</li>
+<li><b>EMLE</b>, em direito e economia, até 31/12/2026.</li>
+<li><b>MESPOM</b>, em ciência e política ambiental, com estudos em quatro países, até 7/1/2027.</li>
+<li><b>Europubhealth+</b>, em saúde pública, até 8/1/2027.</li>
+<li><b>Journalism</b>, em jornalismo, começando na Dinamarca, até 10/1/2027. Pede experiência na área.</li>
+<li><b>Euroculture</b>, em cultura e sociedade europeias, e <b>Choreomundus</b>, em dança e patrimônio cultural imaterial, até 15/1/2027.</li>
+<li><b>CLMCE</b>, em literatura infantil, mídia e cultura, começando em Glasgow, até 22/1/2027.</li>
+<li><b>EU-CORE</b>, em sistemas de energia renovável, para engenheiros, até 31/1/2027.</li>
+</ul>
+<p><b>ABEI/Haddad, Trinity College Dublin (Irlanda).</b> Bolsa <b>só para brasileiros</b>: um ano de mestrado no Trinity com a anuidade paga e mais 18 mil euros em parcelas mensais. Pede média de pelo menos 7,1 na graduação e inglês comprovado. Prazo: 18 de janeiro de 2027.</p>
+<p><b>Eiffel (França).</b> Bolsa do governo francês com auxílio mensal, passagem e seguro. O detalhe: você não se candidata sozinho. É a universidade francesa que te indica, então é preciso já estar em seleção numa delas. O prazo de 6 de janeiro de 2027 é das universidades, e cada uma tem um prazo interno antes disso.</p>
+<p><b>KAUST (Arábia Saudita).</b> Todos os aprovados no mestrado ou no doutorado recebem bolsa: mensalidade, moradia no campus, seguro-saúde, passagens e uma ajuda anual de US$ 20 mil a US$ 30 mil. É para ciências, engenharia e computação. Prazo da rodada atual: 3 de janeiro de 2027.</p>
+
+<h2>Doutorado</h2>
+<p><b>ISTA (Áustria).</b> O instituto contrata os doutorandos aprovados, com salário e seguridade social, sem mensalidade. Aceita quem só tem bacharelado, desde que termine até setembro de 2027. Prazo: 8 de janeiro de 2027.</p>
+<p>Cambridge, Eiffel e KAUST, citadas acima, também valem para doutorado.</p>
+
+<h2>Bolsas parciais que valem a pena</h2>
+<p>Não pagam tudo, mas reduzem muito o custo:</p>
+<ul>
+<li><b>Uppsala Global Scholarship (Suécia):</b> paga a anuidade inteira do mestrado, mas não o custo de vida. É preciso se inscrever no mestrado até 15 de janeiro de 2027, com Uppsala como primeira opção, e depois pedir a bolsa entre 16 de janeiro e 1º de fevereiro.</li>
+<li><b>EPFL (Suíça):</b> 10 mil francos suíços por semestre para quem se inscreve num mestrado da EPFL até 15 de dezembro de 2026. A concorrência é automática.</li>
+</ul>
+
+<h2>Antes de se inscrever</h2>
+<ul>
+<li><b>Inglês:</b> quase todas pedem comprovação, geralmente TOEFL ou IELTS. A prova tem data marcada e o resultado demora, então agende já.</li>
+<li><b>Carta de motivação:</b> é o que mais pesa. Veja o guia <a href="/guias/carta-de-motivacao-para-bolsa/">Carta de motivação para bolsa no exterior</a>.</li>
+<li><b>Cartas de recomendação:</b> peça com pelo menos um mês de antecedência. Professor ocupado em dezembro é professor que esquece.</li>
+<li><b>Passaporte:</b> tire antes de ser aprovado.</li>
+<li><b>Golpes:</b> bolsa de verdade não cobra para você concorrer. Inscreva-se sempre pelo site oficial.</li>
+</ul>
+<p class="aviso">Prazos conferidos em 27 de novembro de 2026. Os horários seguem o fuso de cada país, então não deixe para o último dia. Confirme sempre na página oficial de cada bolsa, que você encontra na ficha de cada uma na Nuriteca.</p>
+`,
+  fontes: [
+    ["Gates Cambridge: como se candidatar", "https://www.gatescambridge.org/apply/"],
+    ["Universidade de Cambridge: bolsas da pós-graduação", "https://www.postgraduate.study.cam.ac.uk/funding/applying-university-funding"],
+    ["Campus France: bolsa Eiffel", "https://www.campusfrance.org/en/france-excellence-eiffel-scholarship-program"],
+    ["KAUST: inscrições", "https://apply.kaust.edu.sa/apply/"],
+    ["ISTA: chamada de doutorado 2027", "https://apply.ista.ac.at/phd_open_call_2027"],
+    ["Trinity College Dublin: bolsa ABEI/Haddad", "https://www.tcd.ie/study/international/scholarships/postgraduate/abeihaddadfellow.php"],
+    ["Sciences Po: bolsa Émile Boutmy", "https://www.sciencespo.fr/students/en/fees-funding/bursaries-financial-aid/emile-boutmy-scholarship/"],
+    ["Yale Young Global Scholars", "https://globalscholars.yale.edu"],
+    ["EMMIR: inscrições", "https://www.emmir.org/application-procedures"],
+    ["Erasmus Mundus Journalism: inscrições", "https://mundusjournalism.com/admissions/application-process"],
+    ["University Admissions in Sweden", "https://www.universityadmissions.se/intl/start"],
+    ["EPFL: inscrição no mestrado", "https://www.epfl.ch/education/admission/admission-2/master-admission-criteria-application/online-application/"],
+  ]
+},
+{
   slug: "mestrado-online-no-exterior",
   categorias: ["stricto", "intercambio"],
   titulo: "Mestrado online no exterior: 3 universidades baratas para estudar sem sair de casa",
