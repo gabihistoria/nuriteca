@@ -421,9 +421,9 @@ footer .wrap{display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap}
 </footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="/data.js?v=202611272028"></script>
-<script defer src="/popup.js?v=202611272028"></script>
-<script src="/banners.js?v=202611272028"></script>
+<script src="/data.js?v=202611272102"></script>
+<script defer src="/popup.js?v=202611272102"></script>
+<script src="/banners.js?v=202611272102"></script>
 <script src="/curriculo.js"></script>
 <script src="/testes.js"></script>
 <script>
@@ -449,6 +449,7 @@ const PROGRAMAS_INTERCAMBIO = [
   {nome:"Chevening (Reino Unido)", quem:"Profissionais graduados com experiência de trabalho.", oque:"Mestrado de um ano no Reino Unido com bolsa integral do governo britânico.", quando:"Ciclo anual. As inscrições para 2027–2028 fecharam em 6 de outubro de 2026.", link:"https://www.chevening.org"}
 ];
 const HOME_CATS = ["concursos","intercambio","graduacao","pos","stricto","bolsas"];
+const HOME_COR = {intercambio:"var(--ocre)"};
 const ESTADOS = {AC:"Acre",AL:"Alagoas",AP:"Amapá",AM:"Amazonas",BA:"Bahia",CE:"Ceará",DF:"Distrito Federal",ES:"Espírito Santo",GO:"Goiás",MA:"Maranhão",MT:"Mato Grosso",MS:"Mato Grosso do Sul",MG:"Minas Gerais",PA:"Pará",PB:"Paraíba",PR:"Paraná",PE:"Pernambuco",PI:"Piauí",RJ:"Rio de Janeiro",RN:"Rio Grande do Norte",RS:"Rio Grande do Sul",RO:"Rondônia",RR:"Roraima",SC:"Santa Catarina",SP:"São Paulo",SE:"Sergipe",TO:"Tocantins"};
 const STATUS = {aberta:"Inscrições abertas", embreve:"Em breve", encerrada:"Inscrições encerradas", verificacao:"Em verificação"};
 const UNCONF = "Informação não confirmada";
@@ -743,7 +744,7 @@ function viewInicio(){
       </div>
     </section>
     <nav class="cats" aria-label="Categorias">
-      ${HOME_CATS.map(k=>[k,CATS[k]]).map(([k,c])=>`<a class="cat" href="/buscar/" data-cat="${k}"><span class="door" style="background:radial-gradient(90% 70% at 50% 20%,color-mix(in srgb,${c.cor} 45%,#fff),${c.cor})">${count(k)}</span>${esc(c.curto)}</a>`).join("")}
+      ${HOME_CATS.map(k=>[k,CATS[k]]).map(([k,c])=>`<a class="cat" href="/buscar/" data-cat="${k}"><span class="door" style="background:radial-gradient(90% 70% at 50% 20%,color-mix(in srgb,${HOME_COR[k]||c.cor} 45%,#fff),${HOME_COR[k]||c.cor})">${count(k)}</span>${esc(c.curto)}</a>`).join("")}
     </nav>
     ${sec("Encerrando em breve", encerrando, "/buscar/", 4)}
     ${banner("inicio",["concurso","curriculo"])}
