@@ -421,9 +421,9 @@ footer .wrap{display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap}
 </footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="/data.js?v=202611272102"></script>
-<script defer src="/popup.js?v=202611272102"></script>
-<script src="/banners.js?v=202611272102"></script>
+<script src="/data.js?v=202611272104"></script>
+<script defer src="/popup.js?v=202611272104"></script>
+<script src="/banners.js?v=202611272104"></script>
 <script src="/curriculo.js"></script>
 <script src="/testes.js"></script>
 <script>
@@ -432,13 +432,13 @@ footer .wrap{display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap}
 /* ---------- configuração ---------- */
 const CATS = {
   concursos:{nome:"Concursos públicos", curto:"Concursos", cor:"var(--coral)", letra:"C"},
-  cursos:{nome:"Cursos gratuitos", curto:"Cursos", cor:"var(--ocre)", letra:"A"},
+  cursos:{nome:"Cursos gratuitos", curto:"Cursos", cor:"color-mix(in srgb,var(--petroleo) 55%,var(--salvia))", letra:"A"},
   graduacao:{nome:"Graduações gratuitas", curto:"Graduações", cor:"var(--salvia)", letra:"G"},
   pos:{nome:"Pós-graduações gratuitas", curto:"Pós", cor:"var(--terracota)", letra:"P"},
   stricto:{nome:"Mestrados e doutorados", curto:"Mestrado e doutorado", cor:"var(--petroleo)", letra:"M"},
   bolsas:{nome:"Bolsas e oportunidades", curto:"Bolsas", cor:"var(--rosa)", letra:"B"},
   descontos:{nome:"Descontos e bolsas de estudo", curto:"Descontos e bolsas", cor:"var(--lilas)", letra:"D"},
-  intercambio:{nome:"Intercâmbios e estudo no exterior", curto:"Intercâmbios", cor:"color-mix(in srgb,var(--petroleo) 55%,var(--salvia))", letra:"I"},
+  intercambio:{nome:"Intercâmbios e estudo no exterior", curto:"Intercâmbios", cor:"var(--ocre)", letra:"I"},
   carreira:{nome:"Estágio, trainee e jovem aprendiz", curto:"Estágio e trainee", cor:"color-mix(in srgb,var(--terracota) 60%,var(--ocre))", letra:"E"}
 };
 const PROGRAMAS_INTERCAMBIO = [
@@ -449,7 +449,7 @@ const PROGRAMAS_INTERCAMBIO = [
   {nome:"Chevening (Reino Unido)", quem:"Profissionais graduados com experiência de trabalho.", oque:"Mestrado de um ano no Reino Unido com bolsa integral do governo britânico.", quando:"Ciclo anual. As inscrições para 2027–2028 fecharam em 6 de outubro de 2026.", link:"https://www.chevening.org"}
 ];
 const HOME_CATS = ["concursos","intercambio","graduacao","pos","stricto","bolsas"];
-const HOME_COR = {intercambio:"var(--ocre)"};
+const HOME_COR = {};
 const ESTADOS = {AC:"Acre",AL:"Alagoas",AP:"Amapá",AM:"Amazonas",BA:"Bahia",CE:"Ceará",DF:"Distrito Federal",ES:"Espírito Santo",GO:"Goiás",MA:"Maranhão",MT:"Mato Grosso",MS:"Mato Grosso do Sul",MG:"Minas Gerais",PA:"Pará",PB:"Paraíba",PR:"Paraná",PE:"Pernambuco",PI:"Piauí",RJ:"Rio de Janeiro",RN:"Rio Grande do Norte",RS:"Rio Grande do Sul",RO:"Rondônia",RR:"Roraima",SC:"Santa Catarina",SP:"São Paulo",SE:"Sergipe",TO:"Tocantins"};
 const STATUS = {aberta:"Inscrições abertas", embreve:"Em breve", encerrada:"Inscrições encerradas", verificacao:"Em verificação"};
 const UNCONF = "Informação não confirmada";
